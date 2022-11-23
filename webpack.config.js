@@ -31,7 +31,7 @@ module.exports = () => ({
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 loader: "babel-loader",
             },
             {
@@ -54,7 +54,7 @@ module.exports = () => ({
         ],
     },
     resolve: {
-        extensions: [".tsx", ".ts", ".js"],
+        extensions: [".tsx", ".ts", ".jsx", ".js"],
     },
     plugins: [
         new MiniCssExtractPlugin({
