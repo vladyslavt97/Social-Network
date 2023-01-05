@@ -12,6 +12,7 @@ app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
 app.get("/user/id.json", (req, res) => {
     res.json({ userId: null }); // instead of null. use value from req.session
+    /fsdfs
 });
 
 app.get("*", function (req, res) {
