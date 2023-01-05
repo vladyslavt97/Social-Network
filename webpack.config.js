@@ -12,6 +12,7 @@ module.exports = () => ({
         path: path.join(__dirname, "client", "public"),
         filename: "bundle.js",
     },
+    devtool: "source-map",
     performance: {
         hints: false,
     },

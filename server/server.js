@@ -5,7 +5,7 @@ const path = require("path");
 const helmet = require("helmet");
 const { PORT = 3001 } = process.env;
 const { hashPass} = require("./encrypt");
-const { insertDataIntoUsersDB} = require('../db');
+const { insertDataIntoUsersDB} = require('./db');
 
 app.use(compression());
 app.use(helmet());
@@ -26,8 +26,8 @@ app.use(express.json());
 //
 
 // middleware for cookies
-const {noSignedInCookie,
-    withSignedInWithSignatureCookie} = require("./middleware");
+// const {noSignedInCookie,
+//     withSignedInWithSignatureCookie} = require("./middleware");
 
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
@@ -40,28 +40,28 @@ app.use(express.static(path.join(__dirname, "..", "client", "public")));
 //GET
 //                                                                      POST
 //registration post
-app.post('/register', (req, res) => {
-    let firstNameValues = req.body.firstNameValues;
-    let secondNameValues = req.body.secondNameValues;
-    let emailValue = req.body.emailValue;
-    let passwordValue = req.body.passwordValue;
-    //
-    hashPass(passwordValue).then((hashedPassword) => {
-        if(firstNameValues !== '' && secondNameValues !== '' && emailValue !== '' && passwordValue !== ''){
-            insertDataIntoUsersDB(firstNameValues, secondNameValues, emailValue, hashedPassword)
-                .then((data)=>{
-                    req.session.signedIn = data.rows[0].id;
-                    res.redirect('/user-profile');
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        } else {
-            res.render("2register", {
-                layout: "main",
-                showError: true
+let showError = false; 
+app.post('/registration', (req, res) => {
+    const {firstName, secondName, email, password} = req.body;
+    hashPass(password).then((hashedPassword) => {
+        // if(firstNameValues !== '' && secondNameValues !== '' && emailValue !== '' && passwordValue !== ''){
+        insertDataIntoUsersDB(firstName, secondName, email, hashedPassword)
+            .then((data)=>{
+                showError = false, 
+                req.session.signedIn = data.rows[0].id;
+                res.json({ success: true, myUser: data.rows[0] });
+                location.reload();
+            })
+            .catch((err) => {
+                console.log('render error', err);
+                res.json({ success: false });
+                showError = true;
             });
-        }
+        // } else {
+        //     res.render("registration", {
+        //         showError: true
+        //     });
+        // }
     });
 });
 //registration above
@@ -79,3 +79,5 @@ app.get("*", function (req, res) {
 app.listen(PORT, function () {
     console.log(`Express server listening on port ${PORT}`);
 });
+
+//npm uninstall socket.io

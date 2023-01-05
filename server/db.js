@@ -7,6 +7,7 @@ module.exports.selectAllDataFromUsersDB = () =>{
     return db.query(`SELECT * FROM users;`);
 };
 
-module.exports.insertDataIntoUsersDB = (firstNameValues, secondNameValues, emailValue, passwordValue) => {
-    return db.query(`INSERT INTO users (first, last, email, password) VALUES ($1, $2, $3, $4) RETURNING *;`, [firstNameValues, secondNameValues, emailValue, passwordValue]);
+module.exports.insertDataIntoUsersDB = (firstName, secondName, email, hashedPassword) => {
+    return db.query(`INSERT INTO users (first, last, email, password) 
+    VALUES ($1, $2, $3, $4) RETURNING *;`, [firstName, secondName, email, hashedPassword]);
 };
