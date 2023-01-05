@@ -40,28 +40,24 @@ app.use(express.static(path.join(__dirname, "..", "client", "public")));
 //GET
 //                                                                      POST
 //registration post
-let showError = false; 
 app.post('/registration', (req, res) => {
-    const {firstName, secondName, email, password} = req.body;
+    const {firstname, lastname, email, password} = req.body;
+    // console.log('check!!!:', req.body);
     hashPass(password).then((hashedPassword) => {
-        // if(firstNameValues !== '' && secondNameValues !== '' && emailValue !== '' && passwordValue !== ''){
-        insertDataIntoUsersDB(firstName, secondName, email, hashedPassword)
-            .then((data)=>{
-                showError = false, 
-                req.session.signedIn = data.rows[0].id;
-                res.json({ success: true, myUser: data.rows[0] });
-                location.reload();
-            })
-            .catch((err) => {
-                console.log('render error', err);
-                res.json({ success: false });
-                showError = true;
-            });
-        // } else {
-        //     res.render("registration", {
-        //         showError: true
-        //     });
-        // }
+        if(firstname !== '' && lastname !== '' && email !== '' && password !== ''){
+            insertDataIntoUsersDB(firstname, lastname, email, hashedPassword)
+                .then((data)=>{
+                    req.session.signedIn = data.rows[0].id;
+                    res.json({ success: true, myUser: data.rows[0], validation: true });
+                    
+                })
+                .catch((err) => {
+                    console.log('render error', err);
+                    res.json({ success: false });
+                });
+        } else {
+            res.json({validation: false});
+        }
     });
 });
 //registration above
@@ -72,7 +68,8 @@ app.get("/user/id.json", (req, res) => {
 });
 
 app.get("*", function (req, res) {
-    console.log("got requested url: ", req.url);
+    // console.log('req.originalUrl: ', req.originalUrl, req.baseUrl, req.url); 
+    // console.log("got requested url: ", req.url);
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));
 });
 

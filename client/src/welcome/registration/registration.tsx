@@ -1,5 +1,5 @@
-import { Component, FormEvent } from 'react';
-
+import { Component, FormEvent} from 'react';
+import { Logo } from '../../components/logo';
 interface RegistrationState {
       firstname: string,
       lastname: string,
@@ -7,7 +7,7 @@ interface RegistrationState {
       password: string,
   }
 
-export class Registration extends Component<any, RegistrationState> {
+export class Registration extends Component<any, any> {
 
     constructor(props) {
         super(props);
@@ -15,7 +15,8 @@ export class Registration extends Component<any, RegistrationState> {
             firstname: '',
             lastname: '',
             email: '',
-            password: ''
+            password: '',
+            // data: null,
         };
 
     }
@@ -30,50 +31,70 @@ export class Registration extends Component<any, RegistrationState> {
         evt.preventDefault();
 
         // make POST request with fetch
-        fetch('/registration/', {
-                method: 'POST', 
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({firstname: this.state.firstname, lastname: this.state.lastname, email: this.state.email, password: this.state.password }),
-            })
-                .then((response) => 
-                    response.json())
-                .then((data) => {
-                    // console.log('this.commentid reply',this.imageid);
-                    // this.replies.push(data.myReply);
+        // componentDidMount() {
+            fetch('/registration/', {
+                    method: 'POST', 
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({firstname: this.state.firstname, lastname: this.state.lastname, email: this.state.email, password: this.state.password }),
                 })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
+                    .then((response) => 
+                        response.json())
+                    .then((data) => {
+                        console.log("success: ", data, 'and show ErrorNOT!!');
+                        // console.log('this.commentid reply',this.imageid);
+                        // this.replies.push(data.myReply);
+                        if(data.validation === false){
+                            alert('generate the error');
+                            console.log('generate the error');
+                            // this.setState({ data: data,
+                            // });
+                            
+                        } else {
+                            console.log("don't");
+                        }
+                        // location.reload();
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+        // }
     }
 
     render() {
         console.log('state: ', this.state);
         return <div>
-            <h1>Welcome to MY SOCIAL NETWORK</h1>
-            {/* <LogoComponent/> */}
-            <p>Lorum ipsum</p>
-            <form onSubmit={this.handleSubmit}>
+            <Logo />
+            <h1 id='bookface'>Bookface</h1>
+
+            <form onSubmit={this.handleSubmit} id="registration-form">
                 <div>
-                    <span>Firstname</span>
-                    <input name="firstName" onChange={this.handleInputChange} />
+                    <span>Firstname: </span>
+                    <input name="firstname" onChange={this.handleInputChange} />
+                    <span className='mandatory-field'>*</span>
                 </div>
                 <div>
-                    <span>Lastname</span>
-                    <input name="lastName" onChange={this.handleInputChange} />
+                    <span>Lastname: </span>
+                    <input name="lastname" onChange={this.handleInputChange} />
+                    <span className='mandatory-field'>*</span>
                 </div>
                 <div>
-                    <span>Email</span>
+                    <span>Email: </span>
                     <input name="email" onChange={this.handleInputChange} />
+                    <span className='mandatory-field'>*</span>
                 </div>
                 <div>
-                    <span>Password</span>
-                    <input name="password" onChange={this.handleInputChange} />
+                    <span>Password: </span>
+                    <input type="password" name="password" onChange={this.handleInputChange} />
+                    <span className='mandatory-field'>*</span>
                 </div>
                 <button>Register</button>
             </form>
             {/* link to login page with <a> tag */}
+            <a href="/" id='login'>LOGIN</a>
+            <img src="circle.png" alt="circle" id='circle'></img>
+            <img src="map.png" alt="map" id='map'></img>
         </div>
     }
 }
