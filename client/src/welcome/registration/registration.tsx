@@ -1,5 +1,6 @@
 import { Component, FormEvent} from 'react';
 import { Logo } from '../../components/logo';
+import { Error } from '../../components/error';
 interface RegistrationState {
       firstname: string,
       lastname: string,
@@ -16,7 +17,7 @@ export class Registration extends Component<any, any> {
             lastname: '',
             email: '',
             password: '',
-            // data: null,
+            error: false,
         };
 
     }
@@ -46,13 +47,14 @@ export class Registration extends Component<any, any> {
                         // console.log('this.commentid reply',this.imageid);
                         // this.replies.push(data.myReply);
                         if(data.validation === false){
-                            alert('generate the error');
+                            // alert('generate the error');
                             console.log('generate the error');
-                            // this.setState({ data: data,
-                            // });
+                            this.setState({error: true});
+                            // location.reload();
                             
                         } else {
                             console.log("don't");
+                            location.reload();
                         }
                         // location.reload();
                     })
@@ -67,7 +69,7 @@ export class Registration extends Component<any, any> {
         return <div>
             <Logo />
             <h1 id='bookface'>Bookface</h1>
-
+            {this.state.error && <Error />}
             <form onSubmit={this.handleSubmit} id="registration-form">
                 <div>
                     <span>Firstname: </span>
@@ -93,8 +95,8 @@ export class Registration extends Component<any, any> {
             </form>
             {/* link to login page with <a> tag */}
             <a href="/" id='login'>LOGIN</a>
-            <img src="circle.png" alt="circle" id='circle'></img>
-            <img src="map.png" alt="map" id='map'></img>
+            {/* <img src="circle.png" alt="circle" id='circle'></img> */}
+            {/* <img src="map.png" alt="map" id='map'></img> */}
         </div>
     }
 }
