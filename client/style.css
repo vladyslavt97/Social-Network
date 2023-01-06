@@ -56,6 +56,8 @@ body {
 #filldata{
     color: red;
     font-size: 35px;
+    display: flex;
+    justify-content: center;
 }
 
 header{

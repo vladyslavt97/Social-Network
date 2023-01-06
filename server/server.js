@@ -32,8 +32,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
 //might want to use later
-// const newuserRoutes = require('./routes/newuser');
-// const router = express.Router();
+const { loginRouter } = require('./routes/login');
+app.use(loginRouter);
 //
 
 

@@ -1,24 +1,22 @@
 import { Component, FormEvent} from 'react';
 import { Error } from '../../components/error';
+import { IncorrectData } from '../../components/incorrectdata';
 import { Link } from 'react-router-dom';
 
-interface RegistrationState {
-      firstname: string,
-      lastname: string,
+interface LoginState {
       email: string,
       password: string,
   }
 
-export class Registration extends Component<any, any> {
+export class Login extends Component<any, any> {
 
     constructor(props) {
         super(props);
         this.state = {
-            firstname: '',
-            lastname: '',
             email: '',
             password: '',
             error: false,
+            incorrect: false,
         };
 
     }
@@ -33,22 +31,24 @@ export class Registration extends Component<any, any> {
         evt.preventDefault();
 
         // make POST request with fetch
-            fetch('/registration/', {
+            fetch('/login/', {
                     method: 'POST', 
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({firstname: this.state.firstname, lastname: this.state.lastname, email: this.state.email, password: this.state.password }),
+                    body: JSON.stringify({ email: this.state.email, password: this.state.password }),
                 })
                     .then((response) => 
                         response.json())
                     .then((data) => {
-                        console.log("success: ", data, 'and show ErrorNOT!!');
                         if(data.validation === false){
-                            console.log('generate the error. Validation failed!');
+                            console.log('generate the error');
                             this.setState({error: true});
+                            if(data.incorrectData === false){
+                                this.setState({incorrect: true});
+                            }
                         } else {
-                            console.log("don't generate the error! All good:)");
+                            console.log("don't");
                             location.reload();
                         }
                     })
@@ -58,21 +58,13 @@ export class Registration extends Component<any, any> {
     }
 
     render() {
-        console.log('state: ', this.state);
+        console.log('state??: ', this.state);
         return <div>
             <h1 id='bookface'>Bookface</h1>
             {this.state.error && <Error />}
+            {this.state.incorrect && <IncorrectData />}
+
             <form onSubmit={this.handleSubmit} id="registration-form">
-                <div>
-                    <span>Firstname: </span>
-                    <input name="firstname" onChange={this.handleInputChange} />
-                    <span className='mandatory-field'>*</span>
-                </div>
-                <div>
-                    <span>Lastname: </span>
-                    <input name="lastname" onChange={this.handleInputChange} />
-                    <span className='mandatory-field'>*</span>
-                </div>
                 <div>
                     <span>Email: </span>
                     <input name="email" onChange={this.handleInputChange} />
@@ -83,9 +75,9 @@ export class Registration extends Component<any, any> {
                     <input type="password" name="password" onChange={this.handleInputChange} />
                     <span className='mandatory-field'>*</span>
                 </div>
-                <button>Register</button>
+                <button>Login</button>
             </form>
-            <Link to="/login" id='login'>LOGIN</Link>
+            <Link to="/" id='login'>Register</Link>
         </div>
     }
 }

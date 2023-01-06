@@ -1,5 +1,5 @@
 export function Error() {
-    return <div>
-            <h3 id="filldata">FILL THE DATA</h3>
+    return <div id="filldata">
+            <h3 >FILL THE DATA</h3>
             </div>
 }
