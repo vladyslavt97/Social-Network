@@ -9,25 +9,26 @@ const ses = new aws.SES({
     region: AWS_REGION
 });
 
-const sendingEmail = ses.sendEmail({
-    Source: 'Funky Chicken <available.cappelletti@spicedling.email>',
-    Destination: {
-        ToAddresses: ['available.cappelletti@spicedling.email']
-    },
-    Message: {
-        Body: {
-            Text: {
-                Data: "We can't wait to start working with you! Please arrive on Monday at 9:00 am. Dress code is casual so don't suit up."
-            }
+const sendingEmail = () =>{
+    return ses.sendEmail({
+        Source: 'Funky Chicken <funky.chicken@spiced.academy>',
+        Destination: {
+            ToAddresses: ['available.cappelletti@spicedling.email']
         },
-        Subject: {
-            Data: "Your Application Has Been Accepted!"
+        Message: {
+            Body: {
+                Text: {
+                    Data: "We can't wait to start working with you! Please arrive on Monday at 9:00 am. Dress code is casual so don't suit up."
+                }
+            },
+            Subject: {
+                Data: "Your Application Has Been Accepted!"
+            }
         }
-    }
-}).promise().then(
-    () => console.log('it worked!')
-).catch(
-    err => console.log(err)
-);
-
+    }).promise().then(
+        () => console.log('it worked!')
+    ).catch(
+        err => console.log(err)
+    );
+};
 module.exports = { sendingEmail };

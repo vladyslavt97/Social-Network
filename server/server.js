@@ -25,11 +25,7 @@ app.use(
 
 
 //
-const { sendingEmail } = require('./ses');
-//routes for pwd reset
-//varify email
-//   -find email, if its there send the email
-//
+
 
 //Add the middleware that makes sure that our server parses incoming json/application requests
 //We need this so that we can access values in our req.body more easily (refer to the imageboard project)
@@ -41,10 +37,12 @@ app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
 const { loginRouter } = require('./routes/login');
 const { registerRouter } = require('./routes/registration');
+const { resetRouter } = require('./routes/reset');
 
 //
 app.use(loginRouter);
 app.use(registerRouter);
+app.use(resetRouter);
 //
 
 //given setup below
