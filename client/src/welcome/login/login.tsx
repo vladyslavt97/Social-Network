@@ -76,6 +76,7 @@ export class Login extends Component<any, any> {
                     <span className='mandatory-field'>*</span>
                 </div>
                 <button>Login</button>
+                <Link to="/reset" id='reset'>Forgot Password</Link>
             </form>
             <Link to="/" id='login'>Register</Link>
         </div>

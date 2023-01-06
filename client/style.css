@@ -13,16 +13,39 @@ body {
     top: 10px;
     left: 10px
 }
+h1{
+    position: absolute;
+    top: 130px;
+    color: white;
+    font-size: 15px;
+    left: 50%;
+        transform: translateX(-50%);
+}
+.welcome{
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 25px;
+}
 
 #registration-form{
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: calc(100vh - 40px);
+    align-items: center; */
+    /* width: 100vw; */
+    background: rgba(0, 255, 255, 0.361);
+    border-radius: 10px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+        transform: translate(-50%, -50%);
+    /* height: calc(100vh - 40px); */
     /* height: 100vh; */
-    z-index: 1;
+    padding: 10px;
+    z-index: 2;
 }
 
 .mandatory-field{
@@ -74,7 +97,7 @@ span{
 }
 
 footer{
-    position: sticky;
+    position: absolute;
     bottom: 0px;
     background-color: rgb(15, 77, 34);
     border-top: 1px solid rgb(0, 255, 21);

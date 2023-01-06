@@ -7,6 +7,7 @@ const { selectAllDataFromUsersDBBasedOnEmail,
 
 const resetRouter = express.Router();
 const { sendingEmail } = require('../ses');
+// sendingEmail();i
 
 const cryptoRandomString = require('crypto-random-string');
 const secretCode = cryptoRandomString({
@@ -48,7 +49,7 @@ resetRouter.post('/emailcheck', (req, res) => {//check the email
                 }
             })
             .catch((err) => {
-                console.log('selection from reset_codes did not work', err);
+                console.log('selection from reset_codes based on email did not work', err);
                 res.json({ success: false });
             });
     } else {

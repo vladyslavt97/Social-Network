@@ -23,8 +23,6 @@ module.exports.selectAllDataFromReset_CodesDB = () =>{
     return db.query(`SELECT * FROM reset_codes
     WHERE CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes';`);
 };
-//SELECT * FROM my_table
-// WHERE CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes';
 
 module.exports.insertIntoReset_CodesDB = (email, code) => {
     return db.query(`INSERT INTO reset_codes (email, code) 
