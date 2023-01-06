@@ -131,33 +131,6 @@ button{
     }
 } */
 
-#map{
-    position: absolute;
-    top: 90px;
-    /* width: 100vh; */
-    height: calc(100vh - 120px);
-    z-index: -1;
-    opacity: 0.1;
-    animation: moving 20s ease-in-out infinite;
-}
-
-@keyframes moving {
-    0% {
-        left: -150px;
-        transform: scale(1);
-    }
-
-    50% {
-        left: -250px;
-        transform: scale(1.2);
-    }
-    100% {
-        left: -150px;
-        transform: scale(1);
-    }
-}
-
-
 /* earth */
 #maincont {
     align-items: center;
