@@ -9,28 +9,19 @@ const { PORT = 3001, SESSION_SECRET } = process.env;
 
 app.use(compression());
 app.use(helmet());
-// use the cookie-session middleware. Look in petition project
-// use json middleware for POST requests
-const cookieSession = require("cookie-session");
 
+const cookieSession = require("cookie-session");
 app.use(
     cookieSession({
         secret: SESSION_SECRET,
         maxAge: 1000*60*60*24*14
     })
 );
-// middleware for cookies
 // const {noSignedInCookie,
 //     withSignedInWithSignatureCookie} = require("./middleware");
 
-
-//
-
-
-//Add the middleware that makes sure that our server parses incoming json/application requests
-//We need this so that we can access values in our req.body more easily (refer to the imageboard project)
+//Add the middleware that makes sure that our server parses incoming json/application requests. We need this so that we can access values in our req.body more easily
 app.use(express.json());
-//
 
 
 app.use(express.static(path.join(__dirname, "..", "client", "public")));

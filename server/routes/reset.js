@@ -6,16 +6,24 @@ const { selectAllDataFromUsersDBBasedOnEmail,
     updatePasswordInUsersTable,
     deleteFromReset_CodesDB } = require('../db');
 
+const { SESSION_SECRET } = process.env;
+const cookieSession = require("cookie-session");
+const app = express();
+app.use(
+    cookieSession({
+        secret: SESSION_SECRET,
+        maxAge: 1000*60*60*24*14
+    })
+);
+
 const resetRouter = express.Router();
 // const { sendingEmail } = require('../ses');
-// sendingEmail();i
+// sendingEmail();
 
 const cryptoRandomString = require('crypto-random-string');
 const secretCode = cryptoRandomString({
     length: 6
 });
-console.log('super secret code! Do NOT SHOW TO ANYONE!', secretCode);
-
 
 resetRouter.post('/emailcheck', (req, res) => {//check the email
     let code = secretCode;
@@ -28,24 +36,22 @@ resetRouter.post('/emailcheck', (req, res) => {//check the email
                     return el.email === email;
                 });
                 if (matchForUserEmails){
-                // req.session.signedIn = data.rows[0].id;
                     console.log(('email we get from the users: ', data.rows));
-                    res.json({ success: true, emailCheck: data.rows, validation: true });
+                    res.json({ success: true, validation: true });
                     insertIntoReset_CodesDB(email, code)//insert email, code
                         // .then(() => {
-                        //     console.log('email and code should get inserted and user will be redirected to the page where email and pwd will be checked');
-                        //     res.json({ emailSent: true });
+                        // console.log('email should be sent now..');
                         //     return sendingEmail();
                         // }) //disabled die to AWS issue
                         .then(()=>{
                             console.log('email should be sent and code inserted. Check DB');
+                            // req.session.pwdResetRequested = data.rows[0].id;
                         })
                         .catch((err) => {
                             console.log('email was not sent:(', err);
-                            res.json({ emailSent: false });
                         });
                 }else{
-                    res.json({incorrectData: false});
+                    res.json({incorrectData: true});
                     console.log('email did not match');
                 }
             })

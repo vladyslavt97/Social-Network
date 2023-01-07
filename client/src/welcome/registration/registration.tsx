@@ -60,7 +60,6 @@ export class Registration extends Component<any, any> {
     render() {
         // console.log('state: ', this.state);
         return <div>
-            <h1 id='bookface'>Bookface</h1>
             {this.state.error && <Validation />}
             <form onSubmit={this.handleSubmit} id="registration-form">
                 <div>
@@ -86,6 +85,14 @@ export class Registration extends Component<any, any> {
                 <button>Register</button>
             </form>
             <Link to="/login" id='login'>LOGIN</Link>
+            <div id="maincont">
+            <div className='planet-container'>
+                <div className='night'></div>
+                <div className='day'></div>
+                <div className='clouds'></div>
+                <div className='inner-shadow'></div>
+            </div>
+        </div>
         </div>
     }
 }

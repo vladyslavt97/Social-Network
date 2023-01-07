@@ -41,14 +41,13 @@ export class Login extends Component<any, any> {
                     .then((response) => 
                         response.json())
                     .then((data) => {
-                        if(data.validation === false){
+                        if(data.validation === true){
                             console.log('generate the error');
                             this.setState({validation: true});
-                            if(data.incorrectData === false){
-                                this.setState({incorrectData: true});
-                            }
+                        } else if(data.incorrectData === true){
+                            this.setState({incorrectData: true});
                         } else {
-                            console.log("don't");
+                            console.log("all good. Go to app page..?");
                             location.reload();
                         }
                     })
@@ -60,9 +59,8 @@ export class Login extends Component<any, any> {
     render() {
         // console.log('state??: ', this.state);
         return <div>
-            <h1 id='bookface'>Bookface</h1>
-            {this.state.error && <Validation />}
-            {this.state.incorrect && <IncorrectData />}
+            {this.state.validation && <Validation />}
+            {this.state.incorrectData && <IncorrectData />}
 
             <form onSubmit={this.handleSubmit} id="registration-form">
                 <div>
@@ -79,6 +77,14 @@ export class Login extends Component<any, any> {
                 <Link to="/reset" id='reset'>Forgot Password</Link>
             </form>
             <Link to="/" id='login'>Register</Link>
+            <div id="maincont">
+            <div className='planet-container'>
+                <div className='night'></div>
+                <div className='day'></div>
+                <div className='clouds'></div>
+                <div className='inner-shadow'></div>
+            </div>
+            </div>
         </div>
     }
 }

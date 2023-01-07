@@ -2,17 +2,25 @@ const express = require("express");
 const { hashPass } = require("../encrypt");
 const { insertDataIntoUsersDB } = require('../db');
 
+const app = express();
+const { SESSION_SECRET } = process.env;
+const cookieSession = require("cookie-session");
+app.use(
+    cookieSession({
+        secret: SESSION_SECRET,
+        maxAge: 1000*60*60*24*14
+    })
+);
+
 const registerRouter = express.Router();
 
 registerRouter.post('/registration', (req, res) => {
     const {firstname, lastname, email, password} = req.body;
-    // console.log('check!!!:', req.body);
     hashPass(password).then((hashedPassword) => {
         if(firstname !== '' && lastname !== '' && email !== '' && password !== ''){
             insertDataIntoUsersDB(firstname, lastname, email, hashedPassword)
-                .then((data)=>{
-                    // req.session.signedIn = data.rows[0].id;
-                    res.json({ success: true, myUser: data.rows[0], validation: true });
+                .then(()=>{
+                    res.json({ success: true, validation: false });
                     
                 })
                 .catch((err) => {
@@ -20,7 +28,8 @@ registerRouter.post('/registration', (req, res) => {
                     res.json({ success: false });
                 });
         } else {
-            res.json({validation: false});
+            console.log('did not pass the validation. Show validation');
+            res.json({validation: true});
         }
     });
 });

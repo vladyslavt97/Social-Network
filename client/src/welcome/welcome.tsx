@@ -6,7 +6,8 @@ import { Reset } from './reset/resetpwd';
 
 export function Welcome() {
     return <div id="welcome">
-            <h1 className='welcome'>Welcome to Bookface!</h1>
+            <h1 id='bookface'>Bookface</h1>
+            {/* <h1 className='welcome'>Welcome to Bookface!</h1> */}
             <Logo />
             <div>
                 <BrowserRouter>

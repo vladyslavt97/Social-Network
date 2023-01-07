@@ -132,7 +132,7 @@ export class Reset extends Component <any, any> {
             case 3:
                 return <div>
                             <h1>Congrats! you can copy & paste..</h1>
-                            <h2>You've completed the chalenge! Now you can <Link to="/" >Login</Link></h2>
+                            <h2>You've completed the chalenge! Now you can <Link to="/login" >Login</Link></h2>
                         </div>;
             default:
                 break;
@@ -144,25 +144,7 @@ export class Reset extends Component <any, any> {
                 <h1 id='bookface'>Bookface</h1>
                 {this.state.validation && <Validation />}
                 {this.state.incorrectData && <IncorrectData />}
-                <Link to="/" id='login'>Register</Link>
-
-                    {/* {this.state.error && <Error />}
-                    {this.state.incorrect && <IncorrectData />}
-
-                <form onSubmit={this.handleSubmit} id="registration-form">
-                    <div>
-                        <span>Code: </span>
-                        <input name="code" onChange={this.handleChange} />
-                        <b className='mandatory-field'>*</b>
-                    </div>
-                    <div>
-                        <span>Password: </span>
-                        <input type="password" name="password" onChange={this.handleChange} />
-                        <b className='mandatory-field'>*</b>
-                    </div>
-                    <button>Reset</button>
-                </form>
-                <Link to="/" id='login'>Register</Link> */}
+                {/* <Link to="/login" id='login'>Register</Link> */}
         </div>
     }
 }
