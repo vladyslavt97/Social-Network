@@ -11,7 +11,7 @@ registerRouter.post('/registration', (req, res) => {
         if(firstname !== '' && lastname !== '' && email !== '' && password !== ''){
             insertDataIntoUsersDB(firstname, lastname, email, hashedPassword)
                 .then((data)=>{
-                    req.session.signedIn = data.rows[0].id;
+                    // req.session.signedIn = data.rows[0].id;
                     res.json({ success: true, myUser: data.rows[0], validation: true });
                     
                 })

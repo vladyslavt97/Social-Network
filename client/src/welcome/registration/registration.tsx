@@ -1,5 +1,5 @@
 import { Component, FormEvent} from 'react';
-import { Error } from '../../components/error';
+import { Validation } from '../../components/validation';
 import { Link } from 'react-router-dom';
 
 interface RegistrationState {
@@ -18,7 +18,7 @@ export class Registration extends Component<any, any> {
             lastname: '',
             email: '',
             password: '',
-            error: false,
+            validation: false,
         };
 
     }
@@ -46,10 +46,10 @@ export class Registration extends Component<any, any> {
                         console.log("success: ", data, 'and show ErrorNOT!!');
                         if(data.validation === false){
                             console.log('generate the error. Validation failed!');
-                            this.setState({error: true});
+                            this.setState({validation: true});
                         } else {
                             console.log("don't generate the error! All good:)");
-                            location.reload();
+                            // location.reload();
                         }
                     })
                     .catch((error) => {
@@ -58,30 +58,30 @@ export class Registration extends Component<any, any> {
     }
 
     render() {
-        console.log('state: ', this.state);
+        // console.log('state: ', this.state);
         return <div>
             <h1 id='bookface'>Bookface</h1>
-            {this.state.error && <Error />}
+            {this.state.error && <Validation />}
             <form onSubmit={this.handleSubmit} id="registration-form">
                 <div>
                     <span>Firstname: </span>
                     <input name="firstname" onChange={this.handleInputChange} />
-                    <span className='mandatory-field'>*</span>
+                    <b className='mandatory-field'>*</b>
                 </div>
                 <div>
                     <span>Lastname: </span>
                     <input name="lastname" onChange={this.handleInputChange} />
-                    <span className='mandatory-field'>*</span>
+                    <b className='mandatory-field'>*</b>
                 </div>
                 <div>
                     <span>Email: </span>
                     <input name="email" onChange={this.handleInputChange} />
-                    <span className='mandatory-field'>*</span>
+                    <b className='mandatory-field'>*</b>
                 </div>
                 <div>
                     <span>Password: </span>
                     <input type="password" name="password" onChange={this.handleInputChange} />
-                    <span className='mandatory-field'>*</span>
+                    <b className='mandatory-field'>*</b>
                 </div>
                 <button>Register</button>
             </form>

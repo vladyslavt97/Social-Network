@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
 
-import { Error } from '../../components/error';
+import { Validation } from '../../components/validation';
 import { IncorrectData } from '../../components/incorrectdata';
 
 // interface ResetState {
@@ -14,7 +14,11 @@ import { IncorrectData } from '../../components/incorrectdata';
 export class Reset extends Component <any, any> {
     constructor(props) {
         super(props);
-        this.state = { step: 1 };
+        this.state = { 
+            step: 1,
+            validation: false,
+            incorrectData: false,
+        };
         this.whatToRender = this.whatToRender.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,8 +30,8 @@ export class Reset extends Component <any, any> {
         });
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
+    handleSubmit(event) {
+        event.preventDefault();
         switch (this.state.step) {
             case 1:
                 // Make a Post request to server and check if the user exists
@@ -43,24 +47,48 @@ export class Reset extends Component <any, any> {
                     .then((data) => {
                         if(data.validation === false){
                             console.log('generate the error');
-                            this.setState({error: true});
-                            if(data.incorrectData === false){
-                                this.setState({incorrect: true});
-                            }
+                            this.setState({validation: true});
+                        } else if (data.incorrectData === false){
+                            console.log('generate the error');
+                            this.setState({incorrectData: true});
                         } else {
-                            console.log("don't");
-                            location.reload();
+                            console.log("validation and incorrectData passed!");
+                            this.setState({step: 2 });
+                            // location.reload();
                         }
                     })
                     .catch((error) => {
                         console.error('Error:', error);
                     });
-                this.setState({ step: 2 });
                 break;
             case 2:
-                this.setState({ step: 3 });
+                // Make a Post request to server and check if the user exists
+                fetch('/verify', {
+                    method: 'POST', 
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ code: this.state.code, password: this.state.password }),
+                })
+                    .then((response) => 
+                        response.json())
+                    .then((data) => {
+                        if(data.validation === false){
+                            console.log('generate the error');
+                            this.setState({validation: true});
+                            if(data.incorrectData === false){
+                                this.setState({incorrectData: true});
+                            }
+                        } else {
+                            console.log("don't");
+                            this.setState({step: 3 });
+                            // location.reload();
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
                 break;
-
             default:
                 break;
         }
@@ -69,12 +97,43 @@ export class Reset extends Component <any, any> {
     whatToRender() {
         switch (this.state.step) {
             case 1:
-                return <h1>Enter your Email and I will send a verification code!</h1>;
+                return (
+                <div>
+                <h1>Enter your Email and I will send a verification code!</h1>
+                    <form onSubmit={this.handleSubmit} id="registration-form">
+                        <div>
+                            <span>Email: </span>
+                            <input name="email" onChange={this.handleChange} />
+                            <b className='mandatory-field'>*</b>
+                        </div>
+                        <button>Send the code</button>
+                    </form>
+                </div>
+                );
             case 2:
-                return <h1>Enter your email and pwd to complete the process!</h1>;
+                return (
+                <div>
+                <h1>Enter your code and pwd to complete the process!</h1>
+                    <form onSubmit={this.handleSubmit} id="registration-form">
+                        <div>
+                            <span>Code: </span>
+                            <input name="code" onChange={this.handleChange} />
+                            <b className='mandatory-field'>*</b>
+                        </div>
+                        <div>
+                            <span>New password: </span>
+                            <input type="password" name="password" onChange={this.handleChange} />
+                            <b className='mandatory-field'>*</b>
+                        </div>
+                        <button>Reset</button>
+                    </form>
+                </div>
+                );
             case 3:
-                return <h1>well done! You will be redirected to the next page</h1>;
-
+                return <div>
+                            <h1>Congrats! you can copy & paste..</h1>
+                            <h2>well done! You will be redirected to the next page</h2>
+                        </div>;
             default:
                 break;
         }
@@ -83,23 +142,27 @@ export class Reset extends Component <any, any> {
     render() {
         return <div>{this.whatToRender()};
                 <h1 id='bookface'>Bookface</h1>
-                    {this.state.error && <Error />}
+                {this.state.validation && <Validation />}
+                {this.state.incorrectData && <IncorrectData />}
+                <Link to="/" id='login'>Register</Link>
+
+                    {/* {this.state.error && <Error />}
                     {this.state.incorrect && <IncorrectData />}
 
                 <form onSubmit={this.handleSubmit} id="registration-form">
                     <div>
                         <span>Code: </span>
                         <input name="code" onChange={this.handleChange} />
-                        <span className='mandatory-field'>*</span>
+                        <b className='mandatory-field'>*</b>
                     </div>
                     <div>
                         <span>Password: </span>
                         <input type="password" name="password" onChange={this.handleChange} />
-                        <span className='mandatory-field'>*</span>
+                        <b className='mandatory-field'>*</b>
                     </div>
                     <button>Reset</button>
                 </form>
-                <Link to="/" id='login'>Register</Link>
+                <Link to="/" id='login'>Register</Link> */}
         </div>
     }
 }

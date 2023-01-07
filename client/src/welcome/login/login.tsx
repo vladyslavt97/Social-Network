@@ -1,5 +1,5 @@
 import { Component, FormEvent} from 'react';
-import { Error } from '../../components/error';
+import { Validation } from '../../components/validation';
 import { IncorrectData } from '../../components/incorrectdata';
 import { Link } from 'react-router-dom';
 
@@ -15,8 +15,8 @@ export class Login extends Component<any, any> {
         this.state = {
             email: '',
             password: '',
-            error: false,
-            incorrect: false,
+            validation: false,
+            incorrectData: false,
         };
 
     }
@@ -43,9 +43,9 @@ export class Login extends Component<any, any> {
                     .then((data) => {
                         if(data.validation === false){
                             console.log('generate the error');
-                            this.setState({error: true});
+                            this.setState({validation: true});
                             if(data.incorrectData === false){
-                                this.setState({incorrect: true});
+                                this.setState({incorrectData: true});
                             }
                         } else {
                             console.log("don't");
@@ -58,22 +58,22 @@ export class Login extends Component<any, any> {
     }
 
     render() {
-        console.log('state??: ', this.state);
+        // console.log('state??: ', this.state);
         return <div>
             <h1 id='bookface'>Bookface</h1>
-            {this.state.error && <Error />}
+            {this.state.error && <Validation />}
             {this.state.incorrect && <IncorrectData />}
 
             <form onSubmit={this.handleSubmit} id="registration-form">
                 <div>
                     <span>Email: </span>
                     <input name="email" onChange={this.handleInputChange} />
-                    <span className='mandatory-field'>*</span>
+                    <b className='mandatory-field'>*</b>
                 </div>
                 <div>
                     <span>Password: </span>
                     <input type="password" name="password" onChange={this.handleInputChange} />
-                    <span className='mandatory-field'>*</span>
+                    <b className='mandatory-field'>*</b>
                 </div>
                 <button>Login</button>
                 <Link to="/reset" id='reset'>Forgot Password</Link>

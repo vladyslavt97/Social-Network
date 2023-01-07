@@ -28,13 +28,14 @@ h1{
     transform: translateX(-50%);
     font-size: 25px;
 }
+/* my colours */
+:root {
+    --main-background: -webkit-linear-gradient(86deg, #ffbb00 1%, #04ff00 99%);
+    --shadow: rgb(245, 255, 169) 1px 0 10px; 
+}
+/*  */
 
 #registration-form{
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
-    /* width: 100vw; */
     background: rgba(0, 255, 255, 0.361);
     border-radius: 10px;
     position: absolute;
@@ -42,10 +43,9 @@ h1{
     top: 50%;
     left: 50%;
         transform: translate(-50%, -50%);
-    /* height: calc(100vh - 40px); */
-    /* height: 100vh; */
     padding: 10px;
     z-index: 2;
+    text-shadow: var(--shadow);
 }
 
 .mandatory-field{
@@ -57,7 +57,7 @@ h1{
     position: absolute;
     top: 10px;
     right: 10px;
-    background: -webkit-linear-gradient(86deg, #eeff00 1%, #0099ff 99%);
+    background: var(--main-background);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         line-height: 58px;
@@ -68,19 +68,19 @@ h1{
     top: 20px;
     left: 50%;
     transform: translate(-50%);
-    color: rgb(255, 255, 255);
-    background: -webkit-linear-gradient(86deg, #EEF85B 1%, #00c3ff 99%);
+    background: var(--main-background);
         -webkit-background-clip: text;
-        -webkit-text-stroke: 2px transparent;
-        color: #ffffff;
+        -webkit-text-fill-color: transparent;
     font-size: 45px;
 }
 
 #filldata{
     color: red;
     font-size: 35px;
-    display: flex;
-    justify-content: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translatex(-50%);
 }
 
 header{
@@ -90,7 +90,7 @@ header{
 }
 
 span{
-    background: -webkit-linear-gradient(86deg, #eeff00 1%, #0099ff 99%);
+    background: var(--main-background);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         line-height: 58px;
@@ -131,28 +131,9 @@ button{
     margin: 10px;
 }
 
-
-/* 
-#circle{
-    color:rgb(255, 175, 175);
-    position: absolute;
-    top: 150px;
-    opacity: 0.1;
-    width: 100vw;
-    animation-name: rotate;
-    animation-duration: 50s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+button:hover{
+    background: rgb(0, 98, 30);
 }
-@keyframes rotate {
-    from {
-        transform: rotate(-360deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-} */
 
 /* earth */
 #maincont {
@@ -168,7 +149,6 @@ button{
     width: 100%;
     z-index: -1;
 }
-
 .planet-container {
     border-radius: 50%;
     box-shadow: 5px -3px 10px 3px #5e90f1;
@@ -178,7 +158,6 @@ button{
     width: 500px;
     z-index: 1;
 }
-
 .night {
     animation: rotate-night 80s linear infinite;
     background-image: url(night.jpeg);
@@ -188,7 +167,6 @@ button{
     width: 500px;
     z-index: 2;
 }
-
 .day {
     animation: rotate-day 80s linear infinite;
     background-image: url(day.jpeg);
@@ -202,7 +180,6 @@ button{
     width: 500px;
     z-index: 3;
 }
-
 .clouds {
     animation: rotate-day 50s linear infinite, spin-clouds 100s ease infinite;
     background-image: url(clouds.jpeg);
@@ -216,7 +193,6 @@ button{
     width: 500px;
     z-index: 4;
 }
-
 .inner-shadow {
     background: transparent;
     border-radius: 50%;
@@ -227,7 +203,6 @@ button{
     width: 500px;
     z-index: 5;
 }
-
 @keyframes rotate-day {
     0% {
         background-position: 120% 0;
@@ -237,7 +212,6 @@ button{
         background-position: -80% 0;
     }
 }
-
 @keyframes rotate-night {
     0% {
         background-position: calc(120% + 120px) 0;
@@ -247,7 +221,6 @@ button{
         background-position: calc(-80% + 120px) 0;
     }
 }
-
 @keyframes spin-clouds {
     0% {
         transform: rotate(0deg);

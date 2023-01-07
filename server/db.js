@@ -3,12 +3,12 @@ const {DATABASE_URL} = process.env;
 const spicedPg = require('spiced-pg');
 const db = spicedPg(DATABASE_URL);
 
-module.exports.selectAllDataFromUsersDB = (email) =>{
+module.exports.selectAllDataFromUsersDBBasedOnEmail = (email) =>{//selectAllDataFromUsersDBBasedOnEmail
     return db.query(`SELECT * FROM users
     WHERE email = $1;`, [email]);
 };
 //with email
-module.exports.selectAllDataFromUsersDBBasedOnEmail = () =>{
+module.exports.selectAllDataFromUsersDB = () =>{
     return db.query(`SELECT * FROM users;`);
 };
 
@@ -21,7 +21,7 @@ module.exports.insertDataIntoUsersDB = (firstname, lastname, email, hashedPasswo
 //reset_codes
 module.exports.selectAllDataFromReset_CodesDB = () =>{
     return db.query(`SELECT * FROM reset_codes
-    WHERE CURRENT_TIMESTAMP - created_at < INTERVAL '10 minutes';`);
+    WHERE CURRENT_TIMESTAMP - timestamp < INTERVAL '10 minutes';`);
 };
 
 module.exports.insertIntoReset_CodesDB = (email, code) => {
@@ -31,7 +31,8 @@ module.exports.insertIntoReset_CodesDB = (email, code) => {
 
 
 //update the pwd
-module.exports.updateUsersDB = (password) => {
-    return db.query(`UPDATE users
-                    SET password = $1:`, [password]);
+module.exports.updatePasswordInUsersTable = (hashedPassword, email) => {
+    return db.query(`UPDATE users 
+                    SET password = $1
+                    WHERE email = $2;`, [hashedPassword, email]);
 };
