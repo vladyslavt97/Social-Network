@@ -3,10 +3,11 @@ const { hashPass } = require("../encrypt");
 const { selectAllDataFromUsersDBBasedOnEmail,
     selectAllDataFromReset_CodesDB,
     insertIntoReset_CodesDB,
-    updateUsersDB } = require('../db');
+    updatePasswordInUsersTable,
+    deleteFromReset_CodesDB } = require('../db');
 
 const resetRouter = express.Router();
-const { sendingEmail } = require('../ses');
+// const { sendingEmail } = require('../ses');
 // sendingEmail();i
 
 const cryptoRandomString = require('crypto-random-string');
@@ -61,7 +62,7 @@ resetRouter.post('/emailcheck', (req, res) => {//check the email
 resetRouter.post('/verify', (req, res) => {//check for the match of email and pwd with the reset_codes
     // let matchForEmails;
     let matchForCodes;
-    const {email,password, code} = req.body;
+    const {password, code} = req.body;
     console.log('req@', req.body);
     if(password !== '' && code !== ''){
         selectAllDataFromReset_CodesDB()
@@ -69,16 +70,19 @@ resetRouter.post('/verify', (req, res) => {//check for the match of email and pw
                 matchForCodes = data.rows.find(el => { //match for code
                     return el.code === code;
                 });
-                console.log('matchForCodes: ', matchForCodes);
-                if (matchForCodes){//now compare the pwd
-                    hashPass(password)// hash the pwd
+                if (matchForCodes){
+                    hashPass(password)
                         .then((hashedPassword)=>{
                             console.log('got hashed in the reset route');
-                            updateUsersDB(hashedPassword, email)//and the id to match with users (2)
+                            let emailR = matchForCodes.email;
+                            updatePasswordInUsersTable(hashedPassword, emailR)
                                 .then((data)=>{
-                                    console.log('updated the pwd in users: ', data);
-                                    console.log('Congrats! you can copy & paste:)');
+                                    console.log('updated the pwd in users: ', data.rows);
                                     res.json({ success: true });
+                                    return deleteFromReset_CodesDB(emailR);
+                                })
+                                .then(()=>{
+                                    console.log('got deleted from reset_codes. Go and check!');
                                 })  
                                 .catch((err) => {
                                     console.log('could not be update', err);

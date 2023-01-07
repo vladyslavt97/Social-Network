@@ -132,7 +132,7 @@ export class Reset extends Component <any, any> {
             case 3:
                 return <div>
                             <h1>Congrats! you can copy & paste..</h1>
-                            <h2>well done! You will be redirected to the next page</h2>
+                            <h2>You've completed the chalenge! Now you can <Link to="/" >Login</Link></h2>
                         </div>;
             default:
                 break;

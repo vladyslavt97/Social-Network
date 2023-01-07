@@ -83,6 +83,16 @@ h1{
     transform: translatex(-50%);
 }
 
+/* temporary */
+h2{
+    color: white;
+    font-size: 10px;
+    position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translatex(-50%);
+}
+
 header{
     background-color: rgb(0, 161, 48);
     height: 90px;

@@ -31,8 +31,15 @@ module.exports.insertIntoReset_CodesDB = (email, code) => {
 
 
 //update the pwd
-module.exports.updatePasswordInUsersTable = (hashedPassword, email) => {
+module.exports.updatePasswordInUsersTable = (hashedPassword, emailR) => {
     return db.query(`UPDATE users 
                     SET password = $1
-                    WHERE email = $2;`, [hashedPassword, email]);
+                    WHERE email = $2;`, [hashedPassword, emailR]);
+};
+
+//delet from reset_codes after 1 minute
+module.exports.deleteFromReset_CodesDB = (emailR) => {
+    return db.query(`
+                DELETE FROM reset_codes 
+                WHERE email = $1;`, [emailR]);
 };
