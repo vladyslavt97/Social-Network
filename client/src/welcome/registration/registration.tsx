@@ -44,7 +44,7 @@ export class Registration extends Component<any, any> {
                         response.json())
                     .then((data) => {
                         console.log("success: ", data, 'and show ErrorNOT!!');
-                        if(data.validation === false){
+                        if(data.validation === true){
                             console.log('generate the error. Validation failed!');
                             this.setState({validation: true});
                         } else {
@@ -59,7 +59,7 @@ export class Registration extends Component<any, any> {
 
     render() {
         return <div>
-            {this.state.error && <Validation />}
+            {this.state.validation && <Validation />}
             <form onSubmit={this.handleSubmit} id="registration-form">
                 <div>
                     <span>Firstname: </span>

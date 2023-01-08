@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export function ChangeProfilePic() {
     // handleSubmit(event){
     //         event.preventDefault();
@@ -28,7 +30,8 @@ export function ChangeProfilePic() {
     //         }            
     return <div>
             <form action="">
-                <h3 >Want to change your profile image?</h3>
+                <img src="noprofile.png" alt="empty" id="no-profile-pic"/>
+                
                 {/* <button type="file" name="filee" accept="image/*" v-on:change="handleFileChange">Button</button> */}
             </form>
             </div>

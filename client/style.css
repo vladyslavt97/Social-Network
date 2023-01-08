@@ -12,7 +12,7 @@ body {
 #logo{
     width: 60px;
     position: absolute;
-    top: 10px;
+    top: 8px;
     left: 10px
 }
 #reset-stages{
@@ -70,11 +70,11 @@ h3 {
     font-size: 45px;
 }
 
-#filldata{
+#error-messsage{
     color: red;
     font-size: 35px;
     position: absolute;
-    top: 30%;
+    top: 20%;
     left: 50%;
     transform: translatex(-50%);
 }
@@ -140,6 +140,24 @@ button{
 
 button:hover{
     background: rgb(0, 98, 30);
+}
+
+#menu{
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    height: 100vh;
+}
+#sidebar{
+    background-color: rgba(105, 225, 0, 0.467);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#no-profile-pic{
+    width: 52px;
+    border-radius: 15px;
+    border: 3px solid orange;
 }
 
 /* earth */

@@ -35,10 +35,13 @@ app.use(loginRouter);
 app.use(registerRouter);
 app.use(resetRouter);
 //
+//we need to set cookies in the server and then it will be passed to the start.tsx
 
 //given setup below
 app.get("/user/id.json", (req, res) => {
-    res.json({ userId: null }); // instead of null. use value from req.session
+    console.log('got reached');
+    // console.log('cooookie:)', loginRouter);
+    res.json({ userId: 14 }); // instead of null. use value from req.session
 });
 
 app.get("*", function (req, res) {

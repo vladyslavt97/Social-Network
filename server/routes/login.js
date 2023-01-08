@@ -11,32 +11,38 @@ app.use(
         maxAge: 1000*60*60*24*14
     })
 );
-
 const loginRouter = express.Router();
-
 loginRouter.post('/login', (req, res) => {
+    let cookie;
     let matchForUserIDs;
     const {email, password} = req.body;
     if(email !== '' && password !== ''){ //if not empty
-        res.json({validation: false}); 
+        // res.json({validation: false}); 
         selectAllDataFromUsersDB()
             .then((allData) => {
-                matchForUserIDs = allData.rows.find(el => { //match for email
+                matchForUserIDs = allData.rows.find(el => {//match for email
                     return el.email === email;
                 });
-                if (matchForUserIDs){
+                console.log('matchForUserIDs', matchForUserIDs);
+                if (matchForUserIDs){ //match for email === true
                     let pwdOfUser = matchForUserIDs.password;
                     // res.json({incorrectData: false});
                     console.log('session: ', req.session);
-                    console.log('matchForUserIDs: ', matchForUserIDs);
-                    compare(password, pwdOfUser)//match for pwd
-                        .then((boolean)=>{
+                    compare(password, pwdOfUser)
+                        .then((boolean)=>{//match for pwd
                             if(boolean === true){
-                                req.session.userId = matchForUserIDs.id;
-                                res.json({incorrectData: false});
+                                req.session.userId = matchForUserIDs.id;//good
+                                cookie = req.session.userId;
+                                console.log('co in login', cookie);
+                                // module.exports = {cookie};
+                                console.log('should log in. All passed');
+                                // res.json({incorrectData: false});
                             }else{
                                 res.json({incorrectData: true});
                             }
+                        })
+                        .catch(err => {
+                            console.log('error with pwd?: ', err);
                         });
                 }else {
                     console.log('match for email but not pwd');
@@ -48,5 +54,4 @@ loginRouter.post('/login', (req, res) => {
         res.json({validation: true}); 
     }
 });
-
-module.exports = { loginRouter };
+module.exports = { loginRouter};
