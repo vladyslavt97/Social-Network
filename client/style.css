@@ -10,18 +10,19 @@ body {
 }
 
 #logo{
-    width: 70px;
+    width: 60px;
     position: absolute;
     top: 10px;
     left: 10px
 }
-h1{
-    position: absolute;
-    top: 130px;
-    color: white;
+#reset-stages{
+    color: #ffffff;
     font-size: 15px;
-    left: 50%;
-        transform: translateX(-50%);
+    text-shadow: var(--shadow);
+}
+h3 {
+    font-size: 15px;
+    color: #022772;
 }
 .welcome{
     position: absolute;
@@ -33,13 +34,13 @@ h1{
 /* my colours */
 :root {
     --main-background: -webkit-linear-gradient(86deg, #ffbb00 1%, #04ff00 99%);
-    --shadow: rgb(245, 255, 169) 1px 0 10px; 
+    --shadow: rgb(225, 255, 0) 1px 1px 20px; 
     
 }
 /*  */
 
 #registration-form{
-    background: rgba(0, 255, 255, 0.361);
+    background: rgba(0, 255, 255, 0.274);
     border-radius: 10px;
     position: absolute;
     text-align: center;
@@ -56,23 +57,15 @@ h1{
     font-weight: 1000;
 }
 
-#login{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: var(--main-background);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        line-height: 58px;
-}
 
 #bookface{
     position: absolute;
-    top: 20px;
+    top: 15px;
     left: 50%;
     transform: translate(-50%);
     background: var(--main-background);
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
     font-size: 45px;
 }
@@ -89,7 +82,7 @@ h1{
 /* temporary */
 h2{
     color: white;
-    font-size: 10px;
+    font-size: 13x;
     position: absolute;
         top: 30%;
         left: 50%;
@@ -97,14 +90,15 @@ h2{
 }
 
 header{
-    background-color: rgb(0, 161, 48);
-    height: 90px;
+    background-color: rgb(0, 122, 37);
+    height: 75px;
     border-bottom: 1px solid rgb(0, 255, 21);
 }
 
 span{
     background: var(--main-background);
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
         line-height: 58px;
 }
@@ -112,7 +106,7 @@ span{
 footer{
     position: absolute;
     bottom: 0px;
-    background-color: rgb(15, 77, 34);
+    background-color: rgb(0, 56, 17);
     border-top: 1px solid rgb(0, 255, 21);
     height: 40px;
     width: 100%;

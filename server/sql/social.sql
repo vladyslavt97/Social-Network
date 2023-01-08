@@ -10,6 +10,12 @@ CREATE TABLE users(
      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- CREATE TABLE profile_pics(
+--     id SERIAL PRIMARY KEY,
+--     user_id INTEGER NOT NULL REFERENCES users(id),
+--     profile_pic_url VARCHAR NOT NULL,
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- );
 
 CREATE TABLE reset_codes(
     id SERIAL PRIMARY KEY,

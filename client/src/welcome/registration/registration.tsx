@@ -48,8 +48,8 @@ export class Registration extends Component<any, any> {
                             console.log('generate the error. Validation failed!');
                             this.setState({validation: true});
                         } else {
-                            console.log("don't generate the error! All good:)");
-                            // location.reload();
+                            console.log("Should go to the Login page");
+                            location.reload();
                         }
                     })
                     .catch((error) => {
@@ -58,7 +58,6 @@ export class Registration extends Component<any, any> {
     }
 
     render() {
-        // console.log('state: ', this.state);
         return <div>
             {this.state.error && <Validation />}
             <form onSubmit={this.handleSubmit} id="registration-form">
@@ -83,16 +82,8 @@ export class Registration extends Component<any, any> {
                     <b className='mandatory-field'>*</b>
                 </div>
                 <button>Register</button>
+            <h3> Already Registered? Then <Link to="/login" >LOGIN</Link></h3>
             </form>
-            <Link to="/login" id='login'>LOGIN</Link>
-            <div id="maincont">
-            <div className='planet-container'>
-                <div className='night'></div>
-                <div className='day'></div>
-                <div className='clouds'></div>
-                <div className='inner-shadow'></div>
-            </div>
-        </div>
         </div>
     }
 }

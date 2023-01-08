@@ -1,5 +1,6 @@
 import { Component, FormEvent} from 'react';
 import { Link } from 'react-router-dom';
+import { ChangeProfilePic } from '../app_components/change_profile_pic';
 
 interface ProfileState {
       email: string,
@@ -17,6 +18,7 @@ export class Profile extends Component<any, any> {
     render() {
         return <div>
             <h2>Profile Page</h2>
+            {this.state.uploaded && <ChangeProfilePic />}
             <Link to="/friends" >Friends</Link>
 
         </div>

@@ -17,7 +17,7 @@ export class Friends extends Component<any, any> {
 
     render() {
         return <div>
-            <h2>List of Friends Page</h2>
+            <h1>List of Friends Page</h1>
             <Link to="/profile" >Back to profile page</Link>
         </div>
     }

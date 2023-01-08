@@ -73,18 +73,10 @@ export class Login extends Component<any, any> {
                     <input type="password" name="password" onChange={this.handleInputChange} />
                     <b className='mandatory-field'>*</b>
                 </div>
-                <button>Login</button>
-                <Link to="/reset" id='reset'>Forgot Password</Link>
+                <button>Login</button><br />
+                <h3> You might want to <Link to="/" id='login'>Register</Link> first...</h3><br />
+                <h3>Did you forget your <Link to="/reset" >password</Link>?</h3>
             </form>
-            <Link to="/" id='login'>Register</Link>
-            <div id="maincont">
-            <div className='planet-container'>
-                <div className='night'></div>
-                <div className='day'></div>
-                <div className='clouds'></div>
-                <div className='inner-shadow'></div>
-            </div>
-            </div>
         </div>
     }
 }

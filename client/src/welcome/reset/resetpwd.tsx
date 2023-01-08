@@ -99,22 +99,23 @@ export class Reset extends Component <any, any> {
             case 1:
                 return (
                 <div>
-                <h1>Enter your Email and I will send a verification code!</h1>
                     <form onSubmit={this.handleSubmit} id="registration-form">
+                    <h1 id="reset-stages">Enter your Email to get a verification code!</h1>
                         <div>
                             <span>Email: </span>
                             <input name="email" onChange={this.handleChange} />
                             <b className='mandatory-field'>*</b>
                         </div>
                         <button>Send the code</button>
+                        <h3> Or try to <Link to="/login" >LOGIN</Link> again or <Link to="/" id='login'>Register</Link>... </h3>
                     </form>
                 </div>
                 );
             case 2:
                 return (
                 <div>
-                <h1>Enter your code and pwd to complete the process!</h1>
                     <form onSubmit={this.handleSubmit} id="registration-form">
+                    <h1 id="reset-stages">Enter your code and pwd to complete the process!</h1>
                         <div>
                             <span>Code: </span>
                             <input name="code" onChange={this.handleChange} />
@@ -130,9 +131,10 @@ export class Reset extends Component <any, any> {
                 </div>
                 );
             case 3:
-                return <div>
-                            <h1>Congrats! you can copy & paste..</h1>
-                            <h2>You've completed the chalenge! Now you can <Link to="/login" >Login</Link></h2>
+                return <div id="registration-form">
+                            <h1 id="reset-stages">Congrats! you can copy & paste..😊</h1>
+                            <h1 id="reset-stages">You've completed the chalenge!☃️ <br />
+                            Now you can <Link to="/login" id="login-reset">Login</Link></h1>
                         </div>;
             default:
                 break;

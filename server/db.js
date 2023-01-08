@@ -37,9 +37,16 @@ module.exports.updatePasswordInUsersTable = (hashedPassword, emailR) => {
                     WHERE email = $2;`, [hashedPassword, emailR]);
 };
 
-//delet from reset_codes after 1 minute
+//delet from reset_codes on button click
 module.exports.deleteFromReset_CodesDB = (emailR) => {
     return db.query(`
                 DELETE FROM reset_codes 
                 WHERE email = $1;`, [emailR]);
 };
+
+
+//image insertion
+// module.exports.insertIntoProfilePics = (user_id, profile_pic_url) =>{
+//     return db.query(`INSERT INTO profile_pics (user_id, profile_pic_url) 
+//     VALUES ($1, $2) RETURNING *;`, [user_id, profile_pic_url]);
+// };

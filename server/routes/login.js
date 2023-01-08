@@ -32,7 +32,7 @@ loginRouter.post('/login', (req, res) => {
                     compare(password, pwdOfUser)//match for pwd
                         .then((boolean)=>{
                             if(boolean === true){
-                                req.session.signedIn = matchForUserIDs.id;
+                                req.session.userId = matchForUserIDs.id;
                                 res.json({incorrectData: false});
                             }else{
                                 res.json({incorrectData: true});
