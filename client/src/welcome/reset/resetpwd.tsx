@@ -73,6 +73,7 @@ export class Reset extends Component <any, any> {
                     .then((response) => 
                         response.json())
                     .then((data) => {
+                        // this.setState({validation: false, incorrectData: false});
                         if(data.validation === true){
                             console.log('generate the error');
                             this.setState({validation: true, incorrectData: false});

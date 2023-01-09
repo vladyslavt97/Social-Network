@@ -17,10 +17,9 @@ app.use(
         maxAge: 1000*60*60*24*14
     })
 );
-// const {noSignedInCookie,
-//     withSignedInWithSignatureCookie} = require("./middleware");
 
-//Add the middleware that makes sure that our server parses incoming json/application requests. We need this so that we can access values in our req.body more easily
+//Add the middleware that makes sure that our server parses incoming json/application requests. 
+//We need this so that we can access values in our req.body more easily
 app.use(express.json());
 
 
@@ -37,18 +36,12 @@ app.use(resetRouter);
 
 //given setup below
 app.get("/user/id.json", (req, res) => {
-    console.log('got reached');
-    console.log('cooookie:)', req.session);
-    let cookie = req.session;
-    console.log('reached cookie', cookie);
-
-    res.json({ userId: req.session.userId }); // instead of null. use value from req.session
+    res.json({ userId: req.session.userId });
 });
 
 app.post('/signout', (req, res) => {
-    // req.session = null;
     console.log('session should be sent to null', req.session);
-    res.json({ userId: null });
+    res.json({ userId: req.session.userId });
 });
 
 app.get("*", function (req, res) {
