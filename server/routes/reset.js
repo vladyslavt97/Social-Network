@@ -30,6 +30,7 @@ resetRouter.post('/emailcheck', (req, res) => {//check the email
     let matchForUserEmails;
     const {email} = req.body;
     if(email !== ''){
+        // res.json({ validation: false });
         selectAllDataFromUsersDBBasedOnEmail(email)
             .then((data)=>{
                 matchForUserEmails = data.rows.find(el => { //match for email
@@ -37,7 +38,7 @@ resetRouter.post('/emailcheck', (req, res) => {//check the email
                 });
                 if (matchForUserEmails){
                     console.log(('email we get from the users: ', data.rows));
-                    res.json({ success: true, validation: true });
+                    // res.json({ validation: false });
                     insertIntoReset_CodesDB(email, code)//insert email, code
                         // .then(() => {
                         // console.log('email should be sent now..');
@@ -45,7 +46,7 @@ resetRouter.post('/emailcheck', (req, res) => {//check the email
                         // }) //disabled die to AWS issue
                         .then(()=>{
                             console.log('email should be sent and code inserted. Check DB');
-                            // req.session.pwdResetRequested = data.rows[0].id;
+                            res.json({incorrectData: false});
                         })
                         .catch((err) => {
                             console.log('email was not sent:(', err);
@@ -60,7 +61,7 @@ resetRouter.post('/emailcheck', (req, res) => {//check the email
                 res.json({ success: false });
             });
     } else {
-        res.json({validation: false});
+        res.json({validation: true});
     }
 });
 

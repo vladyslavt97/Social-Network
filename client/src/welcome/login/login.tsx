@@ -28,6 +28,8 @@ export class Login extends Component<any, any> {
     }
 
     handleSubmit = (evt: FormEvent) => {
+        console.log('clicked');
+        
         evt.preventDefault();
 
         // make POST request with fetch
@@ -43,12 +45,13 @@ export class Login extends Component<any, any> {
                     .then((data) => {
                         if(data.validation === true){
                             console.log('generate the error');
-                            this.setState({validation: true});
+                            this.setState({validation: true, incorrectData: false});
                         } else if(data.incorrectData === true){
-                            this.setState({incorrectData: true});
+                            this.setState({validation: false, incorrectData: true});
                         } else {
                             console.log("all good. Go to app page..?");
-                            location.reload();
+                            location.replace('/');
+                            // location.reload();
                         }
                     })
                     .catch((error) => {
@@ -73,7 +76,7 @@ export class Login extends Component<any, any> {
                     <input type="password" name="password" onChange={this.handleInputChange} />
                     <b className='mandatory-field'>*</b>
                 </div>
-                <button>Login</button><br />
+                <button type='submit'>Login</button><br />
                 <h3> You might want to <Link to="/" id='login'>Register</Link> first...</h3><br />
                 <h3>Did you forget your <Link to="/reset" >password</Link>?</h3>
             </form>

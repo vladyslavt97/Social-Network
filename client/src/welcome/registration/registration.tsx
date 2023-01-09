@@ -49,7 +49,7 @@ export class Registration extends Component<any, any> {
                             this.setState({validation: true});
                         } else {
                             console.log("Should go to the Login page");
-                            location.reload();
+                            location.replace('/login');
                         }
                     })
                     .catch((error) => {

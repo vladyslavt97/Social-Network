@@ -30,18 +30,25 @@ const { loginRouter } = require('./routes/login');
 const { registerRouter } = require('./routes/registration');
 const { resetRouter } = require('./routes/reset');
 
-//
 app.use(loginRouter);
 app.use(registerRouter);
 app.use(resetRouter);
-//
-//we need to set cookies in the server and then it will be passed to the start.tsx
+
 
 //given setup below
 app.get("/user/id.json", (req, res) => {
     console.log('got reached');
-    // console.log('cooookie:)', loginRouter);
-    res.json({ userId: 14 }); // instead of null. use value from req.session
+    console.log('cooookie:)', req.session);
+    let cookie = req.session;
+    console.log('reached cookie', cookie);
+
+    res.json({ userId: req.session.userId }); // instead of null. use value from req.session
+});
+
+app.post('/signout', (req, res) => {
+    // req.session = null;
+    console.log('session should be sent to null', req.session);
+    res.json({ userId: null });
 });
 
 app.get("*", function (req, res) {

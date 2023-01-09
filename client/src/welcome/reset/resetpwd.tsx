@@ -45,12 +45,12 @@ export class Reset extends Component <any, any> {
                     .then((response) => 
                         response.json())
                     .then((data) => {
-                        if(data.validation === false){
+                        if(data.validation === true){
                             console.log('generate the error');
-                            this.setState({validation: true});
-                        } else if (data.incorrectData === false){
+                            this.setState({validation: true, incorrectData: false});
+                        } else if (data.incorrectData === true){
                             console.log('generate the error');
-                            this.setState({incorrectData: true});
+                            this.setState({validation: false, incorrectData: true});
                         } else {
                             console.log("validation and incorrectData passed!");
                             this.setState({step: 2 });
@@ -73,14 +73,14 @@ export class Reset extends Component <any, any> {
                     .then((response) => 
                         response.json())
                     .then((data) => {
-                        if(data.validation === false){
+                        if(data.validation === true){
                             console.log('generate the error');
-                            this.setState({validation: true});
-                            if(data.incorrectData === false){
-                                this.setState({incorrectData: true});
-                            }
+                            this.setState({validation: true, incorrectData: false});
+                        } else if (data.incorrectData === true){
+                            console.log('generate the error');
+                            this.setState({validation: false, incorrectData: true});
                         } else {
-                            console.log("don't");
+                            console.log("don't show error");
                             this.setState({step: 3 });
                             // location.reload();
                         }

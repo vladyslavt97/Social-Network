@@ -1,9 +1,10 @@
 const express = require("express");
-const app = express();
 const { uploader, fileUpload } = require('../file-upload');
 const { insertIntoProfilePics } = require('../db');
 
-app.post('/change-profile-pic', uploader.single('filee'), fileUpload, (req, res) => {
+
+const changePPRouter = express.Router();
+changePPRouter.post('/change-profile-pic', uploader.single('filee'), fileUpload, (req, res) => {
     let profile_pic_url = res.locals.fileUrl; //comes from fileUpload?
     let user_id; //should be saved in the cookie?
     insertIntoProfilePics(user_id, profile_pic_url)
@@ -18,3 +19,5 @@ app.post('/change-profile-pic', uploader.single('filee'), fileUpload, (req, res)
             console.log('the error: ', err);
         });
 });
+
+module.exports = { changePPRouter };
