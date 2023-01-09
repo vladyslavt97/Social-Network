@@ -1,15 +1,16 @@
 const express = require("express");
 const { uploader, fileUpload } = require('../file-upload');
-const { insertIntoProfilePics } = require('../db');
+const { updateUsersPPUrl } = require('../db');
 
 
-const changePPRouter = express.Router();
-changePPRouter.post('/change-profile-pic', uploader.single('filee'), fileUpload, (req, res) => {
+const uploadPPRouter = express.Router();
+uploadPPRouter.post('/upload', uploader.single('filee'), fileUpload, (req, res) => {
     let profile_pic_url = res.locals.fileUrl; //comes from fileUpload?
-    let user_id; //should be saved in the cookie?
-    insertIntoProfilePics(user_id, profile_pic_url)
+    let id = req.session.userId; //should be saved in the cookie?
+    updateUsersPPUrl(profile_pic_url, id)
         .then((data) => {
             if (req.file){
+                console.log('successsss');
                 res.json({uploaded: true, myPic: data});
             }else{
                 res.json({uploaded: false});
@@ -20,4 +21,4 @@ changePPRouter.post('/change-profile-pic', uploader.single('filee'), fileUpload,
         });
 });
 
-module.exports = { changePPRouter };
+module.exports = { uploadPPRouter };

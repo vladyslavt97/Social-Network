@@ -166,9 +166,10 @@ button:hover{
 }
 #page-test{
     position: absolute;
-    top: 15px;
+    top: 25px;
     right: 10px;
     color: white;
+    font-size: 15px;
 }
 input[type="file"] {
     display: none;
@@ -188,11 +189,14 @@ input[type="file"] {
 }
 
 i{
-    background-color: #04ff00;
+    background: rgb(0, 114, 34);
     border: 2px solid white;
     border-radius: 15px;
     padding: 1px 10px 1px 10px;
     color: #ffffff;
+    position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
 }
 #upload-img{
     width: 52px;

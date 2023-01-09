@@ -11,6 +11,7 @@ loginRouter.post('/login', (req, res) => {
         // res.json({validation: false}); 
         selectAllDataFromUsersDB()
             .then((allData) => {
+                console.log('ad', allData);
                 matchForUserIDs = allData.rows.find(el => {//match for email
                     return el.email === email;
                 });

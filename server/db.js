@@ -3,19 +3,24 @@ const {DATABASE_URL} = process.env;
 const spicedPg = require('spiced-pg');
 const db = spicedPg(DATABASE_URL);
 
-module.exports.selectAllDataFromUsersDBBasedOnEmail = (email) =>{//selectAllDataFromUsersDBBasedOnEmail
+//with email
+module.exports.selectAllDataFromUsersDBBasedOnEmail = (email) =>{
     return db.query(`SELECT * FROM users
     WHERE email = $1;`, [email]);
 };
-//with email
+
 module.exports.selectAllDataFromUsersDB = () =>{
     return db.query(`SELECT * FROM users;`);
 };
+//id
+module.exports.selectAllDataFromUsersDBBasedOnId = (id) =>{
+    return db.query(`SELECT * FROM users
+    Where id = $1;`, [id]);
+};
 
-
-module.exports.insertDataIntoUsersDB = (firstname, lastname, email, hashedPassword) => {
-    return db.query(`INSERT INTO users (first, last, email, password) 
-    VALUES ($1, $2, $3, $4) RETURNING *;`, [firstname, lastname, email, hashedPassword]);
+module.exports.insertDataIntoUsersDB = (firstname, lastname, email, dummyImg, hashedPassword) => {
+    return db.query(`INSERT INTO users (first, last, email, profile_pic_url, password) 
+    VALUES ($1, $2, $3, $4, $5) RETURNING *;`, [firstname, lastname, email, dummyImg, hashedPassword]);
 };
 
 //reset_codes
@@ -46,22 +51,18 @@ module.exports.deleteFromReset_CodesDB = (emailR) => {
 
 
 //image insertion
-// module.exports.insertIntoProfilePics = (user_id, profile_pic_url) =>{
-//     return db.query(`INSERT INTO profile_pics (user_id, profile_pic_url) 
-//     VALUES ($1, $2) RETURNING *;`, [user_id, profile_pic_url]);
-// };
-
-//get all user info + pp
-module.exports.selectUserAndProfilePic = (id) => {
-    return db.query(`SELECT users.first,users.last,users.email,users.password,users.id,profile_pics.profile_pic_url, profile_pics.user_id
-        FROM users 
-        LEFT JOIN profile_pics 
-        ON users.id = profile_pics.user_id 
-        WHERE users.id = $1;`, [id]);
+module.exports.updateUsersPPUrl = (profile_pic_url, id) =>{
+    return db.query(`UPDATE users
+    SET profile_pic_url = $1 
+    WHERE id = $2;`, [profile_pic_url, id]);
 };
 
-//
-// SELECT Customers.CustomerName, Orders.OrderID
-// FROM Customers
-// LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
-// ORDER BY Customers.CustomerName;
+
+//get all user info + pp "time wasted:("
+// module.exports.selectUserAndProfilePic = (id) => {
+//     return db.query(`SELECT users.first,users.last,users.email,users.password,users.id,profile_pics.profile_pic_url, profile_pics.user_id
+//         FROM users 
+//         LEFT JOIN profile_pics 
+//         ON users.id = profile_pics.user_id 
+//         WHERE users.id = $1;`, [id]);
+// };

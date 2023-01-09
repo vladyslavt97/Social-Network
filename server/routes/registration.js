@@ -16,9 +16,10 @@ const registerRouter = express.Router();
 
 registerRouter.post('/registration', (req, res) => {
     const {firstname, lastname, email, password} = req.body;
+    let dummyImg = 'text';
     hashPass(password).then((hashedPassword) => {
         if(firstname !== '' && lastname !== '' && email !== '' && password !== ''){
-            insertDataIntoUsersDB(firstname, lastname, email, hashedPassword)
+            insertDataIntoUsersDB(firstname, lastname, email, dummyImg, hashedPassword)
                 .then(()=>{
                     res.json({ success: true, validation: false });
                     

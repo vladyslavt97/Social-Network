@@ -21,6 +21,7 @@ export class App extends Component<any, any> {
             isPopupOpen: false,
             username: "Mint",
             userInfo: {},
+            file: null,
         };
         // bind stuff if you use normal functions
         this.togglePopup = this.togglePopup.bind(this);
@@ -38,7 +39,7 @@ export class App extends Component<any, any> {
                         response.json())
                     .then((data) => {
                         console.log("all good. Go to app page..?", data.userData[0]);
-                        this.setState({userInfo:data.userData[0]});
+                        this.setState({userInfo:data.userData[0]});//imgFromApp: data.userData[0].profile_pic_url
                     })
                     .catch((error) => {
                         console.error('Error caught:', error);
@@ -58,6 +59,30 @@ export class App extends Component<any, any> {
             location.replace('/');
         });
     }
+    handlePPUpload(event){
+        event.preventDefault();
+
+        const formData = new FormData();
+        formData.append('filee', this.state.file);
+
+        // do fetch afterwards as a POST request. With the response you update your images array.
+        fetch('/upload', {
+            method: 'POST', 
+            body: formData
+        })
+            .then(res => {
+                return res.json();
+            })
+            .then(alldata => {
+                console.log('alldata', alldata);
+            })
+            .catch(err => {
+                console.log('er: ', err);
+            });
+    }
+    // handleFileChange(event){
+    //     this.state.file = event.target.files[0];
+    // }
 
     togglePopup(event) {
         event.preventDefault();
@@ -72,20 +97,17 @@ export class App extends Component<any, any> {
                 <h1 id="page-test">Welcome, {this.state.userInfo.first} {this.state.userInfo.last}</h1>
                 <div id='sidebar'>
                     <ProfilePic
+                    imgFromApp = {this.state.imgFromApp}
                     userInfo = {this.state.userInfo}
                     togglePopup={this.togglePopup}
                 />
                 {this.state.isPopupOpen && (
-                    <Uploader handleClose={this.state.username}  togglePopup={this.togglePopup}/>
+                    <Uploader handleClose={this.state.username}  togglePopup={this.togglePopup} handlePPUpload={this.handlePPUpload}/>
                 )}
                     <Signout signOut={this.signOut}/>
-                    {/* <span>Profile</span> */}
-                {/* <span><Link to="/profile" id='profile'>Profile</Link></span> */}
                 </div>
                 <div id='main-screen'></div>
             </div>
         </div>
     }
 }
-
-// 
