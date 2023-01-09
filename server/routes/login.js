@@ -2,16 +2,6 @@ const express = require("express");
 const { compare } = require("../encrypt");
 const { selectAllDataFromUsersDB } = require('../db');
 
-// const app = express();
-// const { SESSION_SECRET } = process.env;
-// const cookieSession = require("cookie-session");
-// app.use(
-//     cookieSession({
-//         secret: SESSION_SECRET,
-//         maxAge: 1000*60*60*24*14
-//     })
-// );
-
 const loginRouter = express.Router();
 loginRouter.post('/login', (req, res) => {
     console.log('Login route');

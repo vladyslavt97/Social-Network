@@ -11,6 +11,7 @@ import {ProfilePic} from './app_components/profilepic';
 interface AppState {
       isPopupOpen: boolean,
       username: string,
+      userInfo: object,
   }
 
 export class App extends Component<any, any> {
@@ -19,6 +20,7 @@ export class App extends Component<any, any> {
         this.state = {
             isPopupOpen: false,
             username: "Mint",
+            userInfo: {},
         };
         // bind stuff if you use normal functions
         this.togglePopup = this.togglePopup.bind(this);
@@ -27,28 +29,19 @@ export class App extends Component<any, any> {
         console.log("Component Mounted");
         // fetch informartion from the server
         fetch('/user', {
-                    method: 'POST', 
+                    method: 'GET', 
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ email: this.state.email, password: this.state.password }),
                 })
                     .then((response) => 
                         response.json())
                     .then((data) => {
-                        if(data.validation === true){
-                            console.log('generate the error');
-                            this.setState({validation: true, incorrectData: false});
-                        } else if(data.incorrectData === true){
-                            this.setState({validation: false, incorrectData: true});
-                        } else {
-                            console.log("all good. Go to app page..?");
-                            location.replace('/');
-                            // location.reload();
-                        }
+                        console.log("all good. Go to app page..?", data.userData[0]);
+                        this.setState({userInfo:data.userData[0]});
                     })
                     .catch((error) => {
-                        console.error('Error:', error);
+                        console.error('Error caught:', error);
                     });
     }
     signOut(event){
@@ -76,9 +69,10 @@ export class App extends Component<any, any> {
         return <div>
             <Logo />
             <div id='menu'>
-                <h1 id="page-test">Welcome to the App! This is User experience!!!</h1>
+                <h1 id="page-test">Welcome, {this.state.userInfo.first} {this.state.userInfo.last}</h1>
                 <div id='sidebar'>
                     <ProfilePic
+                    userInfo = {this.state.userInfo}
                     togglePopup={this.togglePopup}
                 />
                 {this.state.isPopupOpen && (

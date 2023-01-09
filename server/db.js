@@ -53,7 +53,15 @@ module.exports.deleteFromReset_CodesDB = (emailR) => {
 
 //get all user info + pp
 module.exports.selectUserAndProfilePic = (id) => {
-    return db.query(`SELECT * FROM users 
-                    FULL OUTER JOIN profile_pics 
-                    ON users.id = profile_pics.user_id WHERE user_id = $1;`, [id]);
+    return db.query(`SELECT users.first,users.last,users.email,users.password,users.id,profile_pics.profile_pic_url, profile_pics.user_id
+        FROM users 
+        LEFT JOIN profile_pics 
+        ON users.id = profile_pics.user_id 
+        WHERE users.id = $1;`, [id]);
 };
+
+//
+// SELECT Customers.CustomerName, Orders.OrderID
+// FROM Customers
+// LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+// ORDER BY Customers.CustomerName;

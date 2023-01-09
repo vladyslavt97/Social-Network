@@ -1,14 +1,11 @@
-
- It fetches this information when it mounts & keeps user info in its state.
-Renders a Logo, ProfilePic, and Uploader
-Passes functions to ProfilePic and Uploader for making changes to its state
-Must be a class since it needs both state and lifecycle methods
 ProfilePic
-its job is to display a profile pic (can use first and last name fo the alt tag of the image)
+
 Is passed props that tell it the first and last name of the user and the url of the image. (put name of user in the alt attribute).
 Is also passed a prop that is a function that it must call when the image is clicked. When user clicks the pic, the uploader needs to become visible.
 Can be a function (😄) or a class (😦)
-Uploader
+
+
+## Uploader
 needs to be a class based component as it will have state
 we need to conditionally render uploader. It starts of as hidden but when you click on the profilePic, you will make it visible. The conditional rendering of uploader depends on the current state. Make it look like a modal.
 When visible, it needs to render a file input to make image upload possible

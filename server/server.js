@@ -29,11 +29,13 @@ const { loginRouter } = require('./routes/login');
 const { registerRouter } = require('./routes/registration');
 const { resetRouter } = require('./routes/reset');
 const { changePPRouter } = require('./routes/change_pp');
+const { userRouter } = require('./routes/user');
 
 app.use(loginRouter);
 app.use(registerRouter);
 app.use(resetRouter);
 app.use(changePPRouter);
+app.use(userRouter);
 
 
 //given setup below
