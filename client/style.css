@@ -10,10 +10,10 @@ body {
 }
 
 #logo{
-    width: 60px;
+    width: 52px;
     position: absolute;
-    top: 8px;
-    left: 10px
+    top: 12px;
+    left: 1px
 }
 #reset-stages{
     color: #ffffff;
@@ -163,6 +163,55 @@ button:hover{
     position: absolute;
     bottom: 50px;
     width: 52px;
+}
+#page-test{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    color: white;
+}
+input[type="file"] {
+    display: none;
+}
+
+.file-upload {
+    display: inline-block;
+    cursor: pointer;
+    z-index: 2;
+    background: rgba(0, 255, 255, 0.274);
+    padding: 50px;
+    border-radius: 20px;
+    position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+}
+
+i{
+    background-color: #04ff00;
+    border: 2px solid white;
+    border-radius: 15px;
+    padding: 1px 10px 1px 10px;
+    color: #ffffff;
+}
+#upload-img{
+    width: 52px;
+}
+#upload-button{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+#backdrop {
+    width: 100vw;
+    height: 100vh;
+    background-color: #222;
+    position: fixed;
+    top: 0;
+    opacity: 0.6;
+    overflow: hidden;
+    z-index: 1;
 }
 /* earth */
 #maincont {

@@ -1,18 +1,22 @@
 import React from "react";
-import Uploader from './uploader';
+import Uploader from './uploader/uploader';
 
-export default function ProfilePic({ togglePopup, imgFromApp, changeName }) {
+export function ProfilePic({ togglePopup }: {
+        togglePopup: any;
+        // imgFromApp: any;
+    }) {
     // console.log("PROPS in profilePic: ", props);
-    imgFromApp = imgFromApp || "/default.png";
+    // imgFromApp = imgFromApp || "/default.png";
 
     return <div>
-            <form action="">
+            <form onClick={togglePopup}>
                 <img src="noprofile.png" alt="empty" id="no-profile-pic"/>
-                <button> onClick={togglePopUp}</button>
-                <button> onClick={changeName}</button>
+                <button onClick={togglePopup} id="upload-button">
+                        <img src="upload.png" alt="upload" id="upload-img"/>
+                    </button>
+                    {/* <button onClick={() => changeName("Spiced")}>Change Name</button> */}
                 {/* passed from App. */}
-                <Uploader user={user}/>
-                <hr />
+                {/* <Uploader togglePopup={togglePopup}/> */}
             </form>
             </div>
 }

@@ -28,10 +28,12 @@ app.use(express.static(path.join(__dirname, "..", "client", "public")));
 const { loginRouter } = require('./routes/login');
 const { registerRouter } = require('./routes/registration');
 const { resetRouter } = require('./routes/reset');
+const { changePPRouter } = require('./routes/change_pp');
 
 app.use(loginRouter);
 app.use(registerRouter);
 app.use(resetRouter);
+app.use(changePPRouter);
 
 
 //given setup below
@@ -40,8 +42,9 @@ app.get("/user/id.json", (req, res) => {
 });
 
 app.post('/signout', (req, res) => {
-    console.log('session should be sent to null', req.session);
-    res.json({ userId: req.session.userId });
+    console.log('session should be sent to null', req.session.userId);
+    req.session = null;
+    res.json({ userId: null });
 });
 
 app.get("*", function (req, res) {
