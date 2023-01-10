@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { Logo } from '../components/logo';
 // import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// import { Profile } from './profile/profile';
+import { Profile } from './profile/profile';
 // import { Friends } from './friends/friends';
 import { Signout } from './app_components/signout';
 import Uploader from './app_components/uploader/uploader';
@@ -26,7 +26,7 @@ export class App extends Component<any, any> {
         // bind stuff if you use normal functions
         this.togglePopup = this.togglePopup.bind(this);
         this.handlePPUpload = this.handlePPUpload.bind(this);
-        // this.handleFileChange = this.handleFileChange.bind(this);
+        this.handleFileChange = this.handleFileChange.bind(this);
     }
     componentDidMount() {
         console.log("Component Mounted");
@@ -65,10 +65,8 @@ export class App extends Component<any, any> {
         event.preventDefault();
 
         const formData = new FormData();
-        console.log('event: ', event.target.uploadedfile.value);
-        
+        console.log('event: ', this.state.file);
         formData.append('uploadedfile', this.state.file);
-        console.log('fd: ', this.state.file);
         
         // do fetch afterwards as a POST request. With the response you update your images array.
         fetch('/upload', {
@@ -79,15 +77,15 @@ export class App extends Component<any, any> {
                 return res.json();
             })
             .then(data => {
-                console.log('alldata', data);
+                console.log('alldata', data.myPic);
             })
             .catch(err => {
                 console.log('er: ', err);
             });
     }
-    // handleFileChange(event){
-    //     this.file = event.target.files[0];
-    // }
+    handleFileChange(event){
+        this.setState({file: event.target.files[0]});
+    }
 
     togglePopup(event) {
         event.preventDefault();
@@ -98,7 +96,7 @@ export class App extends Component<any, any> {
     render() {
         return <div>
             <Logo />
-            <div id='menu'>
+            <div id='gridsetup'>
                 <h1 id="page-test">Welcome, {this.state.userInfo.first} {this.state.userInfo.last}</h1>
                 <div id='sidebar'>
                     <ProfilePic
@@ -110,13 +108,16 @@ export class App extends Component<any, any> {
                     <Uploader handleClose={this.state.username}  
                                 togglePopup={this.togglePopup} 
                                 handlePPUpload={this.handlePPUpload}
-                                // handleFileChange={this.handleFileChange}
+                                handleFileChange={this.handleFileChange}
                                 />
                 )}
                 <img src="friends.png" alt="friends" />
                     <Signout signOut={this.signOut}/>
                 </div>
-                <div id='main-screen'></div>
+                <div id='main-screen'>
+                    <Profile imgFromApp = {this.state.imgFromApp}
+                    userInfo = {this.state.userInfo}/>
+                </div>
             </div>
         </div>
     }

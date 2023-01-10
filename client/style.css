@@ -142,7 +142,7 @@ button:hover{
     background: rgb(0, 98, 30);
 }
 
-#menu{
+#gridsetup{
     display: grid;
     grid-template-columns: 52px 1fr;
     height: 100vh;

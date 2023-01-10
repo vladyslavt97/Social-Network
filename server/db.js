@@ -18,9 +18,9 @@ module.exports.selectAllDataFromUsersDBBasedOnId = (id) =>{
     Where id = $1;`, [id]);
 };
 
-module.exports.insertDataIntoUsersDB = (firstname, lastname, email, dummyImg, hashedPassword) => {
-    return db.query(`INSERT INTO users (first, last, email, profile_pic_url, password) 
-    VALUES ($1, $2, $3, $4, $5) RETURNING *;`, [firstname, lastname, email, dummyImg, hashedPassword]);
+module.exports.insertDataIntoUsersDB = (firstname, lastname, email, hashedPassword) => {
+    return db.query(`INSERT INTO users (first, last, email, password) 
+    VALUES ($1, $2, $3, $4) RETURNING *;`, [firstname, lastname, email, hashedPassword]);
 };
 
 //reset_codes

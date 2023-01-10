@@ -22,7 +22,7 @@ export default class Uploader extends Component<any, any> {
                     <h1 id="reset-stages">Want to change you profile picture?</h1>
                     <br />
                     <input type="file" name="uploadedfile" accept="image/*" 
-                    // onChange={this.props.handleFileChange}
+                    onChange={this.props.handleFileChange}
                     />
                     <button>Upload</button>
                 </form>

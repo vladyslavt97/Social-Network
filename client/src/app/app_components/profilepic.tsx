@@ -20,12 +20,3 @@ export function ProfilePic({ togglePopup, userInfo, imgFromApp }: {
             </div>
 }
 
-//
-
-
-    // return (
-    //     <>
-    //         <button onClick={togglePopup}>Toggle Popup</button>
-    //         <button onClick={() => changeName("Spiced")}>Change Name</button>
-    //     </>
-    // );
