@@ -17,6 +17,8 @@ module.exports = () => ({
         hints: false,
     },
     devServer: {
+        // headers: { 
+        //     'Content-Security-Policy': "img-src 'self' https://s3.amazonaws.com/", }, 
         static: path.join(__dirname, "client", "public"),
         proxy: {
             "/": {

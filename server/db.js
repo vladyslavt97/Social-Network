@@ -54,7 +54,7 @@ module.exports.deleteFromReset_CodesDB = (emailR) => {
 module.exports.updateUsersPPUrl = (profile_pic_url, id) =>{
     return db.query(`UPDATE users
     SET profile_pic_url = $1 
-    WHERE id = $2;`, [profile_pic_url, id]);
+    WHERE id = $2 RETURNING *;`, [profile_pic_url, id]);
 };
 
 

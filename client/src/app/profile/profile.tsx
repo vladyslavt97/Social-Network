@@ -13,10 +13,14 @@ export class Profile extends Component<any, any> {
     constructor(props) {
         super(props);
         this.state = {
-            userInfo: false,
-            imgFromApp: false,
+            // userInfo: false,
+            // imgFromApp: false,
+            // profilePicUrl: false,
         };
+
+        console.log('imgFromApp', this.props.imgFromApp);
     }
+    
 
     render() {
         return <div>

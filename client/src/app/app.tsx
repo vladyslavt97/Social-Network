@@ -22,6 +22,8 @@ export class App extends Component<any, any> {
             username: "Mint",
             userInfo: {},
             file: null,
+            profilePicUrl: null,
+            imgFromApp: null,
         };
         // bind stuff if you use normal functions
         this.togglePopup = this.togglePopup.bind(this);
@@ -77,7 +79,8 @@ export class App extends Component<any, any> {
                 return res.json();
             })
             .then(data => {
-                console.log('alldata', data.myPic);
+                console.log('alldata', data.myPic.rows[0].profile_pic_url);
+                this.setState({imgFromApp: data.myPic.rows[0].profile_pic_url});
             })
             .catch(err => {
                 console.log('er: ', err);
@@ -116,7 +119,9 @@ export class App extends Component<any, any> {
                 </div>
                 <div id='main-screen'>
                     <Profile imgFromApp = {this.state.imgFromApp}
-                    userInfo = {this.state.userInfo}/>
+                    userInfo = {this.state.userInfo}
+                    profilePicUrl = {this.state.profilePicUrl}
+                    />
                 </div>
             </div>
         </div>
