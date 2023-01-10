@@ -25,7 +25,7 @@ export class Profile extends Component<any, any> {
             userInfo = {this.props.userInfo}
             />
             <Bio 
-            bioExists = {this.props.bioExists}
+            showBioEditor = {this.props.showBioEditor}
             bioData = {this.props.bioData}
             handleBioSubmit={this.props.handleBioSubmit}
             handleBioChange={this.props.handleBioChange}

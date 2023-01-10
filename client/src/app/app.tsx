@@ -25,7 +25,7 @@ export class App extends Component<any, any> {
             profilePicUrl: null,
             imgFromApp: null,
             textarea: '',
-            bioExists: '',
+            showBioEditor: '',
             bioData: {},
         };
         // bind stuff if you use normal functions
@@ -50,19 +50,20 @@ export class App extends Component<any, any> {
                 this.setState({userInfo:data.userData[0]});//imgFromApp: data.userData[0].profile_pic_url
                 this.setState({bioData:data.userData[0]});//imgFromApp: data.userData[0].profile_pic_url
                 this.setState({imgFromApp: data.userData[0].profile_pic_url});//imgFromApp: data.userData[0].profile_pic_url
-                this.setState({bioExists: data.userData[0].bio})
-                console.log('bioExists!!', this.state.bioExists);
+                this.setState({showBioEditor: data.userData[0].bio})
+                console.log('bioExists!!', this.state.showBioEditor);
             })
             .catch((error) => {
                 console.error('Error caught:', error);
             });
     }
     openTextArea(){
-        // if(!this.state.bioExists){
-            this.setState({bioExists: true});
-            console.log('should activate the textarea');
+        this.setState({ showBioEditor: !this.state.showBioEditor });
+        // if(!this.state.showBioEditor){
+        //     this.setState({showBioEditor: true});
+        //     console.log('should activate the textarea');
         // } else{
-        //     this.setState({bioExists: false});
+        //     this.setState({showBioEditor: false});
         //     console.log('should deactivate the textarea');
         // }
         
@@ -117,7 +118,7 @@ export class App extends Component<any, any> {
         .then(response => response.json())
         .then(data => {
             console.log('data on uload bio query', data.myBio.rows[0]);
-            this.setState({bioExists: false});
+            this.setState({showBioEditor: false});
         })
         .catch(err => {
                 console.log('er: ', err);
@@ -162,7 +163,7 @@ export class App extends Component<any, any> {
                 <div id='main-screen'>
                     <Profile imgFromApp = {this.state.imgFromApp}
                     userInfo = {this.state.userInfo}
-                    bioExists = {this.state.bioExists}
+                    showBioEditor = {this.state.showBioEditor}
                     bioData = {this.state.bioData}
                     profilePicUrl = {this.state.profilePicUrl}
                     handleBioSubmit={this.handleBioSubmit}
