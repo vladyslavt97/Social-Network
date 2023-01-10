@@ -4,8 +4,10 @@ const { updateUsersPPUrl } = require('../db');
 
 
 const uploadPPRouter = express.Router();
-uploadPPRouter.post('/upload', uploader.single('filee'), fileUpload, (req, res) => {
+uploadPPRouter.post('/upload', uploader.single('uploadedfile'), fileUpload, (req, res) => {
+    console.log('res.locals: ', res.locals);
     let profile_pic_url = res.locals.fileUrl; //comes from fileUpload?
+    console.log('req.session: ', req.session);
     let id = req.session.userId; //should be saved in the cookie?
     updateUsersPPUrl(profile_pic_url, id)
         .then((data) => {

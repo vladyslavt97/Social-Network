@@ -7,6 +7,7 @@ export default class Uploader extends Component<any, any> {
         this.state = {
              togglePopup: false,
              handlePPUpload: false,
+            //  handleFileChange: false
             // username: '',
         };
     }
@@ -17,11 +18,13 @@ export default class Uploader extends Component<any, any> {
     render() {
         return <div>
                 <div id="backdrop" onClick={this.props.togglePopup}></div>
-                <form onClick={this.props.handlePPUpload} className="file-upload">
+                <form onSubmit={this.props.handlePPUpload} className="file-upload">
                     <h1 id="reset-stages">Want to change you profile picture?</h1>
                     <br />
-                    <input type="file" name="filee" accept="image/*"/>
-                    <i>Upload</i>
+                    <input type="file" name="uploadedfile" accept="image/*" 
+                    // onChange={this.props.handleFileChange}
+                    />
+                    <button>Upload</button>
                 </form>
             </div>;
         // Here you will need to create a form to send a image file, just like in the Image Board 

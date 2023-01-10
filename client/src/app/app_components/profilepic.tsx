@@ -11,7 +11,7 @@ export function ProfilePic({ togglePopup, userInfo, imgFromApp }: {
     console.log('sdsda', userInfo);
         
     return <div>
-            <form onClick={togglePopup}>
+            <form>
                 <img src={imgFromApp} alt={userInfo.first} id="no-profile-pic"/>
                 <button onClick={togglePopup} id="upload-button">
                         <img src="upload.png" alt="upload" id="upload-img"/>

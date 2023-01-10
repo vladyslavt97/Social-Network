@@ -26,25 +26,26 @@ export class App extends Component<any, any> {
         // bind stuff if you use normal functions
         this.togglePopup = this.togglePopup.bind(this);
         this.handlePPUpload = this.handlePPUpload.bind(this);
+        // this.handleFileChange = this.handleFileChange.bind(this);
     }
     componentDidMount() {
         console.log("Component Mounted");
         // fetch informartion from the server
         fetch('/user', {
-                    method: 'GET', 
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                })
-                    .then((response) => 
-                        response.json())
-                    .then((data) => {
-                        console.log("all good. Go to app page..?", data.userData[0]);
-                        this.setState({userInfo:data.userData[0]});//imgFromApp: data.userData[0].profile_pic_url
-                    })
-                    .catch((error) => {
-                        console.error('Error caught:', error);
-                    });
+            method: 'GET', 
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response) => 
+                response.json())
+            .then((data) => {
+                console.log("all good. Go to app page..?", data.userData[0]);
+                this.setState({userInfo:data.userData[0]});//imgFromApp: data.userData[0].profile_pic_url
+            })
+            .catch((error) => {
+                console.error('Error caught:', error);
+            });
     }
     signOut(event){
         event.preventDefault();
@@ -64,8 +65,11 @@ export class App extends Component<any, any> {
         event.preventDefault();
 
         const formData = new FormData();
-        formData.append('filee', this.state.file);
-
+        console.log('event: ', event.target.uploadedfile.value);
+        
+        formData.append('uploadedfile', this.state.file);
+        console.log('fd: ', this.state.file);
+        
         // do fetch afterwards as a POST request. With the response you update your images array.
         fetch('/upload', {
             method: 'POST', 
@@ -82,7 +86,7 @@ export class App extends Component<any, any> {
             });
     }
     // handleFileChange(event){
-    //     this.state.file = event.target.files[0];
+    //     this.file = event.target.files[0];
     // }
 
     togglePopup(event) {
@@ -105,7 +109,9 @@ export class App extends Component<any, any> {
                 {this.state.isPopupOpen && (
                     <Uploader handleClose={this.state.username}  
                                 togglePopup={this.togglePopup} 
-                                handlePPUpload={this.handlePPUpload}/>
+                                handlePPUpload={this.handlePPUpload}
+                                // handleFileChange={this.handleFileChange}
+                                />
                 )}
                 <img src="friends.png" alt="friends" />
                     <Signout signOut={this.signOut}/>
