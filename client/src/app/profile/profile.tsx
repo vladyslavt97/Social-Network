@@ -2,6 +2,7 @@ import { Component, FormEvent} from 'react';
 import { Link } from 'react-router-dom';
 import { ProfilePic } from '../app_components/profilepic';
 import { ProfilePicLarge } from './profilepiclarge/profilepiclarge';
+import { Bio } from './bioeditor/bioeditor';
 
 // interface ProfileState {
 //       email: string,
@@ -17,18 +18,17 @@ export class Profile extends Component<any, any> {
             // imgFromApp: false,
             // profilePicUrl: false,
         };
-
-        console.log('imgFromApp', this.props.imgFromApp);
     }
     
 
     render() {
         return <div>
-            <h2>Profile Page</h2>
+            <h1 id='profile'>My Profile</h1>
             <ProfilePicLarge 
             imgFromApp = {this.props.imgFromApp}
             userInfo = {this.props.userInfo}
             />
+            <Bio />
         </div>
     }
 }

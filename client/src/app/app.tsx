@@ -31,7 +31,6 @@ export class App extends Component<any, any> {
         this.handleFileChange = this.handleFileChange.bind(this);
     }
     componentDidMount() {
-        console.log("Component Mounted");
         // fetch informartion from the server
         fetch('/user', {
             method: 'GET', 
@@ -42,7 +41,6 @@ export class App extends Component<any, any> {
             .then((response) => 
                 response.json())
             .then((data) => {
-                console.log("all good. Go to app page..?", data.userData[0]);
                 this.setState({userInfo:data.userData[0]});//imgFromApp: data.userData[0].profile_pic_url
                 this.setState({imgFromApp: data.userData[0].profile_pic_url});//imgFromApp: data.userData[0].profile_pic_url
             })
@@ -60,7 +58,6 @@ export class App extends Component<any, any> {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('signed out', data)
             location.replace('/');
         });
     }
@@ -68,7 +65,6 @@ export class App extends Component<any, any> {
         event.preventDefault();
 
         const formData = new FormData();
-        console.log('event: ', this.state.file);
         formData.append('uploadedfile', this.state.file);
         
         // do fetch afterwards as a POST request. With the response you update your images array.
@@ -80,7 +76,6 @@ export class App extends Component<any, any> {
                 return res.json();
             })
             .then(data => {
-                console.log('alldata', data.myPic.rows[0].profile_pic_url);
                 this.setState({imgFromApp: data.myPic.rows[0].profile_pic_url, isPopupOpen:false});
             })
             .catch(err => {
