@@ -7,12 +7,12 @@ export function Bio({handleBioSubmit, handleBioChange, bioInDb, showBioEditorTex
     
     return <div >
         <div id="thebio">
-            {bioInDb && <h1>{bioInDb.bio}</h1>}
+            {bioInDb && <h1 id="bioresult">{bioInDb.bio}</h1>}
             <br />
-            {bioInDb && <p onClick={showBioEditorButton}>| edit bio |</p>}
+            {bioInDb && <p onClick={showBioEditorButton} id="editbiobutton">| edit bio |</p>}
         </div>
 
-        {!bioInDb && !showBET && <p onClick={showBioEditorTextarea}>Add your bio</p>}
+        {!bioInDb && !showBET && <p onClick={showBioEditorTextarea} id="addyourbio">Add your bio</p>}
 
         {/* some state set to false indicating that the textarea is false and will become true onClick: showBioEditorTextarea*/}
         {showBET && <form onSubmit={handleBioSubmit} className="file-upload">
