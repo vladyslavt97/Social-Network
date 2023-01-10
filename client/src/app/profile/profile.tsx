@@ -29,8 +29,10 @@ export class Profile extends Component<any, any> {
             userInfo = {this.props.userInfo}
             />
             <Bio 
+            bioExists = {this.props.bioExists}
             handleBioSubmit={this.props.handleBioSubmit}
             handleBioChange={this.props.handleBioChange}
+            openTextArea={this.props.openTextArea}
             />
         </div>
     }

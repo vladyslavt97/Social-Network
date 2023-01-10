@@ -12,6 +12,7 @@ export function ProfilePic({ togglePopup, userInfo, imgFromApp }: {
     return <div>
             <form>
                 <img src={imgFromApp} alt={userInfo.first} id="no-profile-pic"/>
+                <h1>{userInfo.bio}</h1>
                 <button onClick={togglePopup} id="upload-button">
                         <img src="upload.png" alt="upload" id="upload-img"/>
                     </button>

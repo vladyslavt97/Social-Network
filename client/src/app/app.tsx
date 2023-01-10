@@ -25,6 +25,7 @@ export class App extends Component<any, any> {
             profilePicUrl: null,
             imgFromApp: null,
             textarea: '',
+            bioExists: '',
         };
         // bind stuff if you use normal functions
         this.togglePopup = this.togglePopup.bind(this);
@@ -32,6 +33,7 @@ export class App extends Component<any, any> {
         this.handleFileChange = this.handleFileChange.bind(this);
         this.handleBioSubmit = this.handleBioSubmit.bind(this);
         this.handleBioChange = this.handleBioChange.bind(this);
+        this.openTextArea = this.openTextArea.bind(this);
     }
     componentDidMount() {
         // fetch informartion from the server
@@ -46,10 +48,22 @@ export class App extends Component<any, any> {
             .then((data) => {
                 this.setState({userInfo:data.userData[0]});//imgFromApp: data.userData[0].profile_pic_url
                 this.setState({imgFromApp: data.userData[0].profile_pic_url});//imgFromApp: data.userData[0].profile_pic_url
+                this.setState({bioExists: data.userData[0].bio})
+                console.log('bioExists!!', this.state.bioExists);
             })
             .catch((error) => {
                 console.error('Error caught:', error);
             });
+    }
+    openTextArea(){
+        // if(!this.state.bioExists){
+            this.setState({bioExists: true});
+            console.log('should activate the textarea');
+        // } else{
+        //     this.setState({bioExists: false});
+        //     console.log('should deactivate the textarea');
+        // }
+        
     }
     signOut(event){
         event.preventDefault();
@@ -69,7 +83,6 @@ export class App extends Component<any, any> {
     }
     handlePPUpload(event){
         event.preventDefault();
-
         const formData = new FormData();
         formData.append('uploadedfile', this.state.file);
         
@@ -97,13 +110,12 @@ export class App extends Component<any, any> {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({textarea: this.state.textarea }),
+            body: JSON.stringify({textarea: this.state.bioSummary }),
         })
         .then(response => response.json())
         .then(data => {
             console.log('data on uload bio query', data.myBio.rows[0]);
-            
-            // location.replace('/');
+            this.setState({bioExists: false});
         })
         .catch(err => {
                 console.log('er: ', err);
@@ -148,9 +160,11 @@ export class App extends Component<any, any> {
                 <div id='main-screen'>
                     <Profile imgFromApp = {this.state.imgFromApp}
                     userInfo = {this.state.userInfo}
+                    bioExists = {this.state.bioExists}
                     profilePicUrl = {this.state.profilePicUrl}
                     handleBioSubmit={this.handleBioSubmit}
                     handleBioChange={this.handleBioChange}
+                    openTextArea={this.openTextArea}
                     />
                 </div>
             </div>
