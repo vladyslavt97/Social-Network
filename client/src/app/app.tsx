@@ -24,11 +24,14 @@ export class App extends Component<any, any> {
             file: null,
             profilePicUrl: null,
             imgFromApp: null,
+            textarea: '',
         };
         // bind stuff if you use normal functions
         this.togglePopup = this.togglePopup.bind(this);
         this.handlePPUpload = this.handlePPUpload.bind(this);
         this.handleFileChange = this.handleFileChange.bind(this);
+        this.handleBioSubmit = this.handleBioSubmit.bind(this);
+        this.handleBioChange = this.handleBioChange.bind(this);
     }
     componentDidMount() {
         // fetch informartion from the server
@@ -59,7 +62,10 @@ export class App extends Component<any, any> {
         .then(response => response.json())
         .then(data => {
             location.replace('/');
-        });
+        })
+        .catch(err => {
+                console.log('er: ', err);
+            });
     }
     handlePPUpload(event){
         event.preventDefault();
@@ -82,6 +88,31 @@ export class App extends Component<any, any> {
                 console.log('er: ', err);
             });
             
+    }
+    handleBioSubmit(event){
+        event.preventDefault();
+        console.log('trying to upload the bio');
+        fetch('/bioupload', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({textarea: this.state.textarea }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('data on uload bio query', data.myBio.rows[0]);
+            
+            // location.replace('/');
+        })
+        .catch(err => {
+                console.log('er: ', err);
+            });   
+    }
+    handleBioChange = (evt) => {
+        const property = evt.target.name; // will hold 'firstname' when input for firstname is changed
+        // will update firstname prop dynamically in this.state variable
+        this.setState({ [property]: evt.target.value });
     }
     handleFileChange(event){
         this.setState({file: event.target.files[0]});
@@ -118,7 +149,8 @@ export class App extends Component<any, any> {
                     <Profile imgFromApp = {this.state.imgFromApp}
                     userInfo = {this.state.userInfo}
                     profilePicUrl = {this.state.profilePicUrl}
-                    togglePopup={this.togglePopup}
+                    handleBioSubmit={this.handleBioSubmit}
+                    handleBioChange={this.handleBioChange}
                     />
                 </div>
             </div>

@@ -28,7 +28,10 @@ export class Profile extends Component<any, any> {
             imgFromApp = {this.props.imgFromApp}
             userInfo = {this.props.userInfo}
             />
-            <Bio />
+            <Bio 
+            handleBioSubmit={this.props.handleBioSubmit}
+            handleBioChange={this.props.handleBioChange}
+            />
         </div>
     }
 }

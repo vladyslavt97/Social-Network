@@ -30,12 +30,14 @@ const { registerRouter } = require('./routes/registration');
 const { resetRouter } = require('./routes/reset');
 const { uploadPPRouter } = require('./routes/uploadPP');
 const { userRouter } = require('./routes/user');
+const { uploadBioRouter } = require('./routes/bio');
 
 app.use(loginRouter);
 app.use(registerRouter);
 app.use(resetRouter);
 app.use(uploadPPRouter);
 app.use(userRouter);
+app.use(uploadBioRouter);
 
 
 //given setup below
