@@ -172,7 +172,8 @@ export class App extends Component<any, any> {
                                 handleFileChange={this.handleFileChange}
                                 />
                 )}
-                <img src="friends.png" alt="friends" />
+                    <img src="friends.png" alt="friends" />
+                    <img src="profilepage.png" alt="profilepage" />
                     <Signout signOut={this.signOut}/>
                 </div>
                 <div id='main-screen'>
