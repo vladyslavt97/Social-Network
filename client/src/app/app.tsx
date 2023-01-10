@@ -44,6 +44,7 @@ export class App extends Component<any, any> {
             .then((data) => {
                 console.log("all good. Go to app page..?", data.userData[0]);
                 this.setState({userInfo:data.userData[0]});//imgFromApp: data.userData[0].profile_pic_url
+                this.setState({imgFromApp: data.userData[0].profile_pic_url});//imgFromApp: data.userData[0].profile_pic_url
             })
             .catch((error) => {
                 console.error('Error caught:', error);
@@ -80,11 +81,12 @@ export class App extends Component<any, any> {
             })
             .then(data => {
                 console.log('alldata', data.myPic.rows[0].profile_pic_url);
-                this.setState({imgFromApp: data.myPic.rows[0].profile_pic_url});
+                this.setState({imgFromApp: data.myPic.rows[0].profile_pic_url, isPopupOpen:false});
             })
             .catch(err => {
                 console.log('er: ', err);
             });
+            
     }
     handleFileChange(event){
         this.setState({file: event.target.files[0]});
@@ -121,6 +123,7 @@ export class App extends Component<any, any> {
                     <Profile imgFromApp = {this.state.imgFromApp}
                     userInfo = {this.state.userInfo}
                     profilePicUrl = {this.state.profilePicUrl}
+                    togglePopup={this.togglePopup}
                     />
                 </div>
             </div>

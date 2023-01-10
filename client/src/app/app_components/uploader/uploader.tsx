@@ -22,7 +22,7 @@ export default class Uploader extends Component<any, any> {
                     <input type="file" name="uploadedfile" accept="image/*" 
                     onChange={this.props.handleFileChange}
                     />
-                    <button>Upload</button>
+                    <button >Upload</button>
                 </form>
             </div>;
         // Here you will need to create a form to send a image file, just like in the Image Board 

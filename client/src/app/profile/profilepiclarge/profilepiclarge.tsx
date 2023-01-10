@@ -1,6 +1,6 @@
 import "./ProfilePicLarge.css"
 
-export function ProfilePicLarge({ userInfo, imgFromApp}: { userInfo: any; imgFromApp: any; }) {
+export function ProfilePicLarge({ userInfo, imgFromApp}: { userInfo: any; imgFromApp: any;}) {
     // console.log("PROPS in profilePic: ", props);
     console.log('imgFromApp', imgFromApp);
     

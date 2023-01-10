@@ -4,11 +4,11 @@ const app = express();
 const compression = require("compression");
 const path = require("path");
 // const helmet = require("helmet");
+// app.use(helmet());
 const { PORT = 3001, SESSION_SECRET } = process.env;
 
 
 app.use(compression());
-// app.use(helmet());
 
 const cookieSession = require("cookie-session");
 app.use(

@@ -10,7 +10,6 @@ uploadPPRouter.post('/upload', uploader.single('uploadedfile'), fileUpload, (req
     updateUsersPPUrl(profile_pic_url, id)
         .then((data) => {
             if (req.file){
-                console.log('successsss in the update query of the pic url');
                 res.json({uploaded: true, myPic: data});
             }else{
                 res.json({uploaded: false});
