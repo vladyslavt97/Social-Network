@@ -25,11 +25,13 @@ export class Profile extends Component<any, any> {
             userInfo = {this.props.userInfo}
             />
             <Bio 
-            showBioEditor = {this.props.showBioEditor}
+            bioInDb = {this.props.bioInDb}
             bioData = {this.props.bioData}
+            showBET = {this.props.showBET}
             handleBioSubmit={this.props.handleBioSubmit}
             handleBioChange={this.props.handleBioChange}
-            openTextArea={this.props.openTextArea}
+            showBioEditorTextarea={this.props.showBioEditorTextarea}
+            showBioEditorButton={this.props.showBioEditorButton}
             />
         </div>
     }

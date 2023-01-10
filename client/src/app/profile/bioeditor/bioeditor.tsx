@@ -1,18 +1,21 @@
 import "./Bio.css"
 
-export function Bio({handleBioSubmit, handleBioChange, showBioEditor, openTextArea, bioData}: 
-    {handleBioSubmit: any, handleBioChange: any; showBioEditor: any; openTextArea: any; bioData: any}) {
+export function Bio({handleBioSubmit, handleBioChange, bioInDb, showBioEditorTextarea, bioData, showBioEditorButton, showBET}: 
+    {handleBioSubmit: any, handleBioChange: any; bioInDb: any; showBioEditorTextarea: any; bioData: any; showBioEditorButton; showBET: any}) {
     // console.log("PROPS in profilePic: ", props);
-    console.log('showBioEditor in bioeditor', showBioEditor);
+    console.log('showBioEditor in bioeditor', bioInDb);
     
     return <div >
         <div id="thebio">
-            {showBioEditor && <h1>{bioData.bio}</h1>}
+            {bioInDb && <h1>{bioInDb.bio}</h1>}
             <br />
-            {showBioEditor && <p onClick={openTextArea}>| edit bio |</p>}
+            {bioInDb && <p onClick={showBioEditorButton}>| edit bio |</p>}
         </div>
-        {!showBioEditor && <p onClick={openTextArea}>Add your bio</p>}
-        {!showBioEditor && <form onSubmit={handleBioSubmit} className="file-upload">
+
+        {!bioInDb && !showBET && <p onClick={showBioEditorTextarea}>Add your bio</p>}
+
+        {/* some state set to false indicating that the textarea is false and will become true onClick: showBioEditorTextarea*/}
+        {showBET && <form onSubmit={handleBioSubmit} className="file-upload">
                                 <h1 id="bio">BIO</h1>
                                 <textarea name="bioSummary" onChange={handleBioChange} id="textareabio"></textarea>
                                 <button>Submit the biography</button>
