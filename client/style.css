@@ -224,6 +224,12 @@ button:hover{
     justify-content: center;
     margin: 10px;
 }
+#thebio{
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
 /* earth */
 #maincont {
     align-items: center;

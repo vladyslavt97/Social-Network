@@ -14,13 +14,9 @@ export class Profile extends Component<any, any> {
     constructor(props) {
         super(props);
         this.state = {
-            // userInfo: false,
-            // imgFromApp: false,
-            // profilePicUrl: false,
         };
     }
     
-
     render() {
         return <div>
             <h1 id='profile'>My Profile</h1>
@@ -30,6 +26,7 @@ export class Profile extends Component<any, any> {
             />
             <Bio 
             bioExists = {this.props.bioExists}
+            bioData = {this.props.bioData}
             handleBioSubmit={this.props.handleBioSubmit}
             handleBioChange={this.props.handleBioChange}
             openTextArea={this.props.openTextArea}

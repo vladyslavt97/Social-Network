@@ -26,6 +26,7 @@ export class App extends Component<any, any> {
             imgFromApp: null,
             textarea: '',
             bioExists: '',
+            bioData: {},
         };
         // bind stuff if you use normal functions
         this.togglePopup = this.togglePopup.bind(this);
@@ -47,6 +48,7 @@ export class App extends Component<any, any> {
                 response.json())
             .then((data) => {
                 this.setState({userInfo:data.userData[0]});//imgFromApp: data.userData[0].profile_pic_url
+                this.setState({bioData:data.userData[0]});//imgFromApp: data.userData[0].profile_pic_url
                 this.setState({imgFromApp: data.userData[0].profile_pic_url});//imgFromApp: data.userData[0].profile_pic_url
                 this.setState({bioExists: data.userData[0].bio})
                 console.log('bioExists!!', this.state.bioExists);
@@ -161,6 +163,7 @@ export class App extends Component<any, any> {
                     <Profile imgFromApp = {this.state.imgFromApp}
                     userInfo = {this.state.userInfo}
                     bioExists = {this.state.bioExists}
+                    bioData = {this.state.bioData}
                     profilePicUrl = {this.state.profilePicUrl}
                     handleBioSubmit={this.handleBioSubmit}
                     handleBioChange={this.handleBioChange}
