@@ -25,6 +25,7 @@ export class App extends Component<any, any> {
         };
         // bind stuff if you use normal functions
         this.togglePopup = this.togglePopup.bind(this);
+        this.handlePPUpload = this.handlePPUpload.bind(this);
     }
     componentDidMount() {
         console.log("Component Mounted");
@@ -73,8 +74,8 @@ export class App extends Component<any, any> {
             .then(res => {
                 return res.json();
             })
-            .then(alldata => {
-                console.log('alldata', alldata);
+            .then(data => {
+                console.log('alldata', data);
             })
             .catch(err => {
                 console.log('er: ', err);
@@ -102,8 +103,11 @@ export class App extends Component<any, any> {
                     togglePopup={this.togglePopup}
                 />
                 {this.state.isPopupOpen && (
-                    <Uploader handleClose={this.state.username}  togglePopup={this.togglePopup} handlePPUpload={this.handlePPUpload}/>
+                    <Uploader handleClose={this.state.username}  
+                                togglePopup={this.togglePopup} 
+                                handlePPUpload={this.handlePPUpload}/>
                 )}
+                <img src="friends.png" alt="friends" />
                     <Signout signOut={this.signOut}/>
                 </div>
                 <div id='main-screen'></div>

@@ -6,7 +6,7 @@ export default class Uploader extends Component<any, any> {
         super(props);
         this.state = {
              togglePopup: false,
-            //  handlePPUpload: false,
+             handlePPUpload: false,
             // username: '',
         };
     }
