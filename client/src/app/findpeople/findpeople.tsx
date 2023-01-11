@@ -21,7 +21,7 @@ export function FindPeople() {
             .then((response) => 
                 response.json())
             .then((data) => {
-                console.log('server side: getting newpeople', data.newPeople);
+                // console.log('server side: getting newpeople', data.newPeople);
                 setNewPeople( data.newPeople)
             })
             .catch((error) => {
@@ -34,6 +34,7 @@ export function FindPeople() {
 
     //change to the new letter and find those searched (as many as there are)
     const [findPeople, setPeople] = useState('');
+    const [myPeople, setMyPeople] = useState([]);
 
     useEffect(() => {
         fetch('/findpeople', {
@@ -41,19 +42,22 @@ export function FindPeople() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({foundPeople: findPeople }),
+            body: JSON.stringify({ foundPeople: findPeople }),
         })
         .then(response => response.json())
         .then(data => {
             console.log('find people in fetch of find people', data.myPeople);
-            // setPeople(data.myPeople);
+            setMyPeople(data.myPeople);
             return;
         })
         .catch(err => {
                 console.log('er: ', err);
             });   
     }, [findPeople])
-
+    //You can break this loop by updating a different state variable with the data received in the fetch request and not update the state variable being used in the useEffect dependency array.
+    console.log('myPeople', myPeople);
+    console.log('findPeople', findPeople);
+    console.log('------------------');
 
 
     //new person is created by the setNewPeople
@@ -69,19 +73,30 @@ export function FindPeople() {
                         />
                 </div>
         
-        {/* ... */}
+                {!myPeople && <div>
+                                {newPeople.map(
+                                    newPerson => (
+                                        
+                                        <div key={newPerson.id} id="threePersonsDiv">
+                                            {/* ... */}
+                                            <h1 id='threePersonsNames'>{newPerson.first} {newPerson.last}</h1>
+                                            <img src={newPerson.profile_pic_url} alt={newPerson.first} id='threepersons'/>
+                                        </div>
+                                    )
+                                )}
+                            </div>}
+                {myPeople && <div id="theArrayOfFoundPeople">
+                                {myPeople.map(
+                                    myPerson => (
+                                        
+                                        <div key={myPerson.id} >
+                                            {/* ... */}
+                                            <h1 id='theArrayOfFoundPeopleNames'>{myPerson.first} {myPerson.last}</h1>
+                                            <img src={myPerson.profile_pic_url} alt={myPerson.first} id='theArrayOfFoundPeopleImgs'/>
+                                        </div>
+                                    )
+                                )}
+                            </div>}
 
-        {newPeople.map(
-            newPerson => (
-                
-                <div key={newPerson.id} id="threePersonsDiv">
-                    {/* ... */}
-                    <h1 id='threePersonsNames'>{newPerson.first} {newPerson.last}</h1>
-                    <img src={newPerson.profile_pic_url} alt={newPerson.first} id='threepersons'/>
-                </div>
-            )
-        )}
-
-        {/* ... */}
     </div>
 }
