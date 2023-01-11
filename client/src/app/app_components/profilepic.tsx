@@ -6,7 +6,6 @@ export function ProfilePic({ togglePopup, userInfo, imgFromApp }: {
         userInfo: any;
         imgFromApp: any;
     }) {
-    // console.log("PROPS in profilePic: ", props);
     imgFromApp = imgFromApp || "/noprofile.png";
         
     return <div>

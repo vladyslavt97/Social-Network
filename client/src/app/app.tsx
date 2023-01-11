@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import { Logo } from '../components/logo';
-// import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Profile } from './profile/profile';
-// import { Friends } from './friends/friends';
+import { FindPeople } from './findpeople/findpeople';
 import { Signout } from './app_components/signout';
 import Uploader from './app_components/uploader/uploader';
 import {ProfilePic} from './app_components/profilepic';
@@ -55,27 +55,11 @@ export class App extends Component<any, any> {
             });
     }
 
-    signOut(event){
-        event.preventDefault();
-        fetch('/signout', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            location.replace('/');
-        })
-        .catch(err => {
-                console.log('er: ', err);
-            });
-    }
     handlePPUpload(event){
         event.preventDefault();
         const formData = new FormData();
         formData.append('uploadedfile', this.state.file);
-        
+
         // do fetch afterwards as a POST request. With the response you update your images array.
         fetch('/upload', {
             method: 'POST', 
@@ -120,17 +104,27 @@ export class App extends Component<any, any> {
                                 handleFileChange={this.handleFileChange}
                                 />
                 )}
-                    <img src="friends.png" alt="friends" />
                     <img src="profilepage.png" alt="profilepage" />
-                    <Signout signOut={this.signOut}/>
+                    <Signout />
                 </div>
                 <div id='main-screen'>
-                    <Profile imgFromApp = {this.state.imgFromApp}
-                    userInfo = {this.state.userInfo}
-                    bioInDb = {this.state.bioInDb}
-                    showBET= {this.state.showBET}//new
-                    profilePicUrl = {this.state.profilePicUrl}
-                    />
+                    <BrowserRouter>
+                    <Link to="/users" ><img src="friends.png" alt="friends" /></Link>
+
+                    <Routes>
+                        <Route path="/" 
+                                element={<Profile imgFromApp = {this.state.imgFromApp}
+                                                userInfo = {this.state.userInfo}
+                                                bioInDb = {this.state.bioInDb}
+                                                showBET= {this.state.showBET}//new
+                                                profilePicUrl = {this.state.profilePicUrl}
+                                        />}>
+                        </Route>
+                        <Route path="/users" 
+                                element={<FindPeople />}></Route>
+                    </Routes>
+                </BrowserRouter>
+                    
                 </div>
             </div>
         </div>

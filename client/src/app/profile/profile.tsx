@@ -2,7 +2,7 @@ import { Component, FormEvent} from 'react';
 import { Link } from 'react-router-dom';
 import { ProfilePic } from '../app_components/profilepic';
 import { ProfilePicLarge } from './profilepiclarge/profilepiclarge';
-import { Bio } from './bioeditor/Bio';
+import { Bio } from './bio/Bio';
 
 // interface ProfileState {
 //       email: string,

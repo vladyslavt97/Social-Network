@@ -1,5 +1,5 @@
 import "./Bio.css"
-import {useState} from "react"
+import {useState, useEffect} from "react"
 // interface ResetState {
 //       firstname: string,
 //       lastname: string,
@@ -21,10 +21,10 @@ export function Bio({ bioInDb}:
 
 
     //showing edit button onClick
-    const [bioEdit, setBioInDb] = useState(bioInDb.bio);
-    const showBioEditorButton = () => {
-        setBioInDb(!bioEdit );
-    }
+    // const [bioEdit, setBioInDb] = useState(bioInDb.bio);
+    // const showBioEditorButton = () => {
+    //     setBioInDb(!bioEdit );
+    // }
     const handleBioSubmit = (event) => {
         event.preventDefault();
         console.log('trying to upload the bio');
@@ -46,14 +46,22 @@ export function Bio({ bioInDb}:
                 console.log('er: ', err);
             });   
     }
+    console.log('bioInDb.bio111', bioInDb.bio);
+    
     const [bio, setBio] = useState(bioInDb.bio);
     const handleBio = (e) => {
         setBio(e.target.value);
     }
-
+    useEffect(()=> {
+        // console.log('crazy log!: ', bio);
+        // console.log('crazy log!: ', bioInDb.bio);
+        setBio(bioInDb.bio);
+    }, [bioInDb.bio]);
+    console.log('bio', bio);
+    
     return <div >
         <div id="thebio">
-            {bioInDb && !showBET && <h1 id="bioresult">{bio || bioInDb.bio}</h1>}
+            {bioInDb && !showBET && <h1 id="bioresult">{bio}</h1>}
             <br />
             {bioInDb.bio && !showBET && <p onClick={showBioEditorTextarea} id="editbiobutton">| edit bio |</p>}
         </div>
@@ -70,6 +78,5 @@ export function Bio({ bioInDb}:
                                 ></textarea>
                                 <button>Submit the biography</button>
                             </form>}
-            
         </div>
 }

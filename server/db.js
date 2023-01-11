@@ -49,18 +49,25 @@ module.exports.deleteFromReset_CodesDB = (emailR) => {
                 WHERE email = $1;`, [emailR]);
 };
 
-
 //image update
 module.exports.updateUsersPPUrl = (profile_pic_url, id) =>{
     return db.query(`UPDATE users
     SET profile_pic_url = $1 
     WHERE id = $2 RETURNING *;`, [profile_pic_url, id]);
 };
+
 //bio update
 module.exports.updateUsersBio = (bio, id) =>{
     return db.query(`UPDATE users
     SET bio = $1 
     WHERE id = $2 RETURNING *;`, [bio, id]);
+};
+
+//find friends
+module.exports.findFriendsInDB = (peopleName) =>{
+    return db.query(`SELECT name 
+        FROM users 
+        WHERE name ILIKE $1;`,[peopleName + '%']);
 };
 
 

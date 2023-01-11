@@ -1,24 +1,21 @@
 import { Component, FormEvent} from 'react';
 import { Link } from 'react-router-dom';
 
-interface FriendsState {
-      email: string,
-      password: string,
-  }
+// interface FindPeopleState {
+//       email: string,
+//       password: string,
+//   }
 
-export class Friends extends Component<any, any> {
-
+export class FindPeople extends Component<any, any> {
     constructor(props) {
         super(props);
         this.state = {
         };
-
     }
-
+    
     render() {
         return <div>
-            <h1>List of Friends Page</h1>
-            <Link to="/profile" >Back to profile page</Link>
+            <h1 id='findpeople'>Find People Component</h1>
         </div>
     }
 }
