@@ -1,11 +1,12 @@
 const express = require("express");
-const { findPeopleInDB } = require('../db');
+const { findFriendsInDB } = require('../db');
 
 const findPeopleRouter = express.Router();
 findPeopleRouter.post('/findpeople', (req, res) => {
-    let peopleName = req.body.people;
+    console.log('resdfs:', req.body);
+    let peopleName = req.body.foundPeople;
     if(peopleName !== ''){
-        findPeopleInDB(peopleName)
+        findFriendsInDB(peopleName)
             .then((data) => {
                 res.json({peopleFound: true, myPeople: data.rows});
             })

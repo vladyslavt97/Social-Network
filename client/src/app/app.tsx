@@ -104,12 +104,12 @@ export class App extends Component<any, any> {
                                 handleFileChange={this.handleFileChange}
                                 />
                 )}
-                    <img src="profilepage.png" alt="profilepage" />
                     <Signout />
                 </div>
                 <div id='main-screen'>
                     <BrowserRouter>
-                    <Link to="/users" ><img src="friends.png" alt="friends" /></Link>
+                    <Link to="/users" ><img src="findpeople.png" alt="findpeople" id='findpeopleimg'/></Link>
+                    <Link to="/" ><img src="profilepage.png" alt="profilepage" id='profilepageimg'/></Link>
 
                     <Routes>
                         <Route path="/" 

@@ -32,6 +32,15 @@ const { uploadPPRouter } = require('./routes/uploadPP');
 const { userRouter } = require('./routes/user');
 const { uploadBioRouter } = require('./routes/bio');
 const { findPeopleRouter } = require('./routes/findpeople');
+app.use((req, res, next) => {
+    console.log("---------------------");
+    console.log("req.url:", req.url);
+    console.log("req.method:", req.method);
+    console.log("req.session:", req.session);
+    console.log("req.body:", req.body);
+    console.log("---------------------");
+    next();
+});
 
 app.use(loginRouter);
 app.use(registerRouter);

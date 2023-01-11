@@ -65,9 +65,9 @@ module.exports.updateUsersBio = (bio, id) =>{
 
 //find friends
 module.exports.findFriendsInDB = (peopleName) =>{
-    return db.query(`SELECT name 
+    return db.query(`SELECT * 
         FROM users 
-        WHERE name ILIKE $1;`,[peopleName + '%']);
+        WHERE first ILIKE $1;`,[peopleName + '%']);
 };
 
 

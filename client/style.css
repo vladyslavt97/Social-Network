@@ -245,6 +245,19 @@ button:hover{
     flex-direction: column;
 }
 
+#findpeopleimg{
+    position: absolute;
+    left: 0;
+    top: 285px;
+    width: 52px;    
+}
+#profilepageimg{
+    position: absolute;
+    left: 0;
+    top: 200px;
+    width: 52px;
+}
+
 /* earth */
 #maincont {
     align-items: center;

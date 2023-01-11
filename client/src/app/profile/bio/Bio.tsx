@@ -71,7 +71,8 @@ export function Bio({ bioInDb}:
         {/* some state set to false indicating that the textarea is false and will become true onClick: showBioEditorTextarea*/}
         {showBET && <form onSubmit={handleBioSubmit} className="file-upload">
                                 <h1 id="bio">BIO</h1>
-                                <textarea name="bioSummary" 
+                                <textarea 
+                                // name="bioSummary" 
                                 onChange={handleBio} 
                                 id="textareabio" 
                                 value={bio}
