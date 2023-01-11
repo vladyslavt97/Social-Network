@@ -50,10 +50,10 @@ export class App extends Component<any, any> {
             .then((response) => 
                 response.json())
             .then((data) => {
-                this.setState({userInfo:data.userData[0]});
-                this.setState({bioData:data.userData[0]});
-                this.setState({imgFromApp: data.userData[0].profile_pic_url});
-                this.setState({bioInDb: data.userData[0]})
+                this.setState({userInfo:data.userData});
+                this.setState({bioData:data.userData});
+                this.setState({imgFromApp: data.userData.profile_pic_url});
+                this.setState({bioInDb: data.userData})
                 console.log('bioExists!!', this.state.bioInDb);
                 //should set
             })

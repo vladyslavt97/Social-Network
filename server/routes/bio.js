@@ -6,15 +6,18 @@ const uploadBioRouter = express.Router();
 uploadBioRouter.post('/bioupload', (req, res) => {
     let bio = req.body.textarea;
     let id = req.session.userId;
-    updateUsersBio(bio, id)
-        .then((data) => {
-            res.json({uploadedBio: true, myBio: data});
-        })
-        .catch(err =>{
-            res.json({uploadedBio: false});
+    if(bio !== ''){
+        updateUsersBio(bio, id)
+            .then((data) => {
+                res.json({bioAdded: true, myBio: data});
+            })
+            .catch(err =>{
 
-            console.log('the error: ', err);
-        });
+                console.log('the error: ', err);
+            });
+    } else {
+        res.json({bioAdded: false});
+    }
 });
 
 module.exports = { uploadBioRouter };
