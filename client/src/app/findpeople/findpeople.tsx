@@ -45,7 +45,9 @@ export function FindPeople() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('find people', data.myPeople);
+            console.log('find people in fetch of find people', data.myPeople);
+            // setPeople(data.myPeople);
+            return;
         })
         .catch(err => {
                 console.log('er: ', err);
@@ -56,6 +58,7 @@ export function FindPeople() {
 
     //new person is created by the setNewPeople
     console.log('newPerson', newPeople);
+    console.log('findPeople', findPeople);
 
     return <div >
                 <div id='theFindPeopleDiv'>
