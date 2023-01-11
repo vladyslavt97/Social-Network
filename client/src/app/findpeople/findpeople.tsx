@@ -1,4 +1,4 @@
-import { Component, FormEvent} from 'react';
+import { Component, FormEvent, useInsertionEffect} from 'react';
 import "./findpeople.css"
 import {useState, useEffect} from "react"
 
@@ -8,8 +8,33 @@ import {useState, useEffect} from "react"
 //   }
 
 export function FindPeople() {
+    //find new people
+    const [newPeople, setNewPeople] = useState([]);
+
+    useEffect(()=>{
+        fetch('/newpeople', {
+            method: 'GET', 
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response) => 
+                response.json())
+            .then((data) => {
+                console.log('server side: getting newpeople', data.newPeople);
+                setNewPeople( data.newPeople)
+            })
+            .catch((error) => {
+                console.error('Error caught:', error);
+            });
+    },[])
+
+
+
+
+    //change to the new letter and find those searched (as many as there are)
     const [findPeople, setPeople] = useState('');
-    
+
     useEffect(() => {
         fetch('/findpeople', {
             method: 'POST',
@@ -20,23 +45,40 @@ export function FindPeople() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('data on uload find people', data.myPeople);
+            console.log('find people', data.myPeople);
         })
         .catch(err => {
                 console.log('er: ', err);
             });   
     }, [findPeople])
-    // const [bio, setBio] = useState(bioInDb.bio);
-    // const handleBio = (e) => {
-    //     setBio(e.target.value);
-    // }
 
-    return <div id='theFindPeopleDiv'>
-        <h1 id='findpeople'>Find People</h1>
-        <input type="text" 
-            // name='findPeopleInput' 
-            onChange={event => setPeople(event.target.value)}
-            value={findPeople}
-            />
+
+
+    //new person is created by the setNewPeople
+    console.log('newPerson', newPeople);
+
+    return <div >
+                <div id='theFindPeopleDiv'>
+                    <h1 id='findpeople'>Find People</h1>
+                    <input type="text" 
+                        onChange={event => setPeople(event.target.value)}
+                        value={findPeople}
+                        />
+                </div>
+        
+        {/* ... */}
+
+        {newPeople.map(
+            newPerson => (
+                
+                <div key={newPerson.id} id="threePersonsDiv">
+                    {/* ... */}
+                    <h1 id='threePersonsNames'>{newPerson.first} {newPerson.last}</h1>
+                    <img src={newPerson.profile_pic_url} alt={newPerson.first} id='threepersons'/>
+                </div>
+            )
+        )}
+
+        {/* ... */}
     </div>
 }

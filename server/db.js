@@ -17,6 +17,13 @@ module.exports.selectAllDataFromUsersDBBasedOnId = (id) =>{
     return db.query(`SELECT * FROM users
     Where id = $1;`, [id]);
 };
+//newpeople sort 3 by newest id
+module.exports.selectThreeNewestUsersFromDB = () =>{
+    return db.query(`SELECT * 
+    FROM users 
+    ORDER BY id DESC
+    LIMIT 3;`);
+};
 
 module.exports.insertDataIntoUsersDB = (firstname, lastname, email, hashedPassword) => {
     return db.query(`INSERT INTO users (first, last, email, password) 

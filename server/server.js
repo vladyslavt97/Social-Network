@@ -32,6 +32,7 @@ const { uploadPPRouter } = require('./routes/uploadPP');
 const { userRouter } = require('./routes/user');
 const { uploadBioRouter } = require('./routes/bio');
 const { findPeopleRouter } = require('./routes/findpeople');
+const { newPeopleInDB } = require('./routes/newpeople');
 app.use((req, res, next) => {
     console.log("---------------------");
     console.log("req.url:", req.url);
@@ -49,6 +50,7 @@ app.use(uploadPPRouter);
 app.use(userRouter);
 app.use(uploadBioRouter);
 app.use(findPeopleRouter);
+app.use(newPeopleInDB);
 
 
 //given setup below
