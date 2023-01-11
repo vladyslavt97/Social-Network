@@ -9,7 +9,7 @@ uploadBioRouter.post('/bioupload', (req, res) => {
     if(bio !== ''){
         updateUsersBio(bio, id)
             .then((data) => {
-                res.json({bioAdded: true, myBio: data});
+                res.json({bioAdded: true, myBio: data.rows});
             })
             .catch(err =>{
 

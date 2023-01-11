@@ -2,7 +2,7 @@ import { Component, FormEvent} from 'react';
 import { Link } from 'react-router-dom';
 import { ProfilePic } from '../app_components/profilepic';
 import { ProfilePicLarge } from './profilepiclarge/profilepiclarge';
-import { Bio } from './bioeditor/bioeditor';
+import { Bio } from './bioeditor/Bio';
 
 // interface ProfileState {
 //       email: string,
@@ -26,11 +26,6 @@ export class Profile extends Component<any, any> {
             />
             <Bio 
             bioInDb = {this.props.bioInDb}
-            showBET = {this.props.showBET}
-            // handleBioSubmit={this.props.handleBioSubmit}
-            // handleBioChange={this.props.handleBioChange}
-            // showBioEditorTextarea={this.props.showBioEditorTextarea}
-            // showBioEditorButton={this.props.showBioEditorButton}
             />
         </div>
     }
