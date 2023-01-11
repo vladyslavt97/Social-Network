@@ -28,16 +28,15 @@ export class App extends Component<any, any> {
             imgFromApp: null,
             textarea: '',
             bioInDb: '',
-            bioData: {},
         };
         // bind stuff if you use normal functions
         this.togglePopup = this.togglePopup.bind(this);
         this.handlePPUpload = this.handlePPUpload.bind(this);
         this.handleFileChange = this.handleFileChange.bind(this);
-        this.handleBioSubmit = this.handleBioSubmit.bind(this);
-        this.handleBioChange = this.handleBioChange.bind(this);
-        this.showBioEditorTextarea = this.showBioEditorTextarea.bind(this);
-        this.showBioEditorButton = this.showBioEditorButton.bind(this);
+        // this.handleBioSubmit = this.handleBioSubmit.bind(this);
+        // this.handleBioChange = this.handleBioChange.bind(this);
+        // this.showBioEditorTextarea = this.showBioEditorTextarea.bind(this);
+        // this.showBioEditorButton = this.showBioEditorButton.bind(this);
     }
     componentDidMount() {
         // fetch informartion from the server
@@ -61,22 +60,22 @@ export class App extends Component<any, any> {
                 console.error('Error caught:', error);
             });
     }
-    showBioEditorTextarea(){//it has nothing to do with DB or STATE!!! 
-        //its originally set to false and later becomes true on click
-        // this.setState({ bioInDb: !this.state.bioInDb });
-        this.setState({ showBET: !this.state.showBET });
+    // showBioEditorTextarea(){//it has nothing to do with DB or STATE!!! 
+    //     //its originally set to false and later becomes true on click
+    //     // this.setState({ bioInDb: !this.state.bioInDb });
+    //     this.setState({ showBET: !this.state.showBET });
         
-    }
-    showBioEditorButton(){
-        this.setState({ bioInDb: !this.state.bioInDb });
-        // if(!this.state.bioInDb){
-        //     this.setState({bioInDb: true});
-        //     console.log('should activate the textarea');
-        // } else{
-        //     this.setState({bioInDb: false});
-        //     console.log('should deactivate the textarea');
-        // }
-    }
+    // }
+    // showBioEditorButton(){
+    //     this.setState({ bioInDb: !this.state.bioInDb });
+    //     // if(!this.state.bioInDb){
+    //     //     this.setState({bioInDb: true});
+    //     //     console.log('should activate the textarea');
+    //     // } else{
+    //     //     this.setState({bioInDb: false});
+    //     //     console.log('should deactivate the textarea');
+    //     // }
+    // }
 
     signOut(event){
         event.preventDefault();
@@ -115,35 +114,32 @@ export class App extends Component<any, any> {
             });
             
     }
-    handleBioSubmit(event){
-        event.preventDefault();
-        console.log('trying to upload the bio');
-        fetch('/bioupload', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({textarea: this.state.bioSummary }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('data on uload bio query', data.myBio.rows[0]);
-            this.setState({showBET: false});
-            console.log('????????', this.state.bioInDb);
-            console.log('???3423424?????', this.state.bioInDb);
-            
-            this.setState({bioInDb: data.myBio.rows[0]});
+    // handleBioSubmit(event){
+    //     event.preventDefault();
+    //     console.log('trying to upload the bio');
+    //     fetch('/bioupload', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({textarea: this.state.bioSummary }),
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log('data on uload bio query', data.myBio.rows[0]);
+    //         this.setState({showBET: false});
+    //         this.setState({bioInDb: data.myBio.rows[0]});
 
-        })
-        .catch(err => {
-                console.log('er: ', err);
-            });   
-    }
-    handleBioChange = (evt) => {
-        const property = evt.target.name; // will hold 'firstname' when input for firstname is changed
-        // will update firstname prop dynamically in this.state variable
-        this.setState({ [property]: evt.target.value });
-    }
+    //     })
+    //     .catch(err => {
+    //             console.log('er: ', err);
+    //         });   
+    // }
+    // handleBioChange = (evt) => {
+    //     const property = evt.target.name; // will hold 'firstname' when input for firstname is changed
+    //     // will update firstname prop dynamically in this.state variable
+    //     this.setState({ [property]: evt.target.value });
+    // }
     handleFileChange(event){
         this.setState({file: event.target.files[0]});
     }
@@ -180,13 +176,12 @@ export class App extends Component<any, any> {
                     <Profile imgFromApp = {this.state.imgFromApp}
                     userInfo = {this.state.userInfo}
                     bioInDb = {this.state.bioInDb}
-                    bioData = {this.state.bioData}
                     showBET= {this.state.showBET}//new
                     profilePicUrl = {this.state.profilePicUrl}
-                    handleBioSubmit={this.handleBioSubmit}
-                    handleBioChange={this.handleBioChange}
-                    showBioEditorTextarea={this.showBioEditorTextarea}
-                    showBioEditorButton={this.showBioEditorButton}
+                    // handleBioSubmit={this.handleBioSubmit}
+                    // handleBioChange={this.handleBioChange}
+                    // showBioEditorTextarea={this.showBioEditorTextarea}
+                    // showBioEditorButton={this.showBioEditorButton}
                     />
                 </div>
             </div>
