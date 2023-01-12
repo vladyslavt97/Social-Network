@@ -1,12 +1,12 @@
 const express = require("express");
-const { findFriendsInDB } = require('../db');
+// const { otherProfileInDB } = require('../db');
 
-const findPeopleRouter = express.Router();
-findPeopleRouter.post('/findpeople', (req, res) => {
-    console.log('req.body in (findpeople) foundPeople:', req.body);
-    let peopleName = req.body.foundPeople;
+const otherProfileRouter = express.Router();
+otherProfileRouter.post(`/user/:id`, (req, res) => {
+    console.log('req.body in otherProfile:', req.body);
+    console.log('req.params in otherProfile:', req.params.id);
     if(peopleName !== ''){
-        findFriendsInDB(peopleName)
+        otherProfileInDB(peopleName)
             .then((data) => {
                 const withoutMyId = data.rows.filter(el => 
                     el.id !== req.session.userId);
@@ -20,4 +20,4 @@ findPeopleRouter.post('/findpeople', (req, res) => {
     }
 });
 
-module.exports = { findPeopleRouter };
+module.exports = { otherProfileRouter };

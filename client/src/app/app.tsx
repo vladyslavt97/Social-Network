@@ -7,6 +7,7 @@ import { Signout } from './app_components/signout';
 import Uploader from './app_components/uploader/uploader';
 import {ProfilePic} from './app_components/profilepic';
 import "./app.css"
+import { OtherProfile } from "./findpeople/otherprofile/otherprofile"
 
 // import { Link } from "react-router-dom";
 interface AppState {
@@ -122,7 +123,11 @@ export class App extends Component<any, any> {
                                         />}>
                         </Route>
                         <Route path="/users" 
-                                element={<FindPeople />}></Route>
+                                element={<FindPeople />}
+                                ></Route>
+                        <Route path="/user/:id" 
+                                element={<OtherProfile />
+                                }></Route>
                     </Routes>
                 </BrowserRouter>
                     

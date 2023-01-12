@@ -77,6 +77,13 @@ module.exports.findFriendsInDB = (peopleName) =>{
         WHERE first ILIKE $1;`,[peopleName + '%']);
 };
 
+//find friends
+module.exports.otherProfileInDB = (id) =>{
+    return db.query(`SELECT * 
+        FROM users 
+        WHERE id = $1;`,[id]);
+};
+
 
 //get all user info + pp "time wasted:("
 // module.exports.selectUserAndProfilePic = (id) => {

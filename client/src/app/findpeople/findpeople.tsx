@@ -1,6 +1,7 @@
 import { Component, FormEvent, useInsertionEffect} from 'react';
 import "./findpeople.css"
 import {useState, useEffect} from "react"
+import { Link } from 'react-router-dom';
 
 // interface FindPeopleState {
 //       email: string,
@@ -8,6 +9,7 @@ import {useState, useEffect} from "react"
 //   }
 
 export function FindPeople() {
+
     //find new people
     const [newPeople, setNewPeople] = useState([]);
 
@@ -28,9 +30,6 @@ export function FindPeople() {
                 console.error('Error caught:', error);
             });
     },[])
-
-
-
 
     //change to the new letter and find those searched (as many as there are)
     const [findPeople, setPeople] = useState('');
@@ -54,11 +53,9 @@ export function FindPeople() {
                 console.log('er: ', err);
             });   
     }, [findPeople])
-    //You can break this loop by updating a different state variable with the data received in the fetch request and not update the state variable being used in the useEffect dependency array.
-    console.log('myPeople', myPeople);
-    console.log('findPeople', findPeople);
-    console.log('------------------');
-
+    // console.log('myPeople', myPeople);
+    // console.log('findPeople', findPeople);
+    // console.log('------------------');
     //new person is created by the setNewPeople
     // console.log('newPeople', newPeople);
 
@@ -70,35 +67,35 @@ export function FindPeople() {
                         value={findPeople}
                         />
                 </div>
-                {/* findPeople? */}
                 {myPeople.length === 0 && findPeople && <div>
                                                 <h1 id='noresults'>No results</h1>
                                             </div>
                                         }
-        
                 {myPeople.length === 0 && !findPeople && <div id="threePersonsDiv">
                                 <h1 id='newestpeople'>Newest People</h1>
                                 {newPeople.map(
                                     newPerson => (
-                                        <div key={newPerson.id} >
+                                        // <Link to="" >
+                                            <div key={newPerson.id} >
                                             <h1 id='threePersonsNames'>{newPerson.first} {newPerson.last}</h1>
                                             <img src={newPerson.profile_pic_url} alt={newPerson.first} id='threepersons'/>
                                         </div>
+                                        // </Link>
                                     )
                                 )}
                             </div>}
                 {myPeople.length !== 0  && <div id="theArrayOfFoundPeople">
                                 {myPeople.map(
                                     myPerson => (
-                                        
                                         <div key={myPerson.id} >
-                                            {/* ... */}
                                             <h1 id='theArrayOfFoundPeopleNames'>{myPerson.first} {myPerson.last}</h1>
-                                            <img src={myPerson.profile_pic_url} alt={myPerson.first} id='theArrayOfFoundPeopleImgs'/>
+                                            <Link to={`/user/${myPerson.id}`} >
+                                                <img src={myPerson.profile_pic_url} alt={myPerson.first}
+                                                id='theArrayOfFoundPeopleImgs'/>
+                                            </Link>
                                         </div>
                                     )
                                 )}
                             </div>}
-
-    </div>
+            </div>
 }
