@@ -29,3 +29,13 @@
     align-items: center;
     justify-content: center;
 }
+
+#newestpeople{
+    background: var(--main-background);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 40px;
+    font-size: 40px;
+    margin: 20px;
+}

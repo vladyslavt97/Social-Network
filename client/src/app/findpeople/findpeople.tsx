@@ -59,10 +59,8 @@ export function FindPeople() {
     console.log('findPeople', findPeople);
     console.log('------------------');
 
-
     //new person is created by the setNewPeople
-    console.log('newPerson', newPeople);
-    console.log('findPeople', findPeople);
+    // console.log('newPeople', newPeople);
 
     return <div >
                 <div id='theFindPeopleDiv'>
@@ -72,13 +70,17 @@ export function FindPeople() {
                         value={findPeople}
                         />
                 </div>
+                {/* findPeople? */}
+                {!myPeople && findPeople && <div>
+                                                <h1 id='threePersonsNames'>No results</h1>
+                                            </div>
+                                        }
         
-                {!myPeople && <div>
+                {!myPeople && <div id="threePersonsDiv">
+                                <h1 id='newestpeople'>Newest People</h1>
                                 {newPeople.map(
                                     newPerson => (
-                                        
-                                        <div key={newPerson.id} id="threePersonsDiv">
-                                            {/* ... */}
+                                        <div key={newPerson.id} >
                                             <h1 id='threePersonsNames'>{newPerson.first} {newPerson.last}</h1>
                                             <img src={newPerson.profile_pic_url} alt={newPerson.first} id='threepersons'/>
                                         </div>
