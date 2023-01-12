@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, FormEvent } from 'react';
 import { Logo } from '../components/logo';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Profile } from './profile/profile';
@@ -9,22 +9,33 @@ import {ProfilePic} from './app_components/profilepic';
 import "./app.css"
 import { OtherProfile } from "./findpeople/otherprofile/otherprofile"
 
-// import { Link } from "react-router-dom";
+interface UserInfo {
+    first: string,
+    last: string,
+}
 interface AppState {
-      isPopupOpen: boolean,
-    //   showBET: boolean,
-      username: string,
-      userInfo: object,
+    username: string,
+    userInfo: UserInfo,
+    isPopupOpen: boolean,
+    file: File | null,
+    profilePicUrl: null,
+    imgFromApp: null,
+    textarea: string,
+    bioInDb: object,
   }
+interface AppProps {}
 
-export class App extends Component<any, any> {
-    constructor(props) {
+
+export class App extends Component<AppProps, AppState, UserInfo> {
+    constructor(props: AppProps) {
         super(props);
         this.state = {
             isPopupOpen: false,
-            // showBET: false,
             username: "Mint",
-            userInfo: {},
+            userInfo: {
+                first: "",
+                last: "",
+            },
             file: null,
             profilePicUrl: null,
             imgFromApp: null,
@@ -48,7 +59,6 @@ export class App extends Component<any, any> {
                 response.json())
             .then((data) => {
                 this.setState({userInfo:data.userData,
-                                bioData:data.userData,
                                 imgFromApp: data.userData.profile_pic_url,
                                 bioInDb: data.userData});
             })
@@ -57,8 +67,11 @@ export class App extends Component<any, any> {
             });
     }
 
-    handlePPUpload(event){
+    handlePPUpload(event: FormEvent){
         event.preventDefault();
+        if (this.state.file === null){
+            return;
+        }
         const formData = new FormData();
         formData.append('uploadedfile', this.state.file);
 
@@ -78,12 +91,14 @@ export class App extends Component<any, any> {
             });
     }
     
-    handleFileChange(event){
-        this.setState({file: event.target.files[0]});
+    handleFileChange(event: React.ChangeEvent<HTMLInputElement>){
+        if (event.target.files?.length) {
+            this.setState({file: event.target.files[0]});
+        }
     }
 
-    togglePopup(event) {
-        event.preventDefault();
+    togglePopup() {
+        // event.preventDefault();
         this.setState({ isPopupOpen: !this.state.isPopupOpen });
     }
     
@@ -118,7 +133,7 @@ export class App extends Component<any, any> {
                                 element={<Profile imgFromApp = {this.state.imgFromApp}
                                                 userInfo = {this.state.userInfo}
                                                 bioInDb = {this.state.bioInDb}
-                                                showBET= {this.state.showBET}//new
+                                                // showBET= {this.state.showBET}
                                                 profilePicUrl = {this.state.profilePicUrl}
                                         />}>
                         </Route>

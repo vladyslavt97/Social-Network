@@ -18,8 +18,6 @@ export function Signout() {
             });
     }        
     return <div>
-            <form onClick={signOut}>
-                <img src="signout.png" alt="empty" id="signout"/>
-            </form>
+                <img src="/signout.png" alt="empty" id="signout" onClick={signOut}/>
             </div>
 }
