@@ -47,7 +47,7 @@ export function FindPeople() {
         .then(response => response.json())
         .then(data => {
             console.log('find people in fetch of find people', data.myPeople);
-            setMyPeople(data.myPeople);
+            setMyPeople(data.myPeople || []);
             return;
         })
         .catch(err => {
@@ -71,12 +71,12 @@ export function FindPeople() {
                         />
                 </div>
                 {/* findPeople? */}
-                {!myPeople && findPeople && <div>
-                                                <h1 id='threePersonsNames'>No results</h1>
+                {myPeople.length === 0 && findPeople && <div>
+                                                <h1 id='noresults'>No results</h1>
                                             </div>
                                         }
         
-                {!myPeople && <div id="threePersonsDiv">
+                {myPeople.length === 0 && !findPeople && <div id="threePersonsDiv">
                                 <h1 id='newestpeople'>Newest People</h1>
                                 {newPeople.map(
                                     newPerson => (
@@ -87,7 +87,7 @@ export function FindPeople() {
                                     )
                                 )}
                             </div>}
-                {myPeople && <div id="theArrayOfFoundPeople">
+                {myPeople.length !== 0  && <div id="theArrayOfFoundPeople">
                                 {myPeople.map(
                                     myPerson => (
                                         

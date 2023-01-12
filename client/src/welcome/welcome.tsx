@@ -3,11 +3,11 @@ import { Registration } from './registration/registration';
 import { Logo } from '../components/logo';
 import { Login } from './login/login';
 import { Reset } from './reset/resetpwd';
+import "./earth.css"
 
 export function Welcome() {
     return <div id="welcome">
             <h1 id='bookface'>Bookface</h1>
-            {/* <h1 className='welcome'>Welcome to Bookface!</h1> */}
             <Logo />
             <div>
                 <BrowserRouter>

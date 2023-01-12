@@ -6,6 +6,7 @@ import { FindPeople } from './findpeople/findpeople';
 import { Signout } from './app_components/signout';
 import Uploader from './app_components/uploader/uploader';
 import {ProfilePic} from './app_components/profilepic';
+import "./app.css"
 
 // import { Link } from "react-router-dom";
 interface AppState {

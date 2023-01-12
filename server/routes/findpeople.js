@@ -8,8 +8,10 @@ findPeopleRouter.post('/findpeople', (req, res) => {
     if(peopleName !== ''){
         findFriendsInDB(peopleName)
             .then((data) => {
+                const withoutMyId = data.rows.filter(el => 
+                    el.id !== req.session.userId);
                 // console.log('data rows in foundPeople', data.rows);
-                res.json({peopleFound: true, myPeople: data.rows});
+                res.json({peopleFound: true, myPeople: withoutMyId});
             })
             .catch(err =>{
                 console.log('the error in findPeopleInDb: ', err);
