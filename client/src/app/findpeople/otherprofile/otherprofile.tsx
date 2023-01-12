@@ -14,7 +14,7 @@ export function OtherProfile(){
     console.log('useParamsId', id);
     const navigate = useNavigate();
 
-    const [otherUserProfile, setOtherUserProfile] = useState({});
+    const [otherUserProfile, setOtherUserProfile] = useState<any>({});
     useEffect(() => {
         fetch(`/userprofile/${id}`, {
             method: 'GET',
@@ -30,14 +30,15 @@ export function OtherProfile(){
             .catch(err=>{
                 console.log('if threre is no match for user:id = output a message "no page found"', err);
             });
-    },[otherUserProfile]);
+    },[id]);
     console.log('otherUserProfile', otherUserProfile);
     
-    return <div>
-        <h1 id="otherpeoplecomponent">other profile component</h1>
-        <img src={otherUserProfile.profile_pic_url} alt={otherUserProfile.first} />
-        <h5>{otherUserProfile.first}{otherUserProfile.last}</h5>
-        <h6>{otherUserProfile.email}</h6>
-        <h6>{otherUserProfile.bio}</h6>
+    return <div id="otherpeoplecomponentdiv">
+        <h1 id="otherpeoplecomponent">User details</h1>
+        <img id="otherprofilecompponentimg"
+        src={otherUserProfile.profile_pic_url} alt={otherUserProfile.first} />
+        <h5 id="otherpeoplecomponentinfo">{otherUserProfile.first}{otherUserProfile.last}</h5>
+        <h6 id="otherpeoplecomponentinfo">{otherUserProfile.email}</h6>
+        <h6 id="otherpeoplecomponentinfobio">{otherUserProfile.bio}</h6>
     </div>
 }
