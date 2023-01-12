@@ -1,23 +1,20 @@
 const express = require("express");
-// const { otherProfileInDB } = require('../db');
+const { otherProfileInDB } = require('../db');
 
 const otherProfileRouter = express.Router();
-otherProfileRouter.post(`/user/:id`, (req, res) => {
-    console.log('req.body in otherProfile:', req.body);
+otherProfileRouter.get(`/userprofile/:id`, (req, res) => {
+    // console.log('req.body in otherProfile:', req.body);
     console.log('req.params in otherProfile:', req.params.id);
-    if(peopleName !== ''){
-        otherProfileInDB(peopleName)
-            .then((data) => {
-                const withoutMyId = data.rows.filter(el => 
-                    el.id !== req.session.userId);
-                res.json({peopleFound: true, myPeople: withoutMyId});
-            })
-            .catch(err =>{
-                console.log('the error in findPeopleInDb: ', err);
-            });
-    } else {
-        res.json({peopleFound: false});
-    }
+    const id = req.params.id;
+    console.log('the id: ', id);
+    otherProfileInDB(id)
+        .then((data) => {
+            console.log('sucess123');
+            res.json({peopleFound: true, otherProfile: data.rows});
+        })
+        .catch(err =>{
+            console.log('the error in findPeopleInDb: ', err);
+        });
 });
 
 module.exports = { otherProfileRouter };

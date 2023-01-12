@@ -3,7 +3,7 @@ const { findFriendsInDB } = require('../db');
 
 const findPeopleRouter = express.Router();
 findPeopleRouter.post('/findpeople', (req, res) => {
-    console.log('req.body in (findpeople) foundPeople:', req.body);
+    // console.log('req.body in (findpeople) foundPeople:', req.body);
     let peopleName = req.body.foundPeople;
     if(peopleName !== ''){
         findFriendsInDB(peopleName)
