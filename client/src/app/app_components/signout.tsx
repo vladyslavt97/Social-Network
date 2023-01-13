@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
 export function Signout() {
-    const signOut = (event) => {
-        event.preventDefault();
+    const signOut = () => {
+        // event.preventDefault();
         fetch('/signout', {
             method: 'POST',
             headers: {

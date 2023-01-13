@@ -22,6 +22,7 @@ interface AppState {
     imgFromApp: null,
     textarea: string,
     bioInDb: object,
+    togglePopup: boolean,
   }
 interface AppProps {}
 
@@ -41,6 +42,7 @@ export class App extends Component<AppProps, AppState, UserInfo> {
             imgFromApp: null,
             textarea: '',
             bioInDb: {},
+            togglePopup: false,
         };
         // bind stuff if you use normal functions
         this.togglePopup = this.togglePopup.bind(this);
@@ -115,7 +117,8 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                     togglePopup={this.togglePopup}
                 />
                 {this.state.isPopupOpen && (
-                    <Uploader handleClose={this.state.username}  
+                    <Uploader 
+                    // handleClose={this.state.username}  
                                 togglePopup={this.togglePopup} 
                                 handlePPUpload={this.handlePPUpload}
                                 handleFileChange={this.handleFileChange}

@@ -1,7 +1,15 @@
+import { File } from "aws-sdk/lib/dynamodb/document_client";
 import React, { Component } from "react";
 // import { ProfilePic } from '../profilepic';
 
-export default class Uploader extends Component<any, any> {
+interface UploaderProps {
+    togglePopup: boolean,
+    handlePPUpload: object,
+    handleFileChange: File,
+}
+interface UploaderState{}
+
+export default class Uploader extends Component<UploaderProps, UploaderState> {
     constructor(props) {
         super(props);
         this.state = {

@@ -34,15 +34,14 @@ const { uploadBioRouter } = require('./routes/bio');
 const { findPeopleRouter } = require('./routes/findpeople');
 const { newPeopleInDB } = require('./routes/newpeople');
 const { otherProfileRouter } = require('./routes/otherprofile');
-// app.use((req, res, next) => {
-//     console.log("---------------------");
-//     console.log("req.url:", req.url);
-//     console.log("req.method:", req.method);
-//     console.log("req.session:", req.session);
-//     console.log("req.body:", req.body);
-//     console.log("---------------------");
-//     next();
-// });
+//friend req button
+const { checkFriendReqRouter } = require('./routes/friend_req_button/checkfriendreq');
+const { deleteFriendReqRouter } = require('./routes/friend_req_button/deletefriendreq');
+const { insertFriendReqRouter } = require('./routes/friend_req_button/insertfriendreq');
+const { updateFriendReqRouter } = require('./routes/friend_req_button/updatefriendreq');
+
+
+
 
 app.use(loginRouter);
 app.use(registerRouter);
@@ -53,7 +52,22 @@ app.use(uploadBioRouter);
 app.use(findPeopleRouter);
 app.use(newPeopleInDB);
 app.use(otherProfileRouter);
+//
+app.use(checkFriendReqRouter);
+app.use(deleteFriendReqRouter);
+app.use(insertFriendReqRouter);
+app.use(updateFriendReqRouter);
+//
 
+// app.use((req, res, next) => {
+//     console.log("---------------------");
+//     console.log("req.url:", req.url);
+//     console.log("req.method:", req.method);
+//     console.log("req.session:", req.session);
+//     console.log("req.body:", req.body);
+//     console.log("---------------------");
+//     next();
+// });
 
 //given setup below
 app.get("/user/id.json", (req, res) => {

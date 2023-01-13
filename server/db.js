@@ -93,3 +93,35 @@ module.exports.otherProfileInDB = (id) =>{
 //         ON users.id = profile_pics.user_id 
 //         WHERE users.id = $1;`, [id]);
 // };
+
+// friend requests //SELECT
+module.exports.checkFriendReqInDB = (id) =>{
+    return db.query(`
+    SELECT * 
+    FROM friend_requests 
+    WHERE id = $1;`,[id]);
+};
+
+//friend requests //INSERT
+module.exports.insertIntoReset_CodesDB = (sender_id, recipient_id, accepted) => {
+    return db.query(`
+    INSERT INTO friend_requests (sender_id, recipient_id, accepted) 
+    VALUES ($1, $2) 
+    RETURNING *;`, [sender_id, recipient_id, accepted]);
+};
+
+
+// friend requests //UPDATE
+module.exports.updateUsersBio = (bio, id) =>{
+    return db.query(`
+    UPDATE friend_requests
+    SET bio = $1 
+    WHERE id = $2 RETURNING *;`, [bio, id]);
+};
+
+// friend requests //DELETE
+module.exports.deleteFromReset_CodesDB = (emailR) => {
+    return db.query(`
+    DELETE FROM friend_requests 
+    WHERE email = $1;`, [emailR]);
+};
