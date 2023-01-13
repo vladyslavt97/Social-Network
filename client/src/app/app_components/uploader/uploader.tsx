@@ -10,15 +10,12 @@ interface UploaderProps {
 interface UploaderState{}
 
 export default class Uploader extends Component<UploaderProps, UploaderState> {
-    constructor(props) {
+    constructor(props: UploaderProps) {
         super(props);
         this.state = {
              togglePopup: false,
              handlePPUpload: false,
         };
-    }
-    componentDidMount() {
-        // console.log("uploader mounted!");
     }
 
     render() {
@@ -33,6 +30,5 @@ export default class Uploader extends Component<UploaderProps, UploaderState> {
                     <button >Upload</button>
                 </form>
             </div>;
-        // Here you will need to create a form to send a image file, just like in the Image Board 
     }
 }

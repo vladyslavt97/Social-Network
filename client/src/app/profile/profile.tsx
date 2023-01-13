@@ -4,14 +4,17 @@ import { ProfilePic } from '../app_components/profilepic';
 import { ProfilePicLarge } from './profilepiclarge/profilepiclarge';
 import { Bio } from './bio/Bio';
 
-// interface ProfileState {
-//       email: string,
-//       password: string,
-//   }
+interface ProfileState {}
 
-export class Profile extends Component<any, any> {
+interface ProfileProps{
+    imgFromApp: File,
+    userInfo: {},
+    bioInDb: {}
+}
 
-    constructor(props) {
+export class Profile extends Component<ProfileProps, ProfileState> {
+
+    constructor(props: ProfileProps) {
         super(props);
         this.state = {
         };

@@ -6,11 +6,15 @@ import { Link } from 'react-router-dom';
 interface LoginState {
       email: string,
       password: string,
+      validation: boolean,
+      incorrectData: boolean,
   }
 
-export class Login extends Component<any, any> {
+interface LoginProps{}
 
-    constructor(props) {
+export class Login extends Component<LoginProps, LoginState> {
+
+    constructor(props: LoginProps) {
         super(props);
         this.state = {
             email: '',

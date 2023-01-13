@@ -95,12 +95,12 @@ module.exports.otherProfileInDB = (id) =>{
 // };
 
 // friend requests //SELECT
-module.exports.checkFriendReqInDB = (user1, user2) =>{//we acpect only one row
+module.exports.checkFriendReqInDB = (me, anotherUser) =>{//we acpect only one row
     return db.query(`
     SELECT * 
     FROM friend_requests 
     WHERE (sender_id = $1 AND recipient_id = $2)
-    OR (sender_id = $2 AND recipient_id = $1);`,[user1, user2]);
+    OR (sender_id = $2 AND recipient_id = $1);`,[me, anotherUser]);
 };
 
 //friend requests //INSERT
@@ -121,10 +121,10 @@ module.exports.updateUsersBio = (bio, id) =>{
 };
 
 // friend requests //DELETE
-module.exports.deleteFromReset_CodesDB = (emailR) => {
+module.exports.deleteFromReset_CodesDB = (me, anotherUser) => {
     return db.query(`
     DELETE FROM friend_requests 
-    WHERE email = $1;`, [emailR]);
+    WHERE email = $1;`, [me, anotherUser]);
 };
 
 //get reqeust for notifications! "to be accepted"

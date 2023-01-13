@@ -4,15 +4,18 @@ import { Link } from "react-router-dom";
 import { Validation } from '../../components/validation';
 import { IncorrectData } from '../../components/incorrectdata';
 
-// interface ResetState {
-//       firstname: string,
-//       lastname: string,
-//       email: string,
-//       password: string,
-//   }
+interface ResetState {
+      firstname: string,
+      lastname: string,
+      email: string,
+      password: string,
+      validation: boolean,
+      incorrectData: boolean,
+  }
+interface ResetProps{}
 
-export class Reset extends Component <any, any> {
-    constructor(props) {
+export class Reset extends Component <ResetProps, ResetState> {
+    constructor(props: ResetProps) {
         super(props);
         this.state = { 
             step: 1,

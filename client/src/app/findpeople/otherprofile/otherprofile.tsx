@@ -1,13 +1,7 @@
 import "./otherprofile.css"
 import {useState, useEffect} from "react"
 import { useParams, useNavigate } from 'react-router-dom';
-
-// interface OtherProfileState {
-//       first: string,
-//       last: string,
-//       email: string,
-//       profile_pic_url: string,
-//   }
+import { FriendRequestsButton } from './friend_req_button/friend_req_button';
 
 export function OtherProfile(){
     let { id } = useParams();
@@ -40,5 +34,6 @@ export function OtherProfile(){
         <h5 id="otherpeoplecomponentinfo">{otherUserProfile.first}{otherUserProfile.last}</h5>
         <h6 id="otherpeoplecomponentinfo">{otherUserProfile.email}</h6>
         <h6 id="otherpeoplecomponentinfobio">{otherUserProfile.bio}</h6>
+        <FriendRequestsButton/>
     </div>
 }

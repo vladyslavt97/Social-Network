@@ -1,16 +1,9 @@
 import "./Bio.css"
 import {useState, useEffect} from "react"
-// interface ResetState {
-//       firstname: string,
-//       lastname: string,
-//       email: string,
-//       password: string,
-//   }
 
 export function Bio({ bioInDb}: 
-    {bioInDb: any}) {
-    console.log('showBioEditor in bioeditor', bioInDb);
-    
+    {bioInDb: {}}) {
+            
     //showing text area onClick
     const [showBET, setShowBioEditorText] = useState(false);
     const showBioEditorTextarea = () => {
@@ -46,18 +39,14 @@ export function Bio({ bioInDb}:
                 console.log('er: ', err);
             });   
     }
-    console.log('bioInDb.bio111', bioInDb.bio);
     
     const [bio, setBio] = useState(bioInDb.bio);
     const handleBio = (e) => {
         setBio(e.target.value);
     }
     useEffect(()=> {
-        // console.log('crazy log!: ', bio);
-        // console.log('crazy log!: ', bioInDb.bio);
         setBio(bioInDb.bio);
     }, [bioInDb.bio]);
-    console.log('bio', bio);
     
     return <div >
         <div id="thebio">
@@ -68,16 +57,14 @@ export function Bio({ bioInDb}:
 
         {!bioInDb.bio && !showBET && <p onClick={showBioEditorTextarea} id="addyourbio">Add your bio</p>}
 
-        {/* some state set to false indicating that the textarea is false and will become true onClick: showBioEditorTextarea*/}
         {showBET && <form onSubmit={handleBioSubmit} className="file-upload">
-                                <h1 id="bio">BIO</h1>
-                                <textarea 
-                                // name="bioSummary" 
-                                onChange={handleBio} 
-                                id="textareabio" 
-                                value={bio}
-                                ></textarea>
-                                <button>Submit the biography</button>
-                            </form>}
+                        <h1 id="bio">BIO</h1>
+                        <textarea 
+                        onChange={handleBio} 
+                        id="textareabio" 
+                        value={bio}
+                        ></textarea>
+                        <button>Submit the biography</button>
+                    </form>}
         </div>
 }

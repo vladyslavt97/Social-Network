@@ -93,14 +93,17 @@ export class App extends Component<AppProps, AppState, UserInfo> {
             });
     }
     
-    handleFileChange(event: React.ChangeEvent<HTMLInputElement>){
-        if (event.target.files?.length) {
-            this.setState({file: event.target.files[0]});
-        }
+    handleFileChange(file: File){
+        this.setState({file});
     }
+    // handleFileChange(event: React.ChangeEvent<HTMLInputElement>){
+    //     if (event.target.files.length) {
+    //         this.setState({file: event.target.files[0]});
+    //     }
+    // }
 
-    togglePopup() {
-        // event.preventDefault();
+    togglePopup(event) {
+        event.preventDefault();
         this.setState({ isPopupOpen: !this.state.isPopupOpen });
     }
     
@@ -118,11 +121,10 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                 />
                 {this.state.isPopupOpen && (
                     <Uploader 
-                    // handleClose={this.state.username}  
-                                togglePopup={this.togglePopup} 
-                                handlePPUpload={this.handlePPUpload}
-                                handleFileChange={this.handleFileChange}
-                                />
+                        togglePopup={this.togglePopup} 
+                        handlePPUpload={this.handlePPUpload}
+                        handleFileChange={this.handleFileChange}
+                        />
                 )}
                     <Signout />
                 </div>
@@ -148,7 +150,6 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                                 }></Route>
                     </Routes>
                 </BrowserRouter>
-                    
                 </div>
             </div>
         </div>

@@ -7,11 +7,13 @@ interface RegistrationState {
       lastname: string,
       email: string,
       password: string,
+      validation: boolean,
   }
+interface RegistrationProps{}
 
-export class Registration extends Component<any, any> {
+export class Registration extends Component<RegistrationProps, RegistrationState> {
 
-    constructor(props) {
+    constructor(props: RegistrationProps) {
         super(props);
         this.state = {
             firstname: '',

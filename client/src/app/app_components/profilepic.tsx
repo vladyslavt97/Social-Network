@@ -1,10 +1,7 @@
-import React from "react";
-import Uploader from './uploader/uploader';
-
 export function ProfilePic({ togglePopup, userInfo, imgFromApp }: {
-        togglePopup: any;
-        userInfo: any;
-        imgFromApp: any;
+        togglePopup: boolean;
+        userInfo: {};
+        imgFromApp: File;
     }) {
     imgFromApp = imgFromApp || "/noprofile.png";
         
