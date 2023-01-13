@@ -1,11 +1,10 @@
 import { File } from "aws-sdk/lib/dynamodb/document_client";
-import React, { Component } from "react";
-// import { ProfilePic } from '../profilepic';
+import React, { ChangeEventHandler, Component, FormEventHandler, MouseEventHandler } from "react";
 
 interface UploaderProps {
-    togglePopup: Function,
-    handlePPUpload: object,
-    handleFileChange: File,
+    togglePopup: MouseEventHandler<HTMLDivElement>,
+    handlePPUpload: FormEventHandler<HTMLFormElement>,
+    handleFileChange: ChangeEventHandler<HTMLInputElement>,
 }
 interface UploaderState{}
 

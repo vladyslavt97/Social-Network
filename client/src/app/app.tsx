@@ -84,7 +84,7 @@ export class App extends Component<AppProps, AppState, UserInfo> {
     
   
     handleFileChange(event: React.ChangeEvent<HTMLInputElement>){
-        if (event.target.files.length) {
+        if (event.target.files?.length) {
             this.setState({file: event.target.files[0]});
         }
     }
@@ -120,7 +120,7 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                     <Routes>
                         <Route path="/" 
                                 element={<Profile 
-                                            userInfo = {this.state.userInfo}/>}>
+                                userInfo = {this.state.userInfo}/>}>
                         </Route>
                         <Route path="/users" 
                                 element={<FindPeople />}
