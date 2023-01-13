@@ -84,17 +84,17 @@ export function FindPeople() {
                                 )}
                             </div>}
                 {myPeople.length !== 0  && <div id="theArrayOfFoundPeople">
-                                {myPeople.map(
-                                    myPerson => (
-                                        <div key={myPerson.id} >
-                                            <h1 id='theArrayOfFoundPeopleNames'>{myPerson.first} {myPerson.last}</h1>
-                                            <Link to={`/user/${myPerson.id}`} >
-                                                <img src={myPerson.profile_pic_url} alt={myPerson.first}
-                                                id='theArrayOfFoundPeopleImgs'/>
-                                            </Link>
-                                        </div>
-                                    )
-                                )}
-                            </div>}
+                                                {myPeople.map(
+                                                    myPerson => (
+                                                        <div key={myPerson.id} >
+                                                            <h1 id='theArrayOfFoundPeopleNames'>{myPerson.first} {myPerson.last}</h1>
+                                                            <Link to={`/user/${myPerson.id}`} >
+                                                                <img src={myPerson.profile_pic_url} alt={myPerson.first}
+                                                                id='theArrayOfFoundPeopleImgs'/>
+                                                            </Link>
+                                                        </div>
+                                                    )
+                                                )}
+                                            </div>}
             </div>
 }

@@ -34,6 +34,6 @@ export function OtherProfile(){
         <h5 id="otherpeoplecomponentinfo">{otherUserProfile.first}{otherUserProfile.last}</h5>
         <h6 id="otherpeoplecomponentinfo">{otherUserProfile.email}</h6>
         <h6 id="otherpeoplecomponentinfobio">{otherUserProfile.bio}</h6>
-        <FriendRequestsButton/>
+        {/* <FriendRequestsButton/> */}
     </div>
 }

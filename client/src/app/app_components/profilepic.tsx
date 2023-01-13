@@ -1,17 +1,16 @@
+import { MouseEventHandler } from 'react';
 import { UserInfo } from '../interface';
 
 interface ProfilePicProps{
     userInfo: UserInfo,
-    togglePopup: Function,
+    togglePopup: MouseEventHandler<HTMLImageElement>,
 }
 
 export function ProfilePic(props: ProfilePicProps) {
-    props.userInfo.profile_picture_url = props.userInfo.profile_picture_url || "/noprofile.png";
-    console.log('props.userInfo in Profile Picture ', props.userInfo);
-    console.log('props in Profile Picture ', props.userInfo.profile_picture_url);
+    props.userInfo.profile_pic_url = props.userInfo.profile_pic_url || "/noprofile.png";
     return <div>
-                <img src={props.userInfo.profile_picture_url} alt={props.userInfo.first} 
-                id="no-profile-pic" onClick={()=>{props.togglePopup}}/>
+                <img src={props.userInfo.profile_pic_url} alt={props.userInfo.first} 
+                id="no-profile-pic" onClick={props.togglePopup}/>
             </div>
 }
 

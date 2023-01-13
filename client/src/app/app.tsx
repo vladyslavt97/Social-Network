@@ -29,7 +29,7 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                 first: "",
                 last: "",
                 bio: "",
-                profile_picture_url: ""              
+                profile_pic_url: ""              
             },
             file: null,
             textarea: '',
@@ -50,6 +50,7 @@ export class App extends Component<AppProps, AppState, UserInfo> {
             .then((response) => 
                 response.json())
             .then((data) => {
+                
                 this.setState({ userInfo:data.userData });
             })
             .catch((error) => {
@@ -64,7 +65,8 @@ export class App extends Component<AppProps, AppState, UserInfo> {
         }
         const formData = new FormData();
         formData.append('uploadedfile', this.state.file);
-
+        // console.log('event', event);
+        
         // do fetch afterwards as a POST request. With the response you update your images array.
         fetch('/upload', {
             method: 'POST', 
@@ -74,7 +76,9 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                 return res.json();
             })
             .then(data => {
-                this.setState({userInfo: data.myPic.rows[0].profile_pic_url, 
+                console.log('data:::::', data);
+
+                this.setState({...this.state, userInfo: {...this.state.userInfo, profile_pic_url:data.myPic.rows[0].profile_pic_url}, 
                     isPopupOpen:false});
             })
             .catch(err => {
