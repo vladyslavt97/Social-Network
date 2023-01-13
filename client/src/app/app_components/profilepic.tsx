@@ -1,12 +1,17 @@
-export function ProfilePic({ togglePopup, userInfo, imgFromApp }: {
-        togglePopup: boolean;
-        userInfo: {};
-        imgFromApp: File;
-    }) {
-    imgFromApp = imgFromApp || "/noprofile.png";
-        
+import { UserInfo } from '../interface';
+
+interface ProfilePicProps{
+    userInfo: UserInfo,
+    togglePopup: Function,
+}
+
+export function ProfilePic(props: ProfilePicProps) {
+    props.userInfo.profile_picture_url = props.userInfo.profile_picture_url || "/noprofile.png";
+    console.log('props.userInfo in Profile Picture ', props.userInfo);
+    console.log('props in Profile Picture ', props.userInfo);
     return <div>
-                <img src={imgFromApp} alt={userInfo.first} id="no-profile-pic" onClick={togglePopup}/>
+                <img src={props.userInfo.profile_picture_url} alt={props.userInfo.first} 
+                id="no-profile-pic" onClick={()=>{props.togglePopup}}/>
             </div>
 }
 

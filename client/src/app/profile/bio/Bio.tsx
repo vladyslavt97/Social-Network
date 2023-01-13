@@ -1,24 +1,20 @@
 import "./Bio.css"
 import {useState, useEffect} from "react"
+import { UserInfo } from '../../interface';
 
-export function Bio({ bioInDb}: 
-    {bioInDb: {}}) {
+interface BioProps{
+    userInfo: UserInfo,
+}
+
+export function Bio(props: BioProps) {
             
-    //showing text area onClick
     const [showBET, setShowBioEditorText] = useState(false);
     const showBioEditorTextarea = () => {
-        //its originally set to false and later becomes true on click
         setShowBioEditorText( !showBET );
     }
     console.log('showBioEditor showBET', showBET);
 
-
-    //showing edit button onClick
-    // const [bioEdit, setBioInDb] = useState(bioInDb.bio);
-    // const showBioEditorButton = () => {
-    //     setBioInDb(!bioEdit );
-    // }
-    const handleBioSubmit = (event) => {
+    const handleBioSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         console.log('trying to upload the bio');
         fetch('/bioupload', {
@@ -40,22 +36,22 @@ export function Bio({ bioInDb}:
             });   
     }
     
-    const [bio, setBio] = useState(bioInDb.bio);
-    const handleBio = (e) => {
-        setBio(e.target.value);
+    const [bio, setBio] = useState(props.userInfo.bio);
+    const handleBio = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setBio(event.target.value);
     }
     useEffect(()=> {
-        setBio(bioInDb.bio);
-    }, [bioInDb.bio]);
+        setBio(props.userInfo.bio);
+    }, [props.userInfo.bio]);
     
     return <div >
         <div id="thebio">
-            {bioInDb && !showBET && <h1 id="bioresult">{bio}</h1>}
+            {props.userInfo.bio && !showBET && <h1 id="bioresult">{bio}</h1>}
             <br />
-            {bioInDb.bio && !showBET && <p onClick={showBioEditorTextarea} id="editbiobutton">| edit bio |</p>}
+            {props.userInfo.bio && !showBET && <p onClick={showBioEditorTextarea} id="editbiobutton">| edit bio |</p>}
         </div>
 
-        {!bioInDb.bio && !showBET && <p onClick={showBioEditorTextarea} id="addyourbio">Add your bio</p>}
+        {!props.userInfo.bio && !showBET && <p onClick={showBioEditorTextarea} id="addyourbio">Add your bio</p>}
 
         {showBET && <form onSubmit={handleBioSubmit} className="file-upload">
                         <h1 id="bio">BIO</h1>

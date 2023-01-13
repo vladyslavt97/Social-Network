@@ -1,11 +1,14 @@
 import "./ProfilePicLarge.css"
+import { UserInfo } from '../../interface';
 
-export function ProfilePicLarge({ userInfo, imgFromApp}: { userInfo: {}; imgFromApp: File;}) {
-    // console.log("PROPS in profilePic: ", props);
+interface ProfilePicProps{
+    userInfo: UserInfo,
+}
+export function ProfilePicLarge(props: ProfilePicProps) {
     
-    imgFromApp = imgFromApp || "/noprofile.png";
-    // console.log('sdsda', userInfo);
+    props.userInfo.profile_picture_url = props.userInfo.profile_picture_url || "/noprofile.png";
+    console.log('props.userInfo in Profile Picture Large', props.userInfo);
     return <div >
-            <img src={imgFromApp} alt={userInfo.first} id="no-profile-pic-large"/>
+            <img src={props.userInfo.profile_picture_url} alt={props.userInfo.first} id="no-profile-pic-large"/>
         </div>
 }

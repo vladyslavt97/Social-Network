@@ -1,4 +1,4 @@
-import { Component, FormEvent} from 'react';
+import { ChangeEvent, Component, FormEvent} from 'react';
 import { Validation } from '../../components/validation';
 import { IncorrectData } from '../../components/incorrectdata';
 import { Link } from 'react-router-dom';
@@ -25,10 +25,10 @@ export class Login extends Component<LoginProps, LoginState> {
 
     }
 
-    handleInputChange = (evt) => {
-        const property = evt.target.name; // will hold 'firstname' when input for firstname is changed
+    handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const property = event.target.name; // will hold 'firstname' when input for firstname is changed
         // will update firstname prop dynamically in this.state variable
-        this.setState({ [property]: evt.target.value });
+        this.setState({ ...this.state, [property]: event.target.value });
     }
 
     handleSubmit = (evt: FormEvent) => {

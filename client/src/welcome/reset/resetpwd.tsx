@@ -1,16 +1,19 @@
-import { Component } from "react";
+import { ChangeEvent, Component } from "react";
 import { Link } from "react-router-dom";
 
 import { Validation } from '../../components/validation';
 import { IncorrectData } from '../../components/incorrectdata';
+import { Change } from "aws-sdk/clients/cloudformation";
 
 interface ResetState {
       firstname: string,
       lastname: string,
       email: string,
       password: string,
+      code: string,
       validation: boolean,
       incorrectData: boolean,
+      step: number,
   }
 interface ResetProps{}
 
@@ -19,6 +22,11 @@ export class Reset extends Component <ResetProps, ResetState> {
         super(props);
         this.state = { 
             step: 1,
+            firstname: '',
+            email: '',
+            lastname: '',
+            password: '',
+            code: '',
             validation: false,
             incorrectData: false,
         };
@@ -27,13 +35,12 @@ export class Reset extends Component <ResetProps, ResetState> {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(evt) {
-        this.setState({
-            [evt.target.name]: evt.target.value,
+    handleChange(event: ChangeEvent<HTMLInputElement>) {
+        this.setState({ ...this.state, [event.target.name]: event.target.value,
         });
     }
 
-    handleSubmit(event) {
+    handleSubmit(event: React.SyntheticEvent) {
         event.preventDefault();
         switch (this.state.step) {
             case 1:
@@ -150,7 +157,6 @@ export class Reset extends Component <ResetProps, ResetState> {
                 <h1 id='bookface'>Bookface</h1>
                 {this.state.validation && <Validation />}
                 {this.state.incorrectData && <IncorrectData />}
-                {/* <Link to="/login" id='login'>Register</Link> */}
         </div>
     }
 }

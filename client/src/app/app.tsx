@@ -8,21 +8,14 @@ import Uploader from './app_components/uploader/uploader';
 import {ProfilePic} from './app_components/profilepic';
 import "./app.css"
 import { OtherProfile } from "./findpeople/otherprofile/otherprofile"
+import { UserInfo } from './interface';
 
-interface UserInfo {
-    first: string,
-    last: string,
-}
 interface AppState {
-    username: string,
     userInfo: UserInfo,
     isPopupOpen: boolean,
     file: File | null,
-    profilePicUrl: null,
-    imgFromApp: null,
     textarea: string,
     bioInDb: object,
-    togglePopup: boolean,
   }
 interface AppProps {}
 
@@ -32,17 +25,15 @@ export class App extends Component<AppProps, AppState, UserInfo> {
         super(props);
         this.state = {
             isPopupOpen: false,
-            username: "Mint",
             userInfo: {
                 first: "",
                 last: "",
+                bio: "",
+                profile_picture_url: ""              
             },
             file: null,
-            profilePicUrl: null,
-            imgFromApp: null,
             textarea: '',
             bioInDb: {},
-            togglePopup: false,
         };
         // bind stuff if you use normal functions
         this.togglePopup = this.togglePopup.bind(this);
@@ -50,7 +41,6 @@ export class App extends Component<AppProps, AppState, UserInfo> {
         this.handleFileChange = this.handleFileChange.bind(this);
     }
     componentDidMount() {
-        // fetch informartion from the server
         fetch('/user', {
             method: 'GET', 
             headers: {
@@ -60,9 +50,7 @@ export class App extends Component<AppProps, AppState, UserInfo> {
             .then((response) => 
                 response.json())
             .then((data) => {
-                this.setState({userInfo:data.userData,
-                                imgFromApp: data.userData.profile_pic_url,
-                                bioInDb: data.userData});
+                this.setState({ userInfo:data.userData });
             })
             .catch((error) => {
                 console.error('Error caught:', error);
@@ -86,27 +74,24 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                 return res.json();
             })
             .then(data => {
-                this.setState({imgFromApp: data.myPic.rows[0].profile_pic_url, isPopupOpen:false});
+                this.setState({userInfo: data.myPic.rows[0].profile_pic_url, 
+                    isPopupOpen:false});
             })
             .catch(err => {
                 console.log('er: ', err);
             });
     }
     
-    handleFileChange(file: File){
-        this.setState({file});
+  
+    handleFileChange(event: React.ChangeEvent<HTMLInputElement>){
+        if (event.target.files.length) {
+            this.setState({file: event.target.files[0]});
+        }
     }
-    // handleFileChange(event: React.ChangeEvent<HTMLInputElement>){
-    //     if (event.target.files.length) {
-    //         this.setState({file: event.target.files[0]});
-    //     }
-    // }
 
-    togglePopup(event) {
-        event.preventDefault();
+    togglePopup() {
         this.setState({ isPopupOpen: !this.state.isPopupOpen });
     }
-    
 
     render() {
         return <div>
@@ -115,7 +100,6 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                 <h1 id="page-test">Welcome, {this.state.userInfo.first} {this.state.userInfo.last}</h1>
                 <div id='sidebar'>
                     <ProfilePic
-                    imgFromApp = {this.state.imgFromApp}
                     userInfo = {this.state.userInfo}
                     togglePopup={this.togglePopup}
                 />
@@ -135,12 +119,8 @@ export class App extends Component<AppProps, AppState, UserInfo> {
 
                     <Routes>
                         <Route path="/" 
-                                element={<Profile imgFromApp = {this.state.imgFromApp}
-                                                userInfo = {this.state.userInfo}
-                                                bioInDb = {this.state.bioInDb}
-                                                // showBET= {this.state.showBET}
-                                                profilePicUrl = {this.state.profilePicUrl}
-                                        />}>
+                                element={<Profile 
+                                            userInfo = {this.state.userInfo}/>}>
                         </Route>
                         <Route path="/users" 
                                 element={<FindPeople />}

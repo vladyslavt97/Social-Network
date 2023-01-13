@@ -3,16 +3,21 @@ import "./findpeople.css"
 import {useState, useEffect} from "react"
 import { Link } from 'react-router-dom';
 
-// interface FindPeopleState {
-//       email: string,
-//       password: string,
-//   }
-
+interface NewPeople{
+    id: number,
+    first: string,
+    last: string,
+    profile_pic_url: string,
+}
+interface myPeople{
+    id: number,
+    first: string,
+    last: string,
+    profile_pic_url: string,
+}
 export function FindPeople() {
 
-    //find new people
-    const [newPeople, setNewPeople] = useState([]);
-
+    const [newPeople, setNewPeople] = useState<NewPeople[]>([]);
     useEffect(()=>{
         fetch('/newpeople', {
             method: 'GET', 
@@ -23,7 +28,6 @@ export function FindPeople() {
             .then((response) => 
                 response.json())
             .then((data) => {
-                // console.log('server side: getting newpeople', data.newPeople);
                 setNewPeople( data.newPeople)
             })
             .catch((error) => {
@@ -33,7 +37,7 @@ export function FindPeople() {
 
     //change to the new letter and find those searched (as many as there are)
     const [findPeople, setPeople] = useState('');
-    const [myPeople, setMyPeople] = useState([]);
+    const [myPeople, setMyPeople] = useState<myPeople[]>([]);
 
     useEffect(() => {
         fetch('/findpeople', {
@@ -53,11 +57,6 @@ export function FindPeople() {
                 console.log('er: ', err);
             });   
     }, [findPeople])
-    // console.log('myPeople', myPeople);
-    // console.log('findPeople', findPeople);
-    // console.log('------------------');
-    //new person is created by the setNewPeople
-    // console.log('newPeople', newPeople);
 
     return <div >
                 <div id='theFindPeopleDiv'>
@@ -77,9 +76,9 @@ export function FindPeople() {
                                     newPerson => (
                                         // <Link to="" >
                                             <div key={newPerson.id} >
-                                            <h1 id='threePersonsNames'>{newPerson.first} {newPerson.last}</h1>
-                                            <img src={newPerson.profile_pic_url} alt={newPerson.first} id='threepersons'/>
-                                        </div>
+                                                <h1 id='threePersonsNames'>{newPerson.first} {newPerson.last}</h1>
+                                                <img src={newPerson.profile_pic_url} alt={newPerson.first} id='threepersons'/>
+                                            </div>
                                         // </Link>
                                     )
                                 )}

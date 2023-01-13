@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // import { ProfilePic } from '../profilepic';
 
 interface UploaderProps {
-    togglePopup: boolean,
+    togglePopup: Function,
     handlePPUpload: object,
     handleFileChange: File,
 }
@@ -13,8 +13,9 @@ export default class Uploader extends Component<UploaderProps, UploaderState> {
     constructor(props: UploaderProps) {
         super(props);
         this.state = {
-             togglePopup: false,
-             handlePPUpload: false,
+            togglePopup: false,
+            handlePPUpload: false,
+            handleFileChange: File,
         };
     }
 
