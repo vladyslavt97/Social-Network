@@ -95,11 +95,12 @@ module.exports.otherProfileInDB = (id) =>{
 // };
 
 // friend requests //SELECT
-module.exports.checkFriendReqInDB = (id) =>{
+module.exports.checkFriendReqInDB = (user1, user2) =>{//we acpect only one row
     return db.query(`
     SELECT * 
     FROM friend_requests 
-    WHERE id = $1;`,[id]);
+    WHERE (sender_id = $1 AND recipient_id = $2)
+    OR (sender_id = $2 AND recipient_id = $1);`,[user1, user2]);
 };
 
 //friend requests //INSERT
@@ -125,3 +126,6 @@ module.exports.deleteFromReset_CodesDB = (emailR) => {
     DELETE FROM friend_requests 
     WHERE email = $1;`, [emailR]);
 };
+
+//get reqeust for notifications! "to be accepted"
+//check if there are erquests for me and they are false

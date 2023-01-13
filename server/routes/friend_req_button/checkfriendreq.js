@@ -11,6 +11,7 @@ const checkFriendReqRouter = express.Router();
 checkFriendReqRouter.get('/checkfriendreq', (req, res) => {
     let matchForUser;
     let id = req.session.userId;
+    //and user 2 - id from the page
     checkFriendReqInDB(id)//get all info about the user + pp
         .then((data) => {
             matchForUser = data.rows.find(el => {//match for email

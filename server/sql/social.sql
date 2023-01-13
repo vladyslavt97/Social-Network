@@ -21,9 +21,9 @@ CREATE TABLE reset_codes(
 -- new table for friend requests
 CREATE TABLE friend_requests(
     id SERIAL PRIMARY KEY,
-    sender_id SERIAL PRIMARY KEY,
-    recipient_id VARCHAR NOT NULL,
-    accepted BOOLEAN,
+    sender_id INTEGER NOT NULL REFERENCES users(id),
+    recipient_id INTEGER NOT NULL REFERENCES users(id),
+    accepted BOOLEAN DEFAULT FALSE,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );
 
