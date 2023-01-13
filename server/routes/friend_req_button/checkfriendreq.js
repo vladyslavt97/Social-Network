@@ -8,17 +8,17 @@ const express = require("express");
 const { checkFriendReqInDB } = require('../../db');
 
 const checkFriendReqRouter = express.Router();
-checkFriendReqRouter.get('/checkfriendreq', (req, res) => {
-    let matchForUser;
+checkFriendReqRouter.get('/checkfriendreq/:id', (req, res) => {
+    // let matchForUser;
     let me = req.session.userId;
-    console.log('req.body', req.body);
-    let anotherUser = req.body;
+    let anotherUser = req.params.id;
+    console.log('anotherUser', anotherUser);
     checkFriendReqInDB(me, anotherUser)//get all info about the user + pp
         .then((data) => {
-            matchForUser = data.rows.find(el => {//match for email
-                return el.id === me;
-            });
-            res.json({success: true, friendReqs: matchForUser});
+            // matchForUser = data.rows.find(el => {//match for email
+            //     return el.id === me;
+            // });
+            res.json({success: true, friendReqs: data});
         })
         .catch(err =>{
             console.log('the error: ', err);

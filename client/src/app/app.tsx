@@ -65,7 +65,6 @@ export class App extends Component<AppProps, AppState, UserInfo> {
         }
         const formData = new FormData();
         formData.append('uploadedfile', this.state.file);
-        // console.log('event', event);
         
         // do fetch afterwards as a POST request. With the response you update your images array.
         fetch('/upload', {
@@ -76,8 +75,6 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                 return res.json();
             })
             .then(data => {
-                console.log('data:::::', data);
-
                 this.setState({...this.state, userInfo: {...this.state.userInfo, profile_pic_url:data.myPic.rows[0].profile_pic_url}, 
                     isPopupOpen:false});
             })

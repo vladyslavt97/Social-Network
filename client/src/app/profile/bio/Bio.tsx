@@ -16,7 +16,6 @@ export function Bio(props: BioProps) {
 
     const handleBioSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log('trying to upload the bio');
         fetch('/bioupload', {
             method: 'POST',
             headers: {
@@ -26,7 +25,6 @@ export function Bio(props: BioProps) {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('data on uload bio query', data.myBio[0].bio);
             setShowBioEditorText(false);
             setBio(data.myBio[0].bio);
 

@@ -5,8 +5,7 @@ import { FriendRequestsButton } from './friend_req_button/friend_req_button';
 
 export function OtherProfile(){
     let { id } = useParams();
-    console.log('useParamsId', id);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const [otherUserProfile, setOtherUserProfile] = useState<any>({});
     useEffect(() => {
@@ -18,14 +17,15 @@ export function OtherProfile(){
         })
             .then((response) => response.json())
             .then(data=>{
-                console.log('we are getting data for a particular user:id from the server', data.otherProfile);
                 setOtherUserProfile(data.otherProfile[0]);
             })
             .catch(err=>{
                 console.log('if threre is no match for user:id = output a message "no page found"', err);
             });
     },[id]);
+
     console.log('otherUserProfile', otherUserProfile);
+    
     
     return <div id="otherpeoplecomponentdiv">
         <h1 id="otherpeoplecomponent">User details</h1>
@@ -34,6 +34,6 @@ export function OtherProfile(){
         <h5 id="otherpeoplecomponentinfo">{otherUserProfile.first}{otherUserProfile.last}</h5>
         <h6 id="otherpeoplecomponentinfo">{otherUserProfile.email}</h6>
         <h6 id="otherpeoplecomponentinfobio">{otherUserProfile.bio}</h6>
-        {/* <FriendRequestsButton/> */}
+        <FriendRequestsButton />
     </div>
 }

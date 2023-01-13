@@ -1,7 +1,6 @@
 const express = require("express");
 const { updateUsersBio } = require('../db');
 
-
 const uploadBioRouter = express.Router();
 uploadBioRouter.post('/bioupload', (req, res) => {
     let bio = req.body.textarea;

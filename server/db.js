@@ -95,13 +95,13 @@ module.exports.otherProfileInDB = (id) =>{
 // };
 
 // friend requests //SELECT
-// module.exports.checkFriendReqInDB = (me, anotherUser) =>{//we acpect only one row
-//     return db.query(`
-//     SELECT * 
-//     FROM friend_requests 
-//     WHERE (sender_id = $1 AND recipient_id = $2)
-//     OR (sender_id = $2 AND recipient_id = $1);`,[me, anotherUser]);
-// };
+module.exports.checkFriendReqInDB = (me, anotherUser) =>{//we acpect only one row
+    return db.query(`
+    SELECT * 
+    FROM friend_requests 
+    WHERE (sender_id = $1 AND recipient_id = $2)
+    OR (sender_id = $2 AND recipient_id = $1);`,[me, anotherUser]);
+};
 
 // //friend requests //INSERT
 // module.exports.insertIntoReset_CodesDB = (sender_id, recipient_id, accepted) => {
