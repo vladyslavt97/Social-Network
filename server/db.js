@@ -119,13 +119,14 @@ module.exports.deleteFromReset_CodesDB = (me, anotherUser) => {
     OR (sender_id = $2 AND recipient_id = $1);`,[me, anotherUser]);
 };
 
-// // friend requests //UPDATE
-// module.exports.updateUsersBio = (bio, id) =>{
-//     return db.query(`
-//     UPDATE friend_requests
-//     SET bio = $1 
-//     WHERE id = $2 RETURNING *;`, [bio, id]);
-// };
+// friend requests //UPDATE
+module.exports.updateReset_CodesDB = (me, anotherUser, status) =>{
+    return db.query(`
+    UPDATE friend_requests
+    SET accepted = $3 
+    WHERE (sender_id = $1 AND recipient_id = $2)
+    OR (sender_id = $2 AND recipient_id = $1);`,[me, anotherUser, status]);
+};
 
 
 //get request for notifications! "to be accepted"
