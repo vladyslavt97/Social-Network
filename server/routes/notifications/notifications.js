@@ -10,8 +10,7 @@ notificationsRouter.get('/notifications', (req, res) => {
 
     notificationsForMeInDB(myId, status)
         .then((data) => {
-            console.log('time to count how many notifications are there', data);
-            res.json({theAreNotifications: true, friendReqs: data, notificationsForMe: data.rows, notificationsCount: data.rowCount});
+            res.json({theAreNotifications: true, notificationsForMe: data.rows, notificationsCount: data.rowCount});
         })
         .catch(err =>{
             console.log('the error in the cheking process: ', err);
