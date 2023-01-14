@@ -8,6 +8,7 @@ const { insertIntoReset_CodesDB } = require('../../db');
 const insertFriendReqRouter = express.Router();
 insertFriendReqRouter.post('/insertfriendreq/:id', (req, res) => {
     // console.log('trying to insert');
+    console.log('the insert should run');
     let sender_id = req.session.userId;
     let recipient_id = req.params.id;
     // console.log('s r@ ', sender_id, recipient_id);

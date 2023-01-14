@@ -115,7 +115,8 @@ module.exports.insertIntoReset_CodesDB = (sender_id, recipient_id) => {
 module.exports.deleteFromReset_CodesDB = (me, anotherUser) => {
     return db.query(`
     DELETE FROM friend_requests 
-    WHERE email = $1;`, [me, anotherUser]);
+    WHERE (sender_id = $1 AND recipient_id = $2)
+    OR (sender_id = $2 AND recipient_id = $1);`,[me, anotherUser]);
 };
 
 // // friend requests //UPDATE
@@ -127,5 +128,5 @@ module.exports.deleteFromReset_CodesDB = (me, anotherUser) => {
 // };
 
 
-//get reqeust for notifications! "to be accepted"
-//check if there are erquests for me and they are false
+//get request for notifications! "to be accepted"
+//check if there are requests for me and they are false

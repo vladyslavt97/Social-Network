@@ -5,15 +5,16 @@ const express = require("express");
 const { deleteFromReset_CodesDB } = require('../../db');
 
 const deleteFriendReqRouter = express.Router();
-deleteFriendReqRouter.get('/deletefriendreq/:id', (req, res) => {
+deleteFriendReqRouter.delete('/deletefriendshipreq/:id', (req, res) => {
+    console.log('the delete should run');
+
     let me = req.session.userId;
-    console.log('req.body', req.body);
-    console.log('req.body', req.params);
     let anotherUser = req.params.id;
+    console.log('me', me, 'anotherUser', req.params);
     deleteFromReset_CodesDB(me, anotherUser)
         .then((data) => {
-            console.log('aaa', data);
-            res.json({success: true, friendReqs: data.rows});
+            console.log('aaa', data.rows);
+            res.json({success: true, deletedFriendReqs: data.rows});
         })
         .catch(err =>{
             console.log('the error in deletion query: ', err);

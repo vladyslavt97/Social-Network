@@ -16,7 +16,6 @@ export function FriendRequestsButton() {
                 response.json())
             .then((data) => {
                 setFriendRequsts( data.friendReqs.rows[0] )
-                // setInsertButton(false)
             })
             .catch((error) => {
                 console.error('Error caught in get checkfriendreq fetch:', error);
@@ -38,7 +37,6 @@ export function FriendRequestsButton() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                // body: JSON.stringify({ insertFriendReq: insertedFriendRequsts }),
             })
                 .then((response) => 
                     response.json())
@@ -46,22 +44,28 @@ export function FriendRequestsButton() {
                     console.log('insertedFriendReq fetch2', data.insertedFriendReq.rows[0]);
                     setinsertedFriendRequsts( data.insertedFriendReq.rows[0])
                     setFriendRequsts( data.insertedFriendReq.rows[0])
+                    setDeleteButton(false);
                 })
                 .catch((error) => {
                     console.error('Error caught in post insertedFriendReq fetch:', error);
                 });
         }
     },[insertButton])
-    console.log('friendRequsts?', insertedFriendRequsts.accepted);
+    // console.log('friendRequsts?', insertedFriendRequsts.accepted);
 
     //canceling the reqest with DELETE
+    const [deleteButton, setDeleteButton] = useState(false);
+
     const handleDelete = () => {
-        setInsertButton(false);
+        setDeleteButton(true);
     }
     const [deleteFriendRequsts, setDeleteFriendRequsts] = useState({})
     useEffect(()=>{
-        fetch ('/deleteFriendshipReq', {
-            method: 'POST', 
+        if(deleteButton){
+            console.log('1st');
+            
+        fetch (`/deletefriendshipreq/${id}`, {
+            method: 'DELETE', 
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -69,13 +73,16 @@ export function FriendRequestsButton() {
             .then((response) => 
                 response.json())
             .then((data) => {
-                console.log('deleteFriendshipReq fetch post', data);
-                setDeleteFriendRequsts( data.DeletedFriendReqs )
+                console.log('deleteFriendshipReq fetch post', data.deletedFriendReqs[0] );
+                setDeleteFriendRequsts( data.deletedFriendReqs[0] )
+                setFriendRequsts( data.deletedFriendReqs[0] )
+                setInsertButton(false);
             })
             .catch((error) => {
-                console.error('Error caught in get checkfriendreq fetch:', error);
+                console.error('Error caught in get deleteFriendshipReq fetch:', error);
             });
-    },[])
+        }
+    },[deleteButton])
     console.log('deleteFriendRequsts', deleteFriendRequsts);
     
     return <div>
