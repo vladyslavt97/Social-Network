@@ -24,7 +24,7 @@ export function OtherProfile(){
             });
     },[id]);
 
-    console.log('otherUserProfile', otherUserProfile);
+    // console.log('otherUserProfile', otherUserProfile);
     
     
     return <div id="otherpeoplecomponentdiv">

@@ -103,13 +103,13 @@ module.exports.checkFriendReqInDB = (me, anotherUser) =>{//we acpect only one ro
     OR (sender_id = $2 AND recipient_id = $1);`,[me, anotherUser]);
 };
 
-// //friend requests //INSERT
-// module.exports.insertIntoReset_CodesDB = (sender_id, recipient_id, accepted) => {
-//     return db.query(`
-//     INSERT INTO friend_requests (sender_id, recipient_id, accepted) 
-//     VALUES ($1, $2) 
-//     RETURNING *;`, [sender_id, recipient_id, accepted]);
-// };
+//friend requests //INSERT
+module.exports.insertIntoReset_CodesDB = (sender_id, recipient_id) => {
+    return db.query(`
+    INSERT INTO friend_requests (sender_id, recipient_id, accepted) 
+    VALUES ($1, $2) 
+    RETURNING *;`, [sender_id, recipient_id]);
+};
 
 
 // // friend requests //UPDATE

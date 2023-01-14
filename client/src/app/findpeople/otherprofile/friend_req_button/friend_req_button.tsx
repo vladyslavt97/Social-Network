@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 export function FriendRequestsButton() {
     let { id } = useParams();
     //getting the currect status of friendship
-    const [friendRequsts, setFriendRequsts] = useState({})
+    const [friendRequsts, setFriendRequsts] = useState<any>({})
     useEffect(()=>{
         fetch (`/checkfriendreq/${id}`, {
             method: 'GET', 
@@ -15,14 +15,14 @@ export function FriendRequestsButton() {
             .then((response) => 
                 response.json())
             .then((data) => {
-                console.log('checkfriendreq fetch', data);
-                setFriendRequsts( data.friendReqs )
+                console.log('checkfriendreq fetch3', data.friendReqs.rows[0]);
+                setFriendRequsts( data.friendReqs.rows[0] )
             })
             .catch((error) => {
                 console.error('Error caught in get checkfriendreq fetch:', error);
             });
     },[id])
-    console.log('friendRequsts?', friendRequsts);
+    console.log('friendRequsts?', friendRequsts.accepted);
 
     // //canceling the reqest with DELETE
     // const [deleteFriendRequsts, setDeleteFriendRequsts] = useState({})
@@ -51,10 +51,10 @@ export function FriendRequestsButton() {
 
 
         {/* if there is sth in db for these users but its false */}
-        {friendRequsts && <button>Cancel Friend Request ❌</button>}
+        {friendRequsts.accepted === false && <button>Cancel Friend Request ❌</button>}
 
 
         {/* there is a true for these two users */}
-        {friendRequsts && <button>Friends😊</button>}
+        {friendRequsts.accepted === true && <button>Friends😊</button>}
     </div>
 }

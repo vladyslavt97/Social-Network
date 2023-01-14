@@ -18,6 +18,7 @@ checkFriendReqRouter.get('/checkfriendreq/:id', (req, res) => {
             // matchForUser = data.rows.find(el => {//match for email
             //     return el.id === me;
             // });
+            console.log('got here', data);
             res.json({success: true, friendReqs: data});
         })
         .catch(err =>{
