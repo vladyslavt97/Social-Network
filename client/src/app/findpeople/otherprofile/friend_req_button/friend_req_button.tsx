@@ -23,8 +23,7 @@ export function FriendRequestsButton() {
                 console.error('Error caught in get checkfriendreq fetch:', error);
             });
     },[])
-    // console.log('friendRequsts?', friendRequsts.accepted);
-    console.log('thisReqIsForMe?', thisReqIsForMe);
+
 
     //insert
     const [insertButton, setInsertButton] = useState(false);
@@ -44,7 +43,7 @@ export function FriendRequestsButton() {
                 .then((response) => 
                     response.json())
                 .then((data) => {
-                    console.log('insertedFriendReq fetch2', data.insertedFriendReq.rows[0]);
+                    // console.log('insertedFriendReq fetch2', data.insertedFriendReq.rows[0]);
                     setinsertedFriendRequsts( data.insertedFriendReq.rows[0])
                     setFriendRequsts( data.insertedFriendReq.rows[0])
                     setDeleteButton(false);
@@ -76,9 +75,9 @@ export function FriendRequestsButton() {
             .then((response) => 
                 response.json())
             .then((data) => {
-                console.log('deleteFriendshipReq fetch post', data.deletedFriendReqs[0] );
-                setDeleteFriendRequsts( data.deletedFriendReqs[0] )
-                setFriendRequsts( data.deletedFriendReqs[0] )
+                console.log('deleteFriendshipReq fetch post', data.deletedFriendReqs.rows[0] );
+                setDeleteFriendRequsts( data.deletedFriendReqs.rows[0] )
+                setFriendRequsts( data.deletedFriendReqs.rows[0] )
                 setInsertButton(false);
             })
             .catch((error) => {
@@ -86,10 +85,10 @@ export function FriendRequestsButton() {
             });
         }
     },[deleteButton])
-    console.log('deleteFriendRequsts', deleteFriendRequsts);
+
+
     //update the reqest
     const [updateButton, setUpdateButton] = useState(false);
-
     const handleUpdate = () => {
         setUpdateButton(true);
     }
@@ -97,7 +96,6 @@ export function FriendRequestsButton() {
     useEffect(()=>{
         if(updateButton){
             console.log('4th');
-            
         fetch (`/updatefriendshipreq/${id}`, {
             method: 'POST', 
             headers: {
@@ -107,9 +105,9 @@ export function FriendRequestsButton() {
             .then((response) => 
                 response.json())
             .then((data) => {
-                console.log('deleteFriendshipReq fetch post', data.updatedFriendReqs[0] );
-                setUpdateFriendRequsts( data.updatedFriendReqs[0] )
-                setFriendRequsts( data.updatedFriendReqs[0] )
+                console.log('deleteFriendshipReq fetch post', data.updatedFriendReqs.rows[0] );
+                setUpdateFriendRequsts( data.updatedFriendReqs.rows[0] )
+                setFriendRequsts( data.updatedFriendReqs.rows[0] )
                 setUpdateButton(false);
             })
             .catch((error) => {
@@ -132,6 +130,6 @@ export function FriendRequestsButton() {
         {friendRequsts?.accepted === false && thisReqIsForMe && <button onClick={handleUpdate}>Accept friendship ✅</button>}
 
         {/* there is a true for these two users */}
-        {friendRequsts?.accepted === true && <button>Unfriend 💔</button>}
+        {friendRequsts?.accepted === true && <button onClick={handleDelete}>Unfriend 💔</button>}
     </div>
 }

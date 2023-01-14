@@ -14,7 +14,7 @@ deleteFriendReqRouter.delete('/deletefriendshipreq/:id', (req, res) => {
     deleteFromReset_CodesDB(me, anotherUser)
         .then((data) => {
             console.log('aaa', data.rows);
-            res.json({success: true, deletedFriendReqs: data.rows});
+            res.json({success: true, deletedFriendReqs: data});
         })
         .catch(err =>{
             console.log('the error in deletion query: ', err);

@@ -12,12 +12,12 @@ checkFriendReqRouter.get('/checkfriendreq/:id', (req, res) => {
     checkFriendReqInDB(me, anotherUser)//get all info about the user + pp
         .then((data) => {
             thatsMe = data.rows.find(el => {//match for email
-                console.log('el', el.recipient_id);
-                console.log('rows', data.rows);
-                console.log('session: ', req.session.userId);
+                // console.log('el', el.recipient_id);
+                // console.log('rows', data.rows);
+                // console.log('session: ', req.session.userId);
                 return el.recipient_id === req.session.userId;
             });
-            console.log('?? wierd: ', thatsMe);
+            // console.log('?? wierd: ', thatsMe);
             res.json({success: true, friendReqs: data, foundMyself: thatsMe});
         })
         .catch(err =>{
