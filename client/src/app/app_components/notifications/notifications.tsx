@@ -23,7 +23,6 @@ export function Notifications() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('data notifications: ', data);
             setNotificationsCount(data.notificationsCount)
             setNotifications(data.notificationsForMe)
         })

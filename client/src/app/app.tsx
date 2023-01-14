@@ -3,6 +3,7 @@ import { Logo } from '../components/logo';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Profile } from './profile/profile';
 import { FindPeople } from './findpeople/findpeople';
+import { Friends } from './friends/friends';
 import { Signout } from './app_components/signout';
 import { Notifications } from './app_components/notifications/notifications';
 import Uploader from './app_components/uploader/uploader';
@@ -132,6 +133,9 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                         <Route path="/user/:id" 
                                 element={<OtherProfile />
                                 }></Route>
+                        <Route path="/friends" 
+                                element={<Friends />}
+                                ></Route>
                     </Routes>
                 </BrowserRouter>
                 </div>

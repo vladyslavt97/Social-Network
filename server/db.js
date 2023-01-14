@@ -140,3 +140,13 @@ module.exports.notificationsForMeInDB = (myId, status) =>{//we acpect only one r
     ON users.id = friend_requests.sender_id 
     WHERE recipient_id = $1 AND accepted = $2;`,[myId, status]);
 };
+
+//friends
+module.exports.myFriendsInDB = (myId, status) =>{//we acpect only one row
+    return db.query(`
+    SELECT * 
+    FROM friend_requests
+    JOIN users
+    ON users.id = friend_requests.sender_id 
+    WHERE recipient_id = $1 AND accepted = $2;`,[myId, status]);
+};

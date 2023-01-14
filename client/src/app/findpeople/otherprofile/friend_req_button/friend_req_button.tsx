@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
+import { Notifications } from '../../../app_components/notifications/notifications';
 
 export function FriendRequestsButton() {
     let { id } = useParams();
@@ -9,7 +10,7 @@ export function FriendRequestsButton() {
     const [thisReqIsForMe, setThisReqIsForMe] = useState<any>({})
 
 
-    const [emptyTry, setEmptyTry] = useState({})
+    // const [emptyTry, setEmptyTry] = useState({})
     useEffect(()=>{
         fetch (`/checkfriendreq/${id}`, {
             method: 'GET', 
@@ -25,7 +26,7 @@ export function FriendRequestsButton() {
                 setFriendRequsts( data.friendReqs.rows[0] )
                 console.log('setThisReqIsForMe', data.foundMyself);
                 setThisReqIsForMe(data.foundMyself)
-                setEmptyTry(data)
+                // setEmptyTry(data)
             })
             .catch((error) => {
                 console.error('Error caught in get checkfriendreq fetch:', error);
@@ -83,7 +84,7 @@ export function FriendRequestsButton() {
                 setFriendRequsts( data.deletedFriendReqs.rows[0] )
                 setThisReqIsForMe( data.deletedFriendReqs.rows[0])
                 setInsertButton(false);
-                console.log('all data after delete', emptyTry);
+                // console.log('all data after delete', emptyTry);
                 
             })
             .catch((error) => {
@@ -129,5 +130,6 @@ export function FriendRequestsButton() {
         {friendRequsts?.accepted === false && thisReqIsForMe && <button onClick={handleUpdate}>Accept friendship ✅</button>}
         {/* there is a true for these two users */}
         {friendRequsts?.accepted === true && <button onClick={handleDelete}>Unfriend 💔</button>}
+        {/* <Notifications friendRequsts={friendRequsts}/> */}
     </div>
 }

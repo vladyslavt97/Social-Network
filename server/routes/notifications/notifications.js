@@ -3,11 +3,8 @@ const { notificationsForMeInDB } = require('../../db');
 
 const notificationsRouter = express.Router();
 notificationsRouter.get('/notifications', (req, res) => {
-    console.log('notifications js');
     let myId = req.session.userId;
     let status = 'FALSE';
-    console.log('notifications js whats sent1', myId, '2: ', status );
-
     notificationsForMeInDB(myId, status)
         .then((data) => {
             res.json({theAreNotifications: true, notificationsForMe: data.rows, notificationsCount: data.rowCount});
