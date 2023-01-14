@@ -10,10 +10,10 @@ deleteFriendReqRouter.delete('/deletefriendshipreq/:id', (req, res) => {
 
     let me = req.session.userId;
     let anotherUser = req.params.id;
-    console.log('me', me, 'anotherUser', req.params);
+    // console.log('me', me, 'anotherUser', req.params);
     deleteFromReset_CodesDB(me, anotherUser)
         .then((data) => {
-            console.log('aaa', data.rows);
+            // console.log('aaa', data.rows);
             res.json({success: true, deletedFriendReqs: data});
         })
         .catch(err =>{

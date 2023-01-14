@@ -5,19 +5,15 @@ const { checkFriendReqInDB } = require('../../db');
 
 const checkFriendReqRouter = express.Router();
 checkFriendReqRouter.get('/checkfriendreq/:id', (req, res) => {
+    console.log('check');
     let thatsMe;
     let me = req.session.userId;
     let anotherUser = req.params.id;
-    // console.log('anotherUser', anotherUser);
-    checkFriendReqInDB(me, anotherUser)//get all info about the user + pp
+    checkFriendReqInDB(me, anotherUser)
         .then((data) => {
-            thatsMe = data.rows.find(el => {//match for email
-                // console.log('el', el.recipient_id);
-                // console.log('rows', data.rows);
-                // console.log('session: ', req.session.userId);
+            thatsMe = data.rows.find(el => {
                 return el.recipient_id === req.session.userId;
             });
-            // console.log('?? wierd: ', thatsMe);
             res.json({success: true, friendReqs: data, foundMyself: thatsMe});
         })
         .catch(err =>{
