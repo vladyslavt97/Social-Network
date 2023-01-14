@@ -24,8 +24,9 @@
 }
 
 #signout {
-    /* position: absolute;
-    bottom: 50px; */
+    position: absolute;
+    left: 0px;
+    bottom: 48px;
     width: 52px;
 }
 
@@ -91,16 +92,24 @@
     flex-direction: column;
 }
 
-#findpeopleimg {
-    position: absolute;
-    left: 0;
-    top: 228px;
-    width: 52px;
-}
 
 #profilepageimg {
     position: absolute;
     left: 0;
-    top: 142px;
+    top: 78px;
+    width: 52px;
+}
+
+#findpeopleimg {
+    position: absolute;
+    left: 0;
+    top: 178px;
+    width: 52px;
+}
+
+#friendsimg{
+    position: absolute;
+    left: 0;
+    top: 278px;
     width: 52px;
 }

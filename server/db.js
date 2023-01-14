@@ -132,3 +132,9 @@ module.exports.updateReset_CodesDB = (me, anotherUser, status) =>{
 
 //get request for notifications! "to be accepted"
 //check if there are requests for me and they are false
+module.exports.notificationsForMeInDB = (myId, status) =>{//we acpect only one row
+    return db.query(`
+    SELECT * 
+    FROM friend_requests 
+    WHERE recipient_id = $1 AND accepted = $2;`,[myId, status]);
+};

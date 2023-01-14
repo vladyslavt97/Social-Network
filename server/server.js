@@ -39,6 +39,8 @@ const { checkFriendReqRouter } = require('./routes/friend_req_button/checkfriend
 const { insertFriendReqRouter } = require('./routes/friend_req_button/insertfriendreq');
 const { deleteFriendReqRouter } = require('./routes/friend_req_button/deletefriendreq');
 const { updateFriendReqRouter } = require('./routes/friend_req_button/updatefriendreq');
+//
+const { notificationsRouter } = require('./routes/notifications/notifications');
 
 app.use(loginRouter);
 app.use(registerRouter);
@@ -55,6 +57,8 @@ app.use(insertFriendReqRouter);
 app.use(deleteFriendReqRouter);
 app.use(updateFriendReqRouter);
 //
+app.use(notificationsRouter);
+
 
 // app.use((req, res, next) => {
 //     console.log("---------------------");

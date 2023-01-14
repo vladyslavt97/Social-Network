@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Profile } from './profile/profile';
 import { FindPeople } from './findpeople/findpeople';
 import { Signout } from './app_components/signout';
+import { Notifications } from './app_components/notifications/notifications';
 import Uploader from './app_components/uploader/uploader';
 import {ProfilePic} from './app_components/profilepic';
 import "./app.css"
@@ -36,6 +37,7 @@ export class App extends Component<AppProps, AppState, UserInfo> {
             bioInDb: {},
         };
         // bind stuff if you use normal functions
+        this.togglePopup = this.togglePopup.bind(this);
         this.togglePopup = this.togglePopup.bind(this);
         this.handlePPUpload = this.handlePPUpload.bind(this);
         this.handleFileChange = this.handleFileChange.bind(this);
@@ -100,23 +102,24 @@ export class App extends Component<AppProps, AppState, UserInfo> {
             <div id='gridsetup'>
                 <h1 id="page-test">Welcome, {this.state.userInfo.first} {this.state.userInfo.last}</h1>
                 <div id='sidebar'>
-                    <ProfilePic
-                    userInfo = {this.state.userInfo}
-                    togglePopup={this.togglePopup}
-                />
-                {this.state.isPopupOpen && (
-                    <Uploader 
-                        togglePopup={this.togglePopup} 
-                        handlePPUpload={this.handlePPUpload}
-                        handleFileChange={this.handleFileChange}
+                        <ProfilePic
+                        userInfo = {this.state.userInfo}
+                        togglePopup={this.togglePopup}
                         />
-                )}
-                    <Signout />
+                        {this.state.isPopupOpen && (
+                            <Uploader 
+                                togglePopup={this.togglePopup} 
+                                handlePPUpload={this.handlePPUpload}
+                                handleFileChange={this.handleFileChange}
+                                />
+                        )}
+                        <Signout />
                 </div>
                 <div id='main-screen'>
                     <BrowserRouter>
-                    <Link to="/users" ><img src="/findpeople.png" alt="findpeople" id='findpeopleimg'/></Link>
                     <Link to="/" ><img src="/profilepage.png" alt="profilepage" id='profilepageimg'/></Link>
+                    <Link to="/users" ><img src="/findpeople.png" alt="findpeople" id='findpeopleimg'/></Link>
+                    <Link to="/friends" ><img src="/friends.png" alt="friends" id='friendsimg'/></Link>
 
                     <Routes>
                         <Route path="/" 
@@ -132,6 +135,7 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                     </Routes>
                 </BrowserRouter>
                 </div>
+                <Notifications />
             </div>
         </div>
     }
