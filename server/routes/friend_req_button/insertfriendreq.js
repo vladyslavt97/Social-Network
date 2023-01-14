@@ -3,18 +3,18 @@
 //and receiver in the appropriate columns and the boolean set to false.
 
 const express = require("express");
-const { checkFriendReqInDB } = require('../../db');
+const { insertIntoReset_CodesDB } = require('../../db');
 
-const checkFriendReqRouter = express.Router();
-checkFriendReqRouter.get('/checkfriendreq', (req, res) => {
-    let matchForUser;
-    let id = req.session.userId;
-    checkFriendReqInDB(id)
+const insertFriendReqRouter = express.Router();
+insertFriendReqRouter.post('/insertfriendreq/:id', (req, res) => {
+    // console.log('trying to insert');
+    let sender_id = req.session.userId;
+    let recipient_id = req.params.id;
+    // console.log('s r@ ', sender_id, recipient_id);
+    insertIntoReset_CodesDB(sender_id, recipient_id)
         .then((data) => {
-            matchForUser = data.rows.find(el => {
-                return el.id === id;
-            });
-            res.json({success: true, userData: matchForUser});
+            // console.log('data in insert', data);
+            res.json({success: true, insertedFriendReq: data});
         })
         .catch(err =>{
             console.log('the error: ', err);
@@ -22,4 +22,4 @@ checkFriendReqRouter.get('/checkfriendreq', (req, res) => {
         });
 });
 
-module.exports = { checkFriendReqRouter };
+module.exports = { insertFriendReqRouter };

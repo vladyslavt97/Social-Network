@@ -106,11 +106,17 @@ module.exports.checkFriendReqInDB = (me, anotherUser) =>{//we acpect only one ro
 //friend requests //INSERT
 module.exports.insertIntoReset_CodesDB = (sender_id, recipient_id) => {
     return db.query(`
-    INSERT INTO friend_requests (sender_id, recipient_id, accepted) 
+    INSERT INTO friend_requests (sender_id, recipient_id) 
     VALUES ($1, $2) 
     RETURNING *;`, [sender_id, recipient_id]);
 };
 
+// friend requests //DELETE
+module.exports.deleteFromReset_CodesDB = (me, anotherUser) => {
+    return db.query(`
+    DELETE FROM friend_requests 
+    WHERE email = $1;`, [me, anotherUser]);
+};
 
 // // friend requests //UPDATE
 // module.exports.updateUsersBio = (bio, id) =>{
@@ -120,12 +126,6 @@ module.exports.insertIntoReset_CodesDB = (sender_id, recipient_id) => {
 //     WHERE id = $2 RETURNING *;`, [bio, id]);
 // };
 
-// // friend requests //DELETE
-// module.exports.deleteFromReset_CodesDB = (me, anotherUser) => {
-//     return db.query(`
-//     DELETE FROM friend_requests 
-//     WHERE email = $1;`, [me, anotherUser]);
-// };
 
 //get reqeust for notifications! "to be accepted"
 //check if there are erquests for me and they are false

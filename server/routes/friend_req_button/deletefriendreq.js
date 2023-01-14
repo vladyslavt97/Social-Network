@@ -5,18 +5,15 @@ const express = require("express");
 const { deleteFromReset_CodesDB } = require('../../db');
 
 const deleteFriendReqRouter = express.Router();
-deleteFriendReqRouter.get('/checkfriendreq', (req, res) => {
-    let matchForUser;
+deleteFriendReqRouter.get('/deletefriendreq/:id', (req, res) => {
     let me = req.session.userId;
     console.log('req.body', req.body);
     console.log('req.body', req.params);
-    let anotherUser = req.body;
+    let anotherUser = req.params.id;
     deleteFromReset_CodesDB(me, anotherUser)
         .then((data) => {
-            matchForUser = data.rows.find(el => {
-                return el.id === me;
-            });
-            res.json({success: true, friendReqs: matchForUser});
+            console.log('aaa', data);
+            res.json({success: true, friendReqs: data.rows});
         })
         .catch(err =>{
             console.log('the error in deletion query: ', err);

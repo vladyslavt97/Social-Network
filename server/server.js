@@ -36,8 +36,8 @@ const { newPeopleInDB } = require('./routes/newpeople');
 const { otherProfileRouter } = require('./routes/otherprofile');
 //friend req button
 const { checkFriendReqRouter } = require('./routes/friend_req_button/checkfriendreq');
+const { insertFriendReqRouter } = require('./routes/friend_req_button/insertfriendreq');
 const { deleteFriendReqRouter } = require('./routes/friend_req_button/deletefriendreq');
-// const { insertFriendReqRouter } = require('./routes/friend_req_button/insertfriendreq');
 // const { updateFriendReqRouter } = require('./routes/friend_req_button/updatefriendreq');
 
 
@@ -54,8 +54,8 @@ app.use(newPeopleInDB);
 app.use(otherProfileRouter);
 //
 app.use(checkFriendReqRouter);
+app.use(insertFriendReqRouter);
 app.use(deleteFriendReqRouter);
-// app.use(insertFriendReqRouter);
 // app.use(updateFriendReqRouter);
 //
 
