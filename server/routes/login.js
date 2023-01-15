@@ -4,7 +4,6 @@ const { selectAllDataFromUsersDB } = require('../db');
 
 const loginRouter = express.Router();
 loginRouter.post('/login', (req, res) => {
-    console.log('Login route');
     let matchForUserIDs;
     const {email, password} = req.body;
     if(email !== '' && password !== ''){ //if not empty
@@ -21,7 +20,6 @@ loginRouter.post('/login', (req, res) => {
                         .then((boolean)=>{//match for pwd
                             if(boolean === true){
                                 req.session.userId = matchForUserIDs.id;//good
-                                console.log('should log in. All passed');
                                 res.json({incorrectData: false});
                             }else{
                                 res.json({incorrectData: true});

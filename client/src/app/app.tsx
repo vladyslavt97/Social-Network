@@ -11,6 +11,7 @@ import {ProfilePic} from './app_components/profilepic';
 import "./app.css"
 import { OtherProfile } from "./findpeople/otherprofile/otherprofile"
 import { UserInfo } from './interface';
+import { OnlineUsers } from './onlineusers/onlineusers';
 
 interface AppState {
     userInfo: UserInfo,
@@ -116,6 +117,7 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                                 />
                         )}
                         <Signout />
+                        <OnlineUsers />
                 </div>
                 <div id='main-screen'>
                     <BrowserRouter>

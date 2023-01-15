@@ -9,8 +9,6 @@ export function FriendRequestsButton() {
     const [friendRequsts, setFriendRequsts] = useState<any>({})
     const [thisReqIsForMe, setThisReqIsForMe] = useState<any>({})
 
-
-    // const [emptyTry, setEmptyTry] = useState({})
     useEffect(()=>{
         fetch (`/checkfriendreq/${id}`, {
             method: 'GET', 
@@ -26,7 +24,6 @@ export function FriendRequestsButton() {
                 setFriendRequsts( data.friendReqs.rows[0] )
                 console.log('setThisReqIsForMe', data.foundMyself);
                 setThisReqIsForMe(data.foundMyself)
-                // setEmptyTry(data)
             })
             .catch((error) => {
                 console.error('Error caught in get checkfriendreq fetch:', error);

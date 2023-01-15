@@ -22,8 +22,6 @@ export function Friends (){
         })
         .then(response => response.json())
         .then(data => {
-            console.log('friends', data.myFriends);
-            
             setFriends(data.myFriends)
         })
         .catch(err => {
