@@ -3,4 +3,5 @@ export interface UserInfo {
     last: string,
     bio: string,
     profile_pic_url: string,
+    email: string
 }

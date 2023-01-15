@@ -113,3 +113,23 @@
     top: 278px;
     width: 52px;
 }
+
+
+#messagesimg{
+    position: absolute;
+    left: 0;
+    top: 378px;
+    width: 52px;
+}
+#callsimg{
+    position: absolute;
+    left: 0;
+    top: 478px;
+    width: 52px;
+}
+
+
+#main-screen{
+    
+}
+

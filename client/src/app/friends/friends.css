@@ -1,6 +1,9 @@
 #big-friends-div{
     margin-top: 100px;
+    height: 600px;
+    overflow-y: auto;
 }
+
 
 #friends-div{
     background-color: aliceblue;
@@ -25,3 +28,16 @@
     right: 50%;
     transform: translateX(-50%);
 }
+
+#no-friends{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 10vw;
+}
+
+#no-friends-text{
+    font-size: 15px;
+}
+

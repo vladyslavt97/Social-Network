@@ -70,7 +70,7 @@ export function FindPeople() {
                                             </div>
                                         }
                 {myPeople.length === 0 && !findPeople && <div id="threePersonsDiv">
-                                <h1 id='newestpeople'>Newest People</h1>
+                                <h1 id='newestpeople'>Joined recenlty: </h1>
                                 {newPeople.map(
                                     newPerson => (
                                         // <Link to="" >

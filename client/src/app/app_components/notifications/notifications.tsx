@@ -47,6 +47,9 @@ export function Notifications() {
             {notificationsCount && <img src="/bell-on.png" alt="bell" id="notifications-on" onClick={toggleNotifications}/> }
             {notificationsCount && <h6 id="notificationsCount">{notificationsCount}</h6>}
         </div>
+        {visibleNotifications && <div id="triangle-div">
+                                    <div id="triangle"></div>
+                                </div>}
         {visibleNotifications &&
             <div id="actual-notifications">
                 <h1 id="notifications">Notifications</h1>

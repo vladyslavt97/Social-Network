@@ -6,3 +6,20 @@
         border: 2px solid greenyellow;
     margin: 10px;
 }
+
+
+#profile-name {
+    background: var(--main-background);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 10px;
+}
+
+#profile-email {
+    background: var(--main-background);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 10px;
+}

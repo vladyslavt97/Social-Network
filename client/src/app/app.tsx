@@ -31,6 +31,7 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                 first: "",
                 last: "",
                 bio: "",
+                email: "",
                 profile_pic_url: ""              
             },
             file: null,
@@ -121,6 +122,8 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                     <Link to="/" ><img src="/profilepage.png" alt="profilepage" id='profilepageimg'/></Link>
                     <Link to="/users" ><img src="/findpeople.png" alt="findpeople" id='findpeopleimg'/></Link>
                     <Link to="/friends" ><img src="/friends.png" alt="friends" id='friendsimg'/></Link>
+                    <Link to="/messages" ><img src="/messages.png" alt="messages" id='messagesimg'/></Link>
+                    {/* <Link to="/calls" ><img src="/calls.png" alt="calls" id='callsimg'/></Link> */}
 
                     <Routes>
                         <Route path="/" 
