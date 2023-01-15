@@ -42,6 +42,7 @@ const { updateFriendReqRouter } = require('./routes/friend_req_button/updatefrie
 //
 const { notificationsRouter } = require('./routes/notifications/notifications');
 const { friendsRouter } = require('./routes/friends');
+const { deleteMyUserRouter } = require('./routes/deletion');
 
 app.use(loginRouter);
 app.use(registerRouter);
@@ -60,17 +61,7 @@ app.use(updateFriendReqRouter);
 //
 app.use(notificationsRouter);
 app.use(friendsRouter);
-
-
-// app.use((req, res, next) => {
-//     console.log("---------------------");
-//     console.log("req.url:", req.url);
-//     console.log("req.method:", req.method);
-//     console.log("req.session:", req.session);
-//     console.log("req.body:", req.body);
-//     console.log("---------------------");
-//     next();
-// });
+app.use(deleteMyUserRouter);
 
 //given setup below
 app.get("/user/id.json", (req, res) => {

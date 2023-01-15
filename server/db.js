@@ -150,3 +150,18 @@ module.exports.myFriendsInDB = (myId, status) =>{//we acpect only one row
     ON users.id = friend_requests.sender_id 
     WHERE recipient_id = $1 AND accepted = $2;`,[myId, status]);
 };
+
+//delete my account
+module.exports.deleteUserAndFriendshipsDB = (myId) => {
+    return db.query(`
+    DELETE FROM friend_requests
+    WHERE recipient_id = $1;`,[myId])
+        .then(()=> {
+            db.query(`
+            DELETE FROM users
+            WHERE id = $1;`,[myId]);
+        })
+        .catch(()=>{
+            console.log('error:(((');
+        });
+};

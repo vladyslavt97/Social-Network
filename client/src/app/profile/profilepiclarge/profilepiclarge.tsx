@@ -6,8 +6,7 @@ interface ProfilePicProps{
 }
 export function ProfilePicLarge(props: ProfilePicProps) {
     
-    props.userInfo.profile_pic_url = props.userInfo.profile_pic_url || "/noprofile.png";
-    console.log('props.userInfo in Profile Picture Large', props.userInfo);
+    props.userInfo.profile_pic_url = props.userInfo.profile_pic_url || "/noprofileg.gif";
     return <div >
             <img src={props.userInfo.profile_pic_url} alt={props.userInfo.first} id="no-profile-pic-large"/>
         </div>

@@ -12,7 +12,6 @@ export function Bio(props: BioProps) {
     const showBioEditorTextarea = () => {
         setShowBioEditorText( !showBET );
     }
-    console.log('showBioEditor showBET', showBET);
 
     const handleBioSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();

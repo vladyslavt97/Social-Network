@@ -1,6 +1,7 @@
 import { Component, FormEvent} from 'react';
 import { ProfilePicLarge } from './profilepiclarge/profilepiclarge';
 import { Bio } from './bio/Bio';
+import { Deletion } from './deletion/deletion_btn';
 import { UserInfo } from '../interface';
 
 interface ProfileState {}
@@ -25,6 +26,7 @@ export class Profile extends Component<ProfileProps, ProfileState> {
             <Bio 
             userInfo = {this.props.userInfo}
             />
+            <Deletion />
         </div>
     }
 }

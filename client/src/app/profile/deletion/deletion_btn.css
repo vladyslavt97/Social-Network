@@ -1,0 +1,10 @@
+#deletion_btn{
+    border: 2px solid white;
+    background-color: red;
+}
+
+#deletion_div{
+    display: flex;
+    position: absolute;
+    top: 85px;
+}

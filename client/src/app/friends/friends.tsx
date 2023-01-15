@@ -22,27 +22,26 @@ export function Friends (){
         })
         .then(response => response.json())
         .then(data => {
-            console.log('friends: ', data.myFriends);
             setFriends(data.myFriends)
         })
         .catch(err => {
                 console.log('er in fetching friends: ', err);
             });
-    }, [])
+    }, [friends])
 
     return <div>
                 <h2 id="friedns">Friends</h2>
                 <div id="big-friends-div">
                 {friends.map(friend => (
-                                <div key={friend.id} >
-                                        {/* <Link to={`/user/${friend.id}`} > */}
-                                        <div id="friends-div">
-                                            <img src={friend.profile_pic_url} alt={friend.first} 
-                                            id='friends-img'/>
-                                            <h1 id='friends-text'>{friend.first} {friend.last}</h1>
-                                        {/* </Link> */}
-                                        </div>
-                                </div>
+                            <div key={friend.id} >
+                                    {/* <Link to={`/user/${friend.id}`} > */}
+                                    <div id="friends-div">
+                                        <img src={friend.profile_pic_url} alt={friend.first} 
+                                        id='friends-img'/>
+                                        <h1 id='friends-text'>{friend.first} {friend.last}</h1>
+                                    {/* </Link> */}
+                                    </div>
+                            </div>
                         )
                     )}
                 </div>

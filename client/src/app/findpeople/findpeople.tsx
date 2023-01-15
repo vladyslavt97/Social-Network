@@ -49,7 +49,6 @@ export function FindPeople() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('find people in fetch of find people', data.myPeople);
             setMyPeople(data.myPeople || []);
             return;
         })
