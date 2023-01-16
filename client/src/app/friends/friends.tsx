@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import "./friends.css"
+import { Link } from 'react-router-dom';
+
 
 interface Friends{
     id: number,
@@ -14,7 +16,7 @@ export function Friends (){
 
     //fetch the info of friend_requests
     useEffect(() => {
-        fetch(`/friends`, {
+        fetch(`/friendss`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -34,12 +36,12 @@ export function Friends (){
                 {friends.length !== 0 && <div id="big-friends-div">
                             {friends.map(friend => (
                                         <div key={friend.id} >
-                                                {/* <Link to={`/user/${friend.id}`} > */}
                                                 <div id="friends-div">
+                                                <Link to={`/user/${friend.id}`} id="link-decoration-none">
                                                     <img src={friend.profile_pic_url} alt={friend.first} 
                                                     id='friends-img'/>
                                                     <h1 id='friends-text'>{friend.first} {friend.last}</h1>
-                                                {/* </Link> */}
+                                                </Link>
                                                 </div>
                                         </div>
                                     )

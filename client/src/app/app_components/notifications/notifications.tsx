@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import "./notifications.css"
-import { Link } from 'react-router-dom';
+import { BrowserRouter,Route, Link } from 'react-router-dom';
 
 interface Notifications{
     id: number,
@@ -31,9 +31,10 @@ export function Notifications() {
             });
     }, [])
 
-    const [visibleNotifications, setVisibleNotifications] = useState<any>()
+    const [visibleNotifications, setVisibleNotifications] = useState<any>(false)
     const toggleNotifications = () => {
         setVisibleNotifications(!visibleNotifications);
+        console.log('visibleNotifications', visibleNotifications);
     }
     
     return <div>
@@ -55,13 +56,13 @@ export function Notifications() {
                 <h1 id="notifications">Notifications</h1>
                 {notifications.map(oneNotification => (
                                 <div key={oneNotification.id} >
-                                    <div id="actual-notifications-div">
-                                        {/* <Link to={`/user/${oneNotification.id}`} > */}
-                                            <img src={oneNotification.profile_pic_url} alt={oneNotification.first} 
-                                            id='actual-notifications-img'/>
-                                            <h1 id='actual-notifications-text'>{oneNotification.first} {oneNotification.last}</h1>
-                                        {/* </Link> */}
-                                    </div>
+                                            <div id="actual-notifications-div">
+                                                    <img src={oneNotification.profile_pic_url} alt={oneNotification.first} 
+                                                    id='actual-notifications-img'/>
+                                                    <Link to={`/user/${oneNotification.id}`} id="link-decoration-none">
+                                                        <h1 id='actual-notifications-text'>{oneNotification.first} {oneNotification.last}</h1>
+                                                    </Link>
+                                            </div>
                                 </div>
                         )
                     )}

@@ -99,6 +99,10 @@ export class App extends Component<AppProps, AppState, UserInfo> {
         this.setState({ isPopupOpen: !this.state.isPopupOpen });
     }
 
+    // updateNotificationInApp({
+
+    // })
+
     render() {
         return <div>
             <Logo />
@@ -142,9 +146,9 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                                 element={<Friends />}
                                 ></Route>
                     </Routes>
+                    <Notifications />
                 </BrowserRouter>
                 </div>
-                <Notifications />
             </div>
         </div>
     }

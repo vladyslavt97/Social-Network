@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import { Notifications } from '../../../app_components/notifications/notifications';
 
+
 export function FriendRequestsButton() {
     let { id } = useParams();
 
@@ -51,6 +52,7 @@ export function FriendRequestsButton() {
                     console.log('insertedFriendReq fetch2', data.insertedFriendReq.rows[0]);
                     setFriendRequsts( data.insertedFriendReq.rows[0])
                     setDeleteButton(false);
+                    
                 })
                 .catch((error) => {
                     console.error('Error caught in post insertedFriendReq fetch:', error);
@@ -111,6 +113,7 @@ export function FriendRequestsButton() {
                 console.log('updateFriendshipReq fetch post', data.updatedFriendReqs.rows[0] );
                 setFriendRequsts( data.updatedFriendReqs.rows[0] )
                 setUpdateButton(false);
+                // updateNotificationInApp()
             })
             .catch((error) => {
                 console.error('Error caught in get deleteFriendshipReq fetch:', error);

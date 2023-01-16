@@ -6,10 +6,8 @@ deleteMyUserRouter.post('/deletemyaccount', (req, res) => {
     let myId = req.session.userId;
     deleteUserAndFriendshipsDB(myId)
         .then((data) => {
-            console.log('req.session bef', req.session);
-            res.json({success: true, deleteMyAccount: data});
             req.session = null;
-            console.log('req.session', req.session);
+            res.json({success: true, deleteMyAccount: data});
         })
         .catch(err =>{
             console.log('the error in deletion query: ', err);

@@ -2,7 +2,7 @@ const express = require("express");
 const { myFriendsInDB } = require('../db');
 
 const friendsRouter = express.Router();
-friendsRouter.get('/friends', (req, res) => {
+friendsRouter.get('/friendss', (req, res) => {
     let myId = req.session.userId;
     let status = 'TRUE';
     myFriendsInDB(myId, status)
