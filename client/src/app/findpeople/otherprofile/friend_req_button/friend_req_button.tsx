@@ -2,9 +2,13 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import { Notifications } from '../../../app_components/notifications/notifications';
 
+import { useDispatch, useSelector } from "react-redux";
+import { receiveFriends } from "../../../redux/friends/slice.js";
 
 export function FriendRequestsButton() {
     let { id } = useParams();
+    const state = useSelector((state) => state);
+    console.log('state in btn!: ', state);
 
     //getting the currect status of friendship
     const [friendRequsts, setFriendRequsts] = useState<any>({})

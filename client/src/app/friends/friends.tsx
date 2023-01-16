@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import "./friends.css"
 import { Link } from 'react-router-dom';
 
+import { useDispatch, useSelector } from "react-redux";
+import { receiveFriends } from "../redux/friends/slice.js";
 
 interface Friends{
     id: number,
@@ -12,8 +14,11 @@ interface Friends{
 }
 
 export function Friends (){
+    const state = useSelector((state) => state);
+    console.log('state!: ', state);
+    
     const [friends, setFriends] = useState<Friends []>([]);
-
+    const dispatch = useDispatch();
     //fetch the info of friend_requests
     useEffect(() => {
         fetch(`/friendss`, {
@@ -25,6 +30,8 @@ export function Friends (){
         .then(response => response.json())
         .then(data => {
             setFriends(data.myFriends)
+            dispatch(receiveFriends(data.myFriends));
+
         })
         .catch(err => {
                 console.log('er in fetching friends: ', err);

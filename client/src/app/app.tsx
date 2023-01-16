@@ -13,6 +13,10 @@ import { OtherProfile } from "./findpeople/otherprofile/otherprofile"
 import { UserInfo } from './interface';
 import { OnlineUsers } from './onlineusers/onlineusers';
 
+
+
+
+
 interface AppState {
     userInfo: UserInfo,
     isPopupOpen: boolean,
@@ -45,6 +49,8 @@ export class App extends Component<AppProps, AppState, UserInfo> {
         this.handlePPUpload = this.handlePPUpload.bind(this);
         this.handleFileChange = this.handleFileChange.bind(this);
     }
+
+
     componentDidMount() {
         fetch('/user', {
             method: 'GET', 
@@ -55,10 +61,8 @@ export class App extends Component<AppProps, AppState, UserInfo> {
             .then((response) => 
                 response.json())
             .then((data) => {
-                
                 this.setState({ userInfo:data.userData });
                 console.log('GET: ', data.userData);
-                
             })
             .catch((error) => {
                 console.error('Error caught:', error);
