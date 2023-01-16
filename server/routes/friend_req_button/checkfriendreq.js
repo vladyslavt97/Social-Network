@@ -5,7 +5,6 @@ const { checkFriendReqInDB } = require('../../db');
 
 const checkFriendReqRouter = express.Router();
 checkFriendReqRouter.get('/checkfriendreq/:id', (req, res) => {
-    console.log('check');
     let thatsMe;
     let me = req.session.userId;
     let anotherUser = req.params.id;

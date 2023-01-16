@@ -8,12 +8,10 @@ deleteMyUserRouter.post('/deletemyaccount', (req, res) => {
     let id = req.session.userId;
     selectAllDataFromUsersDBBasedOnId(id)
         .then((data) => {
-            console.log('to delete the image: ', data.rows[0].profile_pic_url);
             const params = {
                 Bucket: "spicedling",
                 Key: data.rows[0].profile_pic_url.split("spicedling/")[1],
             };
-            console.log('params', params);
             deleteObject(params);
             return deleteUserAndFriendshipsDB(myId);
         })

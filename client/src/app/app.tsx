@@ -57,6 +57,8 @@ export class App extends Component<AppProps, AppState, UserInfo> {
             .then((data) => {
                 
                 this.setState({ userInfo:data.userData });
+                console.log('GET: ', data.userData);
+                
             })
             .catch((error) => {
                 console.error('Error caught:', error);
@@ -87,6 +89,8 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                 console.log('er: ', err);
             });
     }
+
+    
     
   
     handleFileChange(event: React.ChangeEvent<HTMLInputElement>){

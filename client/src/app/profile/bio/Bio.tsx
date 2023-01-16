@@ -24,6 +24,9 @@ export function Bio(props: BioProps) {
         })
         .then(response => response.json())
         .then(data => {
+            //look for issue!!! 
+            console.log('bio data: ', data);
+            
             setShowBioEditorText(false);
             setBio(data.myBio[0].bio);
 
@@ -43,7 +46,7 @@ export function Bio(props: BioProps) {
     
     return <div >
         <div id="thebio">
-            {props.userInfo.bio && !showBET && <h1 id="bioresult">{bio}</h1>}
+            {props.userInfo.bio && !showBET && <h1 id="bioresult">{props.userInfo.bio}</h1>}
             <br />
             {props.userInfo.bio && !showBET && <p onClick={showBioEditorTextarea} id="editbiobutton">| edit bio |</p>}
         </div>
@@ -55,7 +58,7 @@ export function Bio(props: BioProps) {
                         <textarea 
                         onChange={handleBio} 
                         id="textareabio" 
-                        value={bio}
+                        value={bio || ''}
                         ></textarea>
                         <button>Submit the biography</button>
                     </form>}

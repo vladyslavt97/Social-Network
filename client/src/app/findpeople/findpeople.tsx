@@ -76,7 +76,7 @@ export function FindPeople() {
                                         <div key={newPerson.id} >
                                                 <Link to={`/user/${newPerson.id}`} id="link-decoration-none">
                                                 <h1 id='threePersonsNames'>{newPerson.first} {newPerson.last}</h1>
-                                                <img src={newPerson.profile_pic_url} alt={newPerson.first} id='threepersons'/>
+                                                <img src={newPerson.profile_pic_url = newPerson.profile_pic_url || "/noprofileg.gif"} alt={newPerson.first} id='threepersons'/>
                                                 </Link>
                                             </div>
                                     )
@@ -88,7 +88,7 @@ export function FindPeople() {
                                                         <div key={myPerson.id} >
                                                             <Link to={`/user/${myPerson.id}`} id="link-decoration-none">
                                                             <h1 id='theArrayOfFoundPeopleNames'>{myPerson.first} {myPerson.last}</h1>
-                                                                <img src={myPerson.profile_pic_url} alt={myPerson.first}
+                                                                <img src={myPerson.profile_pic_url = myPerson.profile_pic_url || "/noprofileg.gif"} alt={myPerson.first}
                                                                 id='theArrayOfFoundPeopleImgs'/>
                                                             </Link>
                                                         </div>
