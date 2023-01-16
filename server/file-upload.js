@@ -26,6 +26,13 @@ const s3 = new aws.S3({
     secretAccessKey: AWS_SECRET,
 });
 
+function deleteObject (params){
+    s3.deleteObject(params, function (err, data) {
+        if (err) console.log('errorr:(', err, err.stack);
+        else console.log('was deleted', data); 
+    });
+}
+
 function fileUpload(req, res, next) {
     // console.log('file in file-upload: ', req.file);
     if (!req.file) {
@@ -34,6 +41,7 @@ function fileUpload(req, res, next) {
         res.send();
     } else {
         const { mimetype, filename, path, size } = req.file;
+        console.log('filename: ', filename);
         const fileContent = fs.readFileSync(path);
 
         s3.putObject({
@@ -57,4 +65,4 @@ function fileUpload(req, res, next) {
     }
 }
 
-module.exports = { uploader, fileUpload };
+module.exports = { uploader, fileUpload, deleteObject };
