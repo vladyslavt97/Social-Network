@@ -12,7 +12,6 @@ deleteMyUserRouter.post('/deletemyaccount', (req, res) => {
             const params = {
                 Bucket: "spicedling",
                 Key: data.rows[0].profile_pic_url.split("spicedling/")[1],
-                // Key: rows[0].profile_pic.split("priscilasbucket/")[1],
             };
             console.log('params', params);
             deleteObject(params);
