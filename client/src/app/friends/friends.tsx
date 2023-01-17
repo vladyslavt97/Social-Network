@@ -38,24 +38,102 @@ export function Friends (){
             });
     }, [])
 
+    //to be friends
+    const [wannabees, setWannabeees] = useState([]);
+
+    useEffect(() => {
+        fetch(`/notifications`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            setWannabeees(data.notificationsForMe)
+        })
+        .catch(err => {
+                console.log('er in fetching notifications: ', err);
+            });
+    }, [])
+
+
+    // const [updateButton, setUpdateButton] = useState(false);
+    // const handleUpdate = () => {
+    //     setUpdateButton(true);
+    // }
+    // useEffect(()=>{
+    //     if(updateButton){
+    //         console.log('4th');
+    //     fetch (`/updatefriendshipreq/${id}`, {
+    //         method: 'POST', 
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //     })
+    //         .then((response) => 
+    //             response.json())
+    //         .then((data) => {
+    //             console.log('updateFriendshipReq fetch post', data.updatedFriendReqs.rows[0] );
+    //             // setFriendRequsts( data.updatedFriendReqs.rows[0] )
+    //             setUpdateButton(false);
+    //             // dispatch(makeFriend(data.updatedFriendReqs.rows[0]));
+
+    //             // updateNotificationInApp()
+    //         })
+    //         .catch((error) => {
+    //             console.error('Error caught in get deleteFriendshipReq fetch:', error);
+    //         });
+    //     }
+    // },[updateButton])
+
     return <div>
-                <h2 id="friedns">Friends</h2>
-                {friends.length !== 0 && <div id="big-friends-div">
-                            {friends.map(friend => (
-                                        <div key={friend.id} >
-                                                <div id="friends-div">
-                                                <Link to={`/user/${friend.id}`} id="link-decoration-none">
-                                                    <img src={friend.profile_pic_url} alt={friend.first} 
-                                                    id='friends-img'/>
-                                                    <h1 id='friends-text'>{friend.first} {friend.last}</h1>
-                                                </Link>
+                <div id="allfriends-and-wannabees">
+                    <div id="friends">
+                        {friends.length !== 0 && <div id="big-friends-div">
+                                    <h2 id="friends">Friends</h2>
+                                    {friends.map(friend => (
+                                                <div key={friend.id} >
+                                                        <div id="friends-div">
+                                                        <Link to={`/user/${friend.id}`} id="link-decoration-none">
+                                                            <img src={friend.profile_pic_url} alt={friend.first} 
+                                                            id='friends-img'/>
+                                                            <h1 id='friends-text'>{friend.first} {friend.last}</h1>
+                                                        </Link>
+                                                        </div>
                                                 </div>
-                                        </div>
-                                    )
-                                )}
-                            </div>}
-                {friends.length ===0 && <div id="no-friends">
-                                <h2 id="no-friends-text">You have no friends 😥</h2>
-                            </div>}
+                                            )
+                                        )}
+                                    </div>}
+                        {friends.length ===0 && <div id="no-friends">
+                                        <h2 id="no-friends-text">You have no friends 😥</h2>
+                                    </div>}
+                    </div>
+                    <div id="separating-line"></div>
+                    
+                    {/* who wants to be my friend */}
+                    <div id="friend-reqs">
+                        {wannabees.length !== 0 && <div id="big-tobe-friends-div">
+                                    <h2 id="friends">Want to be friends</h2>
+                                        
+                                    {wannabees.map(wannabe => (
+                                                <div key={wannabe.id} >
+                                                        <div id="tobe-friends-div">
+                                                        <Link to={`/user/${wannabe.id}`} id="link-decoration-none">
+                                                            <img src={wannabe.profile_pic_url} alt={wannabe.first} 
+                                                            id='friends-img'/>
+                                                            <h1 id='friends-text'>{wannabe.first} {wannabe.last}</h1>
+                                                            {/* <button onClick={handleUpdate}>Accept ✅</button> */}
+                                                        </Link>
+                                                        </div>
+                                                </div>
+                                            )
+                                        )}
+                                    </div>}
+                        {wannabees.length ===0 && <div id="no-tobe-friends">
+                                        <h2 id="no-tobe-friends-text">No new friend requests 😥</h2>
+                                    </div>}
+                    </div>
+                </div>
             </div>
 }

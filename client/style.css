@@ -78,14 +78,14 @@ h3 {
     transform: translatex(-50%);
 }
 
-h2{
+/* h2{
     color: white;
     font-size: 13x;
     position: absolute;
         top: 30%;
         left: 50%;
         transform: translatex(-50%);
-}
+} */
 
 header{
     background-color: rgb(20 42 0);

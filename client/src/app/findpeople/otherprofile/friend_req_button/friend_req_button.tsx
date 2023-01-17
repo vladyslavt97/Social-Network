@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Notifications } from '../../../app_components/notifications/notifications';
 
 import { useDispatch, useSelector } from "react-redux";
-import { receiveFriends } from "../../../redux/friends/slice.js";
+import { makeFriend } from "../../../redux/friends/slice.js";
 
 export function FriendRequestsButton() {
     let { id } = useParams();
@@ -87,7 +87,6 @@ export function FriendRequestsButton() {
                 setFriendRequsts( data.deletedFriendReqs.rows[0] )
                 setThisReqIsForMe( data.deletedFriendReqs.rows[0])
                 setInsertButton(false);
-                // console.log('all data after delete', emptyTry);
                 
             })
             .catch((error) => {
@@ -98,6 +97,8 @@ export function FriendRequestsButton() {
 
 
     //update
+    const dispatch = useDispatch();
+
     const [updateButton, setUpdateButton] = useState(false);
     const handleUpdate = () => {
         setUpdateButton(true);
@@ -117,6 +118,8 @@ export function FriendRequestsButton() {
                 console.log('updateFriendshipReq fetch post', data.updatedFriendReqs.rows[0] );
                 setFriendRequsts( data.updatedFriendReqs.rows[0] )
                 setUpdateButton(false);
+                dispatch(makeFriend(data.updatedFriendReqs.rows[0]));
+
                 // updateNotificationInApp()
             })
             .catch((error) => {
@@ -125,6 +128,9 @@ export function FriendRequestsButton() {
         }
     },[updateButton])
     
+    const state1 = useSelector((state) => state);
+    console.log('state in btn123!: ', state1);
+
     return <div>
         {/* if nothing in db */}
         {!friendRequsts && <button onClick={handleClick}>Send Friend Request 📨</button>}

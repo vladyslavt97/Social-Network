@@ -6,7 +6,9 @@ import reducer from "./app/redux/reducer.js";
 import { createStore, applyMiddleware } from "redux";
 import * as immutableState from "redux-immutable-state-invariant";
 import { Provider } from "react-redux";
-const store = createStore(reducer, applyMiddleware(immutableState.default()));
+import { composeWithDevTools } from "redux-devtools-extension";
+const store = createStore(reducer, 
+    composeWithDevTools(applyMiddleware(immutableState.default())));
 
 const main = document.querySelector("main");
 if (main){
