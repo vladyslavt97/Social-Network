@@ -73,8 +73,8 @@ export function Friends (){
                                                             <img src={friend.profile_pic_url} alt={friend.first} 
                                                             id='friends-img'/>
                                                             <h1 id='friends-text'>{friend.first} {friend.last}</h1>
-                                                            <ButtonRejectFrienship/>
                                                         </Link>
+                                                        <ButtonRejectFrienship id={friend.id}/>
                                                         </div>
                                                 </div>
                                             )
@@ -94,13 +94,13 @@ export function Friends (){
                                     {wannabees.map(wannabe => (
                                                 <div key={wannabe.id} >
                                                         <div id="tobe-friends-div">
-                                                        <Link to={`/user/${wannabe.id}`} id="link-decoration-none">
-                                                            <img src={wannabe.profile_pic_url} alt={wannabe.first} 
-                                                            id='friends-img'/>
-                                                            <h1 id='friends-text'>{wannabe.first} {wannabe.last}</h1>
-                                                            {/* <button onClick={handleUpdate}>Accept ✅</button> */}
-                                                            <ButtonAcceptFriendship />
-                                                        </Link>
+                                                            <Link to={`/user/${wannabe.id}`} id="link-decoration-none">
+                                                                <img src={wannabe.profile_pic_url} alt={wannabe.first} 
+                                                                id='friends-img'/>
+                                                                <h1 id='friends-text'>{wannabe.first} {wannabe.last}</h1>
+                                                                {/* <button onClick={handleUpdate}>Accept ✅</button> */}
+                                                            </Link>
+                                                            <ButtonAcceptFriendship id={wannabe.id}/>
                                                         </div>
                                                 </div>
                                             )
