@@ -1,8 +1,8 @@
 import { ChangeEvent, Component } from "react";
 import { Link } from "react-router-dom";
 
-import { Validation } from '../../components/validation';
-import { IncorrectData } from '../../components/incorrectdata';
+import { Validation } from '../components/validation';
+import { IncorrectData } from '../components/incorrectdata';
 import { Change } from "aws-sdk/clients/cloudformation";
 
 interface ResetState {

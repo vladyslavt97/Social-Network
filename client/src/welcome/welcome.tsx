@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Registration } from './registration/registration';
-import { Logo } from '../components/logo';
+import { Logo } from './components/logo';
 import { Login } from './login/login';
 import { Reset } from './reset/resetpwd';
 import "./earth.css"

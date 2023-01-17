@@ -1,6 +1,6 @@
 import { ChangeEvent, Component, FormEvent} from 'react';
-import { Validation } from '../../components/validation';
-import { IncorrectData } from '../../components/incorrectdata';
+import { Validation } from '../components/validation';
+import { IncorrectData } from '../components/incorrectdata';
 import { Link } from 'react-router-dom';
 
 interface LoginState {

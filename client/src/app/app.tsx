@@ -1,5 +1,5 @@
 import { Component, FormEvent } from 'react';
-import { Logo } from '../components/logo';
+import { Logo } from '../welcome/components/logo';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Profile } from './profile/profile';
 import { FindPeople } from './findpeople/findpeople';

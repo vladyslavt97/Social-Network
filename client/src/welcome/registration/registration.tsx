@@ -1,5 +1,5 @@
 import { ChangeEvent, Component, FormEvent} from 'react';
-import { Validation } from '../../components/validation';
+import { Validation } from '../components/validation';
 import { Link } from 'react-router-dom';
 
 interface RegistrationState {
