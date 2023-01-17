@@ -1,6 +1,5 @@
 export interface FriendsState {
     friends: Friend[];
-    // noti
 }
 
 export interface Friend {

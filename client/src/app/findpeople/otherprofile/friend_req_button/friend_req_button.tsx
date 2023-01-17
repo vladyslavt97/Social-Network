@@ -119,8 +119,6 @@ export function FriendRequestsButton() {
                 setFriendRequsts( data.updatedFriendReqs.rows[0] )
                 setUpdateButton(false);
                 // dispatch(makeFriend(data.updatedFriendReqs.rows[0]));
-
-                // updateNotificationInApp()
             })
             .catch((error) => {
                 console.error('Error caught in get deleteFriendshipReq fetch:', error);

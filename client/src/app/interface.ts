@@ -5,3 +5,10 @@ export interface UserInfo {
     profile_pic_url: string,
     email: string
 }
+
+export interface Friend{
+    id: number,
+    profile_pic_url: string,
+    first: string,
+    last: string,
+}

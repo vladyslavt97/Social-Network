@@ -46,13 +46,11 @@ export function Notifications() {
     }
     
     return <div>
-        {/* onClick={toggleNotifications} */}
         <div id="div-bell-off">
             {!notificationsCount && <img src="/bell-off.png" alt="bell" id="notifications-off" />}
         </div>
 
         {notificationsCount >=1 && <div id="div-bell-on">
-                                    {/* onClick={toggleNotifications} */}
                                     <img src="/bell-on.png" alt="bell" id="notifications-on" onClick={toggleNotifications}/>
                                     <h6 id="notificationsCount">{notificationsCount}</h6>
                                 </div>}

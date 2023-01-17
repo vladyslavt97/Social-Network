@@ -1,19 +1,10 @@
 import { useEffect, useState } from "react"
 import "./friends.css"
-import { Link } from 'react-router-dom';
 import { friendsUpdated } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-import ButtonAcceptFriendship from "./button-accept/button-accept";
-import ButtonRejectFrienship from "./button-reject/button-reject";
 import { Friend, FriendsState } from "../redux/rootReducer";
-
-// interface Friends{
-//     id: number,
-//     first: string,
-//     last: string,
-//     profile_pic_url: string,
-//     email: string
-// }
+import TrueFriends from "./TrueFriends/TrueFriends";
+import NotFriends from "./NotFriends/NotFriends";
 
 export function Friends (){
     const friendS = useSelector<FriendsState, Friend[]>((state) => state.friends);
@@ -24,7 +15,6 @@ export function Friends (){
     // const [friends, setFriends] = useState<Friends []>([]);
     const [wannabees, setWannabeees] = useState([]);
     const dispatch = useDispatch();
-    //fetch the info of friend_requests
     useEffect(() => {
     if (friendS.length === 0){
         fetch(`/friendss`, {
@@ -55,62 +45,15 @@ export function Friends (){
     } else {
             setFriends(friendS)
             setWannabeees(friendS);
-            dispatch(friendsUpdated(friendS))
+            // dispatch(friendsUpdated(friendS))
         }
     }, [])
 
-
-
-
     return <div>
                 <div id="allfriends-and-wannabees">
-                    <div id="friends">
-                        {friends.length !== 0 && <div id="big-friends-div">
-                                    <h2 id="friends">Friends</h2>
-                                    {friends.map(friend => (
-                                                <div key={friend.id} >
-                                                        <div id="friends-div">
-                                                        <Link to={`/user/${friend.id}`} id="link-decoration-none">
-                                                            <img src={friend.profile_pic_url} alt={friend.first} 
-                                                            id='friends-img'/>
-                                                            <h1 id='friends-text'>{friend.first} {friend.last}</h1>
-                                                        </Link>
-                                                        <ButtonRejectFrienship id={friend.id}/>
-                                                        </div>
-                                                </div>
-                                            )
-                                        )}
-                                    </div>}
-                        {friends.length ===0 && <div id="no-friends">
-                                        <h2 id="no-friends-text">You have no friends 😥 </h2>
-                                    </div>}
-                    </div>
+                    <TrueFriends friends={friends}/>
                     <div id="separating-line"></div>
-
-                    {/* who wants to be my friend */}
-                    <div id="friend-reqs">
-                        {wannabees.length !== 0 && <div id="big-tobe-friends-div">
-                                    <h2 id="friends">Want to be friends</h2>
-                                        
-                                    {wannabees.map(wannabe => (
-                                                <div key={wannabe.id} >
-                                                        <div id="tobe-friends-div">
-                                                            <Link to={`/user/${wannabe.id}`} id="link-decoration-none">
-                                                                <img src={wannabe.profile_pic_url} alt={wannabe.first} 
-                                                                id='friends-img'/>
-                                                                <h1 id='friends-text'>{wannabe.first} {wannabe.last}</h1>
-                                                                {/* <button onClick={handleUpdate}>Accept ✅</button> */}
-                                                            </Link>
-                                                            <ButtonAcceptFriendship id={wannabe.id}/>
-                                                        </div>
-                                                </div>
-                                            )
-                                        )}
-                                    </div>}
-                        {wannabees.length ===0 && <div id="no-tobe-friends">
-                                        <h2 id="no-tobe-friends-text">No new friend requests 😥</h2>
-                                    </div>}
-                    </div>
+                    <NotFriends wannabees={wannabees}/>
                 </div>
             </div>
 }

@@ -4,7 +4,6 @@ import { Welcome } from './welcome/welcome';
 import { Provider } from "react-redux";
 import store from "./app/redux/store.js";
 
-
 const main = document.querySelector("main");
 if (main){
     const root = createRoot(main);

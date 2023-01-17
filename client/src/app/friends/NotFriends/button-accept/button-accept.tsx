@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { makeFriend } from '../../redux/actions';
+import { makeFriend } from '../../../redux/actions';
 
 interface ButtonAcceptFriendshipProps{
     id: number,
 }
-
 export default function ButtonAcceptFriendship(props: ButtonAcceptFriendshipProps) {
     const [updateButton, setUpdateButton] = useState(false);
     const dispatch = useDispatch();
@@ -25,11 +24,8 @@ export default function ButtonAcceptFriendship(props: ButtonAcceptFriendshipProp
                 response.json())
             .then((data) => {
                 console.log('updateFriendshipReq fetch post', data.updatedFriendReqs.rows[0] );
-                // setFriendRequsts( data.updatedFriendReqs.rows[0] )
                 setUpdateButton(false);
                 dispatch(makeFriend(data.updatedFriendReqs.rows[0]));
-
-                // updateNotificationInApp()
             })
             .catch((error) => {
                 console.error('Error caught in get deleteFriendshipReq fetch:', error);
