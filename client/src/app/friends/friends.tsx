@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { useDispatch, useSelector } from "react-redux";
 import { receiveFriends } from "../redux/friends/slice.js";
+import ButtonAcceptFriendship from "./button-accept/button-accpet";
+import ButtonRejectFrienship from "./button-reject/button-reject";
 
 interface Friends{
     id: number,
@@ -58,34 +60,6 @@ export function Friends (){
     }, [])
 
 
-    // const [updateButton, setUpdateButton] = useState(false);
-    // const handleUpdate = () => {
-    //     setUpdateButton(true);
-    // }
-    // useEffect(()=>{
-    //     if(updateButton){
-    //         console.log('4th');
-    //     fetch (`/updatefriendshipreq/${id}`, {
-    //         method: 'POST', 
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //     })
-    //         .then((response) => 
-    //             response.json())
-    //         .then((data) => {
-    //             console.log('updateFriendshipReq fetch post', data.updatedFriendReqs.rows[0] );
-    //             // setFriendRequsts( data.updatedFriendReqs.rows[0] )
-    //             setUpdateButton(false);
-    //             // dispatch(makeFriend(data.updatedFriendReqs.rows[0]));
-
-    //             // updateNotificationInApp()
-    //         })
-    //         .catch((error) => {
-    //             console.error('Error caught in get deleteFriendshipReq fetch:', error);
-    //         });
-    //     }
-    // },[updateButton])
 
     return <div>
                 <div id="allfriends-and-wannabees">
@@ -99,6 +73,7 @@ export function Friends (){
                                                             <img src={friend.profile_pic_url} alt={friend.first} 
                                                             id='friends-img'/>
                                                             <h1 id='friends-text'>{friend.first} {friend.last}</h1>
+                                                            <ButtonRejectFrienship/>
                                                         </Link>
                                                         </div>
                                                 </div>
@@ -106,11 +81,11 @@ export function Friends (){
                                         )}
                                     </div>}
                         {friends.length ===0 && <div id="no-friends">
-                                        <h2 id="no-friends-text">You have no friends 😥</h2>
+                                        <h2 id="no-friends-text">You have no friends 😥 </h2>
                                     </div>}
                     </div>
                     <div id="separating-line"></div>
-                    
+
                     {/* who wants to be my friend */}
                     <div id="friend-reqs">
                         {wannabees.length !== 0 && <div id="big-tobe-friends-div">
@@ -124,6 +99,7 @@ export function Friends (){
                                                             id='friends-img'/>
                                                             <h1 id='friends-text'>{wannabe.first} {wannabe.last}</h1>
                                                             {/* <button onClick={handleUpdate}>Accept ✅</button> */}
+                                                            <ButtonAcceptFriendship />
                                                         </Link>
                                                         </div>
                                                 </div>

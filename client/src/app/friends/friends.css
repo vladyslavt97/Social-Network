@@ -1,12 +1,14 @@
 #big-friends-div{
-    margin-top: 100px;
+    margin-top: 80px;
     height: 600px;
+    overflow-y: auto;
 }
 
 
 #friends-div{
     background-color: rgb(200, 255, 116);
     border: 1px dashed green;
+    border-radius: 30px;
     margin: 10px;
     display: flex;
     flex-direction: row;
@@ -52,7 +54,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40vw;
+    width: 46vw;
 }
 
 #no-tobe-friends-text{
@@ -63,6 +65,8 @@
 
 #big-tobe-friends-div{
     margin-top: 100px;
+    height: 600px;
+    overflow-y: auto;
 }
 
 #tobe-friends-div {
@@ -71,6 +75,7 @@
     margin: 10px;
     display: flex;
     flex-direction: row;
+    border-radius: 30px;
 }
 
 

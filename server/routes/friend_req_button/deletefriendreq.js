@@ -6,8 +6,6 @@ const { deleteFromReset_CodesDB } = require('../../db');
 
 const deleteFriendReqRouter = express.Router();
 deleteFriendReqRouter.delete('/deletefriendshipreq/:id', (req, res) => {
-    console.log('the delete should run');
-
     let me = req.session.userId;
     let anotherUser = req.params.id;
     // console.log('me', me, 'anotherUser', req.params);
