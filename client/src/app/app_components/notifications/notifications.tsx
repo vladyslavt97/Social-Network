@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import "./notifications.css"
 import { Link } from 'react-router-dom';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FriendsState } from "../../redux/rootReducer";
 import { Friend } from "../../redux/rootReducer";
 interface Notifications{
@@ -17,6 +17,7 @@ export function Notifications() {
 
     const friends = useSelector<FriendsState, Friend[]>((state) => state.friends);
     console.log('state!: ', friends);
+    const dispatch = useDispatch();
     //fetch the info of friend_requests
     useEffect(() => {
         fetch(`/notifications`, {

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { makeFriend } from '../../redux/actions';
 
 interface ButtonAcceptFriendshipProps{
     id: number,
@@ -6,6 +8,7 @@ interface ButtonAcceptFriendshipProps{
 
 export default function ButtonAcceptFriendship(props: ButtonAcceptFriendshipProps) {
     const [updateButton, setUpdateButton] = useState(false);
+    const dispatch = useDispatch();
     const handleUpdate = () => {
         setUpdateButton(true);
     }
@@ -24,7 +27,7 @@ export default function ButtonAcceptFriendship(props: ButtonAcceptFriendshipProp
                 console.log('updateFriendshipReq fetch post', data.updatedFriendReqs.rows[0] );
                 // setFriendRequsts( data.updatedFriendReqs.rows[0] )
                 setUpdateButton(false);
-                // dispatch(makeFriend(data.updatedFriendReqs.rows[0]));
+                dispatch(makeFriend(data.updatedFriendReqs.rows[0]));
 
                 // updateNotificationInApp()
             })

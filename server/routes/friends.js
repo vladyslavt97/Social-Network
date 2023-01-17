@@ -4,8 +4,9 @@ const { myFriendsInDB } = require('../db');
 const friendsRouter = express.Router();
 friendsRouter.get('/friendss', (req, res) => {
     let myId = req.session.userId;
-    let status = 'TRUE';
-    myFriendsInDB(myId, status)
+    // let status = 'TRUE';
+    // myFriendsInDB(myId, status)
+    myFriendsInDB(myId)
         .then((data) => {
             res.json({success: true, myFriends: data.rows});
         })

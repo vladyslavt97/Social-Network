@@ -5,23 +5,28 @@ import { friendsUpdated } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import ButtonAcceptFriendship from "./button-accept/button-accept";
 import ButtonRejectFrienship from "./button-reject/button-reject";
+import { Friend, FriendsState } from "../redux/rootReducer";
 
-interface Friends{
-    id: number,
-    first: string,
-    last: string,
-    profile_pic_url: string,
-    email: string
-}
+// interface Friends{
+//     id: number,
+//     first: string,
+//     last: string,
+//     profile_pic_url: string,
+//     email: string
+// }
 
 export function Friends (){
-    const state = useSelector((state) => state);
-    console.log('state!: ', state);
+    const friendS = useSelector<FriendsState, Friend[]>((state) => state.friends);
+    // const friendS = useSelector<FriendsState, Friend[]>((state) => state.friends);
+    console.log('friendS!: ', friendS);
     
-    const [friends, setFriends] = useState<Friends []>([]);
+    const [friends, setFriends] = useState([]);
+    // const [friends, setFriends] = useState<Friends []>([]);
+    const [wannabees, setWannabeees] = useState([]);
     const dispatch = useDispatch();
     //fetch the info of friend_requests
     useEffect(() => {
+    if (friendS.length === 0){
         fetch(`/friendss`, {
             method: 'GET',
             headers: {
@@ -30,34 +35,30 @@ export function Friends (){
         })
         .then(response => response.json())
         .then(data => {
-            setFriends(data.myFriends)
+            console.log('data.myFriends: ', data.myFriends);
+            
+            const trueFriends = data.myFriends.filter((el: any) => 
+                    el.accepted !== false);
+            console.log('trueFriends', trueFriends);
+            setFriends(trueFriends)
+            
+            const notFriends = data.myFriends.filter((el: any) => 
+                    el.accepted !== true);
+            console.log('trueFriends', notFriends);
+            setWannabeees(notFriends);
             dispatch(friendsUpdated(data.myFriends))
-
 
         })
         .catch(err => {
                 console.log('er in fetching friends: ', err);
             });
+    } else {
+            setFriends(friendS)
+            setWannabeees(friendS);
+            dispatch(friendsUpdated(friendS))
+        }
     }, [])
 
-    //to be friends
-    const [wannabees, setWannabeees] = useState([]);
-
-    useEffect(() => {
-        fetch(`/notifications`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            setWannabeees(data.notificationsForMe)
-        })
-        .catch(err => {
-                console.log('er in fetching notifications: ', err);
-            });
-    }, [])
 
 
 

@@ -142,14 +142,22 @@ module.exports.notificationsForMeInDB = (myId, status) =>{//we acpect only one r
 };
 
 //friends
-module.exports.myFriendsInDB = (myId, status) =>{//we acpect only one row
+module.exports.myFriendsInDB = (myId) =>{//we acpect only one row
     return db.query(`
-    SELECT * 
+    SELECT friend_requests.id AS fid, * 
     FROM friend_requests
     JOIN users
     ON users.id = friend_requests.sender_id 
-    WHERE recipient_id = $1 AND accepted = $2;`,[myId, status]);
+    WHERE recipient_id = $1;`,[myId]);
 };
+// module.exports.myFriendsInDB = (myId, status) =>{//we acpect only one row
+//     return db.query(`
+//     SELECT * 
+//     FROM friend_requests
+//     JOIN users
+//     ON users.id = friend_requests.sender_id 
+//     WHERE recipient_id = $1 AND accepted = $2;`,[myId, status]);
+// };
 
 //delete my account
 module.exports.deleteUserAndFriendshipsDB = (myId) => {
