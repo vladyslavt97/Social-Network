@@ -1,0 +1,46 @@
+#reset-stages{
+    color: #ffffff;
+    font-size: 15px;
+    text-shadow: var(--shadow);
+}
+.welcome{
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 25px;
+}
+
+#error-messsage{
+    color: red;
+    font-size: 35px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translatex(-50%);
+}
+
+#bookface{
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translate(-50%);
+    background: var(--main-background);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 45px;
+}
+
+#registration-form{
+    background: rgba(0, 255, 255, 0.274);
+    border-radius: 10px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+        transform: translate(-50%, -50%);
+    padding: 10px;
+    z-index: 2;
+    text-shadow: var(--shadow);
+}

@@ -13,10 +13,6 @@ import { OtherProfile } from "./findpeople/otherprofile/otherprofile"
 import { UserInfo } from './interface';
 import { OnlineUsers } from './app_components/onlineusers/onlineusers';
 
-
-
-
-
 interface AppState {
     userInfo: UserInfo,
     isPopupOpen: boolean,
@@ -43,7 +39,6 @@ export class App extends Component<AppProps, AppState, UserInfo> {
             textarea: '',
             bioInDb: {},
         };
-        // bind stuff if you use normal functions
         this.togglePopup = this.togglePopup.bind(this);
         this.togglePopup = this.togglePopup.bind(this);
         this.handlePPUpload = this.handlePPUpload.bind(this);
@@ -77,7 +72,6 @@ export class App extends Component<AppProps, AppState, UserInfo> {
         const formData = new FormData();
         formData.append('uploadedfile', this.state.file);
         
-        // do fetch afterwards as a POST request. With the response you update your images array.
         fetch('/upload', {
             method: 'POST', 
             body: formData
@@ -94,9 +88,6 @@ export class App extends Component<AppProps, AppState, UserInfo> {
             });
     }
 
-    
-    
-  
     handleFileChange(event: React.ChangeEvent<HTMLInputElement>){
         if (event.target.files?.length) {
             this.setState({file: event.target.files[0]});
@@ -106,10 +97,6 @@ export class App extends Component<AppProps, AppState, UserInfo> {
     togglePopup() {
         this.setState({ isPopupOpen: !this.state.isPopupOpen });
     }
-
-    // updateNotificationInApp({
-
-    // })
 
     render() {
         return <div>

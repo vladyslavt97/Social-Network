@@ -15,22 +15,12 @@ body {
     top: 12px;
     left: 1px
 }
-#reset-stages{
-    color: #ffffff;
-    font-size: 15px;
-    text-shadow: var(--shadow);
-}
+
 h3 {
     font-size: 15px;
     color: #022772;
 }
-.welcome{
-    position: absolute;
-    top: 90px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 25px;
-}
+
 /* my colours */
 :root {
     --main-background: -webkit-linear-gradient(86deg, #ffbb00 1%, #04ff00 99%);
@@ -38,54 +28,10 @@ h3 {
 }
 /*  */
 
-#registration-form{
-    background: rgba(0, 255, 255, 0.274);
-    border-radius: 10px;
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-        transform: translate(-50%, -50%);
-    padding: 10px;
-    z-index: 2;
-    text-shadow: var(--shadow);
-}
-
 .mandatory-field{
     color: red;
     font-weight: 1000;
 }
-
-
-#bookface{
-    position: absolute;
-    top: 15px;
-    left: 50%;
-    transform: translate(-50%);
-    background: var(--main-background);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-    font-size: 45px;
-}
-
-#error-messsage{
-    color: red;
-    font-size: 35px;
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translatex(-50%);
-}
-
-/* h2{
-    color: white;
-    font-size: 13x;
-    position: absolute;
-        top: 30%;
-        left: 50%;
-        transform: translatex(-50%);
-} */
 
 header{
     background-color: rgb(20 42 0);
@@ -120,7 +66,6 @@ footer{
 h5{
     color: white;
 }
-
 
 input{
     border-radius: 10px;
