@@ -1,8 +1,8 @@
-interface FriendsState {
+export interface FriendsState {
     friends: Friend[]
 }
 
-interface Friend {
+export interface Friend {
     id: Number,
     sender_id: Number,
     recipient_id: Number,
@@ -32,6 +32,11 @@ export default function friendsReducer(state = initialState, action: Action) {
         return {
             ...state,
             friends: action.payload
+        };
+    }
+    if (action.type === "setNotificationsCount") {
+        return {
+            
         };
     }
     return state;
