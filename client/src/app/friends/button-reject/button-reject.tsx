@@ -5,7 +5,6 @@ interface ButtonRejectFrienshipProps{
 }
 
 export default function ButtonRejectFrienship(props: ButtonRejectFrienshipProps) {
-    //DELETE
     const [deleteButton, setDeleteButton] = useState(false);
 
     const handleDelete = () => {

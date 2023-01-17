@@ -2,12 +2,13 @@ import { createRoot } from "react-dom/client";
 import { App } from './app/app';
 import { Welcome } from './welcome/welcome';
 
-import reducer from "./app/redux/reducer.js";
+import reducer from "./app/redux/old/reducer.js";
 import { createStore, applyMiddleware } from "redux";
 import * as immutableState from "redux-immutable-state-invariant";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-const store = createStore(reducer, 
+const store = createStore(
+    reducer, 
     composeWithDevTools(applyMiddleware(immutableState.default())));
 
 const main = document.querySelector("main");
@@ -19,7 +20,6 @@ if (main){
             if (data.userId) {
                 root.render(<Provider store={store}>
                     <App />
-                    {/* root.render(<App />); */}   
                 </Provider>
                 );
                 

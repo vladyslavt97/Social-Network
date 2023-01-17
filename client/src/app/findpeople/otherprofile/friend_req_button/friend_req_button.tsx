@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
-import { Notifications } from '../../../app_components/notifications/notifications';
+
 
 import { useDispatch, useSelector } from "react-redux";
-import { makeFriend } from "../../../redux/friends/slice.js";
+import { makeFriend } from "../../../redux/old/friends/slice.js";
 
 export function FriendRequestsButton() {
     let { id } = useParams();

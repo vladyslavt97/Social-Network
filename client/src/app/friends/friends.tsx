@@ -3,7 +3,7 @@ import "./friends.css"
 import { Link } from 'react-router-dom';
 
 import { useDispatch, useSelector } from "react-redux";
-import { receiveFriends } from "../redux/friends/slice.js";
+import { receiveFriends } from "../redux/old/friends/slice.js";
 import ButtonAcceptFriendship from "./button-accept/button-accpet";
 import ButtonRejectFrienship from "./button-reject/button-reject";
 

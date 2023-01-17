@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import "./notifications.css"
 import { BrowserRouter,Route, Link } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 interface Notifications{
     id: number,
@@ -13,6 +14,8 @@ export function Notifications() {
     const [notifications, setNotifications] = useState<Notifications []>([]);
     const [notificationsCount, setNotificationsCount] = useState<any>('');
 
+    const state = useSelector((state) => state);
+    console.log('state!: ', state);
     //fetch the info of friend_requests
     useEffect(() => {
         fetch(`/notifications`, {
@@ -25,6 +28,7 @@ export function Notifications() {
         .then(data => {
             setNotificationsCount(data.notificationsCount)
             setNotifications(data.notificationsForMe)
+            //bothe the count and notifications should be updated
         })
         .catch(err => {
                 console.log('er in fetching notifications: ', err);
