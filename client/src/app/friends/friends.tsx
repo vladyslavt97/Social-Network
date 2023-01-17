@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import "./friends.css"
 import { Link } from 'react-router-dom';
-
+import { friendsUpdated } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { receiveFriends } from "../redux/old/friends/slice.js";
-import ButtonAcceptFriendship from "./button-accept/button-accpet";
+// import { receiveFriends } from "../redux/";
+import ButtonAcceptFriendship from "./button-accept/button-accept";
 import ButtonRejectFrienship from "./button-reject/button-reject";
 
 interface Friends{
@@ -32,8 +32,7 @@ export function Friends (){
         .then(response => response.json())
         .then(data => {
             setFriends(data.myFriends)
-            dispatch(receiveFriends(data.myFriends));
-
+            dispatch(friendsUpdated(data.myFriends))
         })
         .catch(err => {
                 console.log('er in fetching friends: ', err);

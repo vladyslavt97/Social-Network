@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 
 import { useDispatch, useSelector } from "react-redux";
-import { makeFriend } from "../../../redux/old/friends/slice.js";
+// import { makeFriend } from "../../../redux/old/friends/slice.js";
 
 export function FriendRequestsButton() {
     let { id } = useParams();
@@ -118,7 +118,7 @@ export function FriendRequestsButton() {
                 console.log('updateFriendshipReq fetch post', data.updatedFriendReqs.rows[0] );
                 setFriendRequsts( data.updatedFriendReqs.rows[0] )
                 setUpdateButton(false);
-                dispatch(makeFriend(data.updatedFriendReqs.rows[0]));
+                // dispatch(makeFriend(data.updatedFriendReqs.rows[0]));
 
                 // updateNotificationInApp()
             })
