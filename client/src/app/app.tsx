@@ -102,7 +102,7 @@ export class App extends Component<AppProps, AppState, UserInfo> {
         return <div>
             <Logo />
             <div id='gridsetup'>
-                <h1 id="page-test">Welcome, {this.state.userInfo.first} {this.state.userInfo.last}</h1>
+                <h1 id="header-name">Welcome, {this.state.userInfo.first} {this.state.userInfo.last}</h1>
                 <div id='sidebar'>
                         <ProfilePic
                         userInfo = {this.state.userInfo}

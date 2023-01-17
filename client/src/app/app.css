@@ -6,7 +6,6 @@
 
 #sidebar {
     background-color: rgb(20 42 0);
-    /* background-color: rgba(105, 225, 0, 0.467); */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -31,40 +30,12 @@
     width: 52px;
 }
 
-#page-test {
+#header-name {
     position: absolute;
     top: 25px;
     right: 80px;
     color: white;
     font-size: 15px;
-}
-
-/* input[type="file"] {
-    display: none;
-} */
-
-.file-upload {
-    display: inline-block;
-    cursor: pointer;
-    z-index: 2;
-    background: rgba(0, 255, 255, 0.274);
-    padding: 50px;
-    border-radius: 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#upload-img {
-    width: 52px;
-}
-
-#upload-button {
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-    padding: 0;
-    margin: 0;
 }
 
 #backdrop {
@@ -83,14 +54,6 @@
     display: flex;
     justify-content: center;
     margin: 10px;
-}
-
-#thebio {
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 }
 
 
@@ -127,10 +90,5 @@
     left: 0;
     top: 478px;
     width: 52px;
-}
-
-
-#main-screen{
-    
 }
 
