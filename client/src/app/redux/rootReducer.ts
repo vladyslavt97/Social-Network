@@ -45,11 +45,26 @@ export default function friendsReducer(state = initialState, action: Action) {
             }
             return friend;
         });
-
         return {
             ...state,
             friends: newFriends,
         };
+    }
+    if (action.type === "unfriend") {
+        const unfriend = state.friends.map((friend) => {
+            if (friend.fid === action.payload.id) {
+                return {
+                    ...friend,
+                    accepted: false,
+                };
+            }
+            return friend;
+        });
+        return {
+            ...state,
+            friends: unfriend,
+        };
+        
     }
     return state;
 }

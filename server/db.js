@@ -112,11 +112,12 @@ module.exports.insertIntoReset_CodesDB = (sender_id, recipient_id) => {
 };
 
 // friend requests //DELETE
-module.exports.deleteFromReset_CodesDB = (me, anotherUser) => {
+module.exports.deleteFromFriend_RequestsDB = (me, anotherUser) => {
     return db.query(`
     DELETE FROM friend_requests 
     WHERE (sender_id = $1 AND recipient_id = $2)
-    OR (sender_id = $2 AND recipient_id = $1);`,[me, anotherUser]);
+    OR (sender_id = $2 AND recipient_id = $1)
+    RETURNING *;`,[me, anotherUser]);
 };
 
 // friend requests //UPDATE

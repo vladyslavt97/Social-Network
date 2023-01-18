@@ -5,7 +5,6 @@ import { FriendRequestsButton } from './friend_req_button/friend_req_button';
 
 export function OtherProfile(){
     let { id } = useParams();
-    // const navigate = useNavigate();
 
     const [otherUserProfile, setOtherUserProfile] = useState<any>({});
     useEffect(() => {
@@ -23,9 +22,6 @@ export function OtherProfile(){
                 console.log('if threre is no match for user:id = output a message "no page found"', err);
             });
     },[id]);
-
-    // console.log('otherUserProfile', otherUserProfile);
-    
     
     return <div id="otherpeoplecomponentdiv">
         <h1 id="otherpeoplecomponent">User details</h1>

@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react'
-
+import { useDispatch } from 'react-redux';
+import {unfriend} from '../../../redux/actions';
 interface ButtonRejectFrienshipProps{
     id: number,
 }
 
 export default function ButtonRejectFrienship(props: ButtonRejectFrienshipProps) {
     const [deleteButton, setDeleteButton] = useState(false);
-
+    const dispatch = useDispatch();
     const handleDelete = () => {
         setDeleteButton(true);
     }
     useEffect(()=>{
         if(deleteButton){
-            console.log('1st');
+            console.log('1st id: ', props.id);
             
         fetch (`/deletefriendshipreq/${props.id}`, {
             method: 'DELETE', 
@@ -23,11 +24,11 @@ export default function ButtonRejectFrienship(props: ButtonRejectFrienshipProps)
             .then((response) => 
                 response.json())
             .then((data) => {
-                console.log('deleteFriendshipReq fetch post', data.deletedFriendReqs.rows[0] );
-                
+                console.log('deleteFriendshipReq in Button Reject fetch post', data.deletedFriendReqs[0] );
+                dispatch(unfriend(data.deletedFriendReqs[0] ));
             })
             .catch((error) => {
-                console.error('Error caught in get deleteFriendshipReq fetch:', error);
+                console.error('Error caught in deleteFriendshipReq fetch:', error);
             });
         }
     },[deleteButton])
@@ -37,3 +38,4 @@ export default function ButtonRejectFrienship(props: ButtonRejectFrienshipProps)
     </div>
   )
 }
+

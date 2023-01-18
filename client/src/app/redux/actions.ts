@@ -4,6 +4,7 @@ const actions = {
     friendsUpdated: createAction<string>('friendsUpdated'),
     // setNotificationsCount: createAction<number>('setNotificationsCount')
     makeFriend: createAction<Friend>('makefriend'),
+    unfriend: createAction<Friend>('unfriend'),
     
 };
-export const { friendsUpdated, makeFriend } = actions;
+export const { friendsUpdated, makeFriend, unfriend } = actions;
