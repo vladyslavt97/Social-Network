@@ -15,7 +15,7 @@ export function Notifications() {
     const [notifications, setNotifications] = useState<Notifications []>([]);
     const [notificationsCount, setNotificationsCount] = useState<any>('');
 
-    const friends = useSelector<FriendsState, Friend[]>((state) => state.friends);
+    const friends = useSelector<FriendsState, Friend[]>((state) =>state.friends && state.friends);
     console.log('state!: ', friends);
     const dispatch = useDispatch();
     //fetch the info of friend_requests

@@ -24,10 +24,10 @@ module.exports = () => ({
             "/": {
                 target: "http://localhost:3001",
             },
-            // "/socket.io": {
-            //     target: "http://localhost:3001",
-            //     ws: true,
-            // },
+            "/socket.io": {
+                target: "http://localhost:3001",
+                ws: true,
+            },
         },
         port: "3000",
     },

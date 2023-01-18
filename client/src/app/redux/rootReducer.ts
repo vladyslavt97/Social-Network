@@ -51,21 +51,16 @@ export default function friendsReducer(state = initialState, action: Action) {
         };
     }
     if (action.type === "unfriend") {
-        const unfriend = state.friends.map((friend) => {
-            console.log('fid', friend.fid);
-            console.log('fid a', action.payload.id);
-        const remove = state.friends.findIndex((el)=>{
-            el.fid === friend.fid;
-        })
-        let newStateOfFriends = state.friends;
-            if (friend.fid === action.payload.id) {//6 === 6
-                return newStateOfFriends.splice(remove, 1);
-            }
-            return newStateOfFriends;
+        console.log('got heeerer');
+        let filtered = state.friends.filter((el)=>{
+            if (el.fid === action.payload.id) {//6 === 6
+            return el.fid !== action.payload.id;
+            };
         });
+
         return {
             ...state,
-            friends: unfriend,
+            friends: filtered,
         };
         
     }

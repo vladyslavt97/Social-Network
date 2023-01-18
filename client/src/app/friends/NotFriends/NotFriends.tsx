@@ -8,8 +8,8 @@ export default function NotFriends(props: {wannabees: Friend[]} ) {
         {props.wannabees.length !== 0 && <div id="big-tobe-friends-div">
             <h2 id="friends">Want to be friends</h2>
             {props.wannabees.map(wannabe => (
-                        <div key={wannabe.id} >
-                                <div id="tobe-friends-div">
+                    <div key={wannabe.id} >
+                        <div id="tobe-friends-div" key={wannabe.id}>
                                     <Link to={`/user/${wannabe.id}`} id="link-decoration-none">
                                         <img src={wannabe.profile_pic_url} alt={wannabe.first} 
                                         id='friends-img'/>

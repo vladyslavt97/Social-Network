@@ -5,8 +5,18 @@ const compression = require("compression");
 const path = require("path");
 // const helmet = require("helmet");
 // app.use(helmet());
-const { PORT = 3001, SESSION_SECRET } = process.env;
+const { PORT = 3001, SESSION_SECRET, WEB_URL } = process.env;
 
+
+//SOCKET
+const server = require('http').Server(app);
+const io = require('socket.io')(server, {
+    allowRequest: (req, callback) =>
+        callback(null, req.headers.referer.startsWith(WEB_URL))
+});
+
+
+// end of socket setup
 
 app.use(compression());
 
@@ -63,6 +73,8 @@ app.use(notificationsRouter);
 app.use(friendsRouter);
 app.use(deleteMyUserRouter);
 
+
+
 //given setup below
 app.get("/user/id.json", (req, res) => {
     res.json({ userId: req.session.userId });
@@ -77,6 +89,31 @@ app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));
 });
 
-app.listen(PORT, function () {
+server.listen(PORT, function () {
     console.log(`Express server listening on port ${PORT}`);
+});
+
+
+
+
+// ----------
+// SOCKET
+let userIdentification = 0;
+let userOnline = [];
+io.on('connection', function(socket) {
+    console.log(`socket with the id ${socket.id} is now connected`);
+
+    userOnline.push({socketId: socket.id, user: userIdentification++});
+
+    socket.on('disconnect', function() {
+        console.log(`socket with the id ${socket.id} is now disconnected`);
+    });
+
+    socket.on('thanks', function(data) {
+        console.log(data);
+    });
+
+    socket.emit('welcome', {
+        message: 'Welome. It is nice to see you'
+    });
 });
