@@ -15,22 +15,6 @@ export function Friends (){
         return !el.accepted;
     }));
 
-    // useEffect(() => {
-    //         fetch(`/friendss`, {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             }
-    //         })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             dispatch(friendsUpdated(data.myFriends))
-    //         })
-    //         .catch(err => {
-    //                 console.log('er in fetching friends: ', err);
-    //             });
-    // }, [])
-
     return <div>
                 <div id="allfriends-and-wannabees">
                     <TrueFriends friends={friends}/>

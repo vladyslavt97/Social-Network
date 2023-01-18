@@ -14,11 +14,11 @@ interface Notifications{
 }
 
 export function Notifications() {
-    const [notifications, setNotifications] = useState<Notifications []>([]);
-    const [notificationsCount, setNotificationsCount] = useState<any>('');
-
-    const state = useSelector<FriendsState, Friend[]>((state) =>state.friends);
-    console.log('state! in notifications: ', state);
+    const notifications = useSelector<FriendsState, Friend[]>((state) =>state.friends.filter((el)=>{
+       return !el.accepted;
+    }));
+    console.log('state! in notifications: ', notifications);
+    const notificationsCount = notifications.length;
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -36,28 +36,6 @@ export function Notifications() {
                     console.log('er in fetching friends: ', err);
                 });
     }, [])
-    // const dispatch = useDispatch();
-//     useEffect(() => {
-//         if(state.length === 0){
-//             fetch(`/notifications`, {
-//                 method: 'GET',
-//                 headers: {
-//                     'Content-Type': 'application/json'
-//                 }
-//             })
-//             .then(response => response.json())
-//             .then(data => {
-//                 setNotificationsCount(data.notificationsCount)
-//                 setNotifications(data.notificationsForMe)
-//                 //both the count and notifications should be updated
-//                 // dispatch(notificationsCount(data.notificationsCount))
-                
-//             })
-//             .catch(err => {
-//                     console.log('er in fetching notifications: ', err);
-//                 });
-//         }
-// }, [])
 
     const [visibleNotifications, setVisibleNotifications] = useState<any>(false)
     const toggleNotifications = () => {
