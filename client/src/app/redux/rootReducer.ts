@@ -52,13 +52,16 @@ export default function friendsReducer(state = initialState, action: Action) {
     }
     if (action.type === "unfriend") {
         const unfriend = state.friends.map((friend) => {
-            if (friend.fid === action.payload.id) {
-                return {
-                    ...friend,
-                    accepted: false,
-                };
+            console.log('fid', friend.fid);
+            console.log('fid a', action.payload.id);
+        const remove = state.friends.findIndex((el)=>{
+            el.fid === friend.fid;
+        })
+        let newStateOfFriends = state.friends;
+            if (friend.fid === action.payload.id) {//6 === 6
+                return newStateOfFriends.splice(remove, 1);
             }
-            return friend;
+            return newStateOfFriends;
         });
         return {
             ...state,
