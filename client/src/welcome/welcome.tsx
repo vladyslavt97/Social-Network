@@ -4,6 +4,7 @@ import { Logo } from './components/logo';
 import { Login } from './login/login';
 import { Reset } from './reset/resetpwd';
 import "./earth.css"
+import "./welcome.css"
 
 export function Welcome() {
     return <div id="welcome">

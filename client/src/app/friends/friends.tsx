@@ -7,25 +7,20 @@ import TrueFriends from "./TrueFriends/TrueFriends";
 import NotFriends from "./NotFriends/NotFriends";
 
 export function Friends (){
-    const friendS = useSelector<FriendsState, Friend[]>((state) => state.friends.length !== 0 && state.friends);
+    const friendS = useSelector<FriendsState, Friend[]>((state) => state.friends);
     console.log('friendS', friendS);
     
-    const friendTrue = useSelector<FriendsState, Friend[]>((state) => state.friends.filter((el)=>{
+    const friends = useSelector<FriendsState, Friend[]>((state) => state.friends.filter((el)=>{
        return el.accepted;
     }));
 
-    const friendFalse = useSelector<FriendsState, Friend[]>((state) => state.friends.filter((el)=>{
+    const wannabees = useSelector<FriendsState, Friend[]>((state) => state.friends.filter((el)=>{
         return !el.accepted;
     }));
 
-    
-    const [friends, setFriends] = useState([]);
-    // const [friends, setFriends] = useState<Friends []>([]);
-    const [wannabees, setWannabeees] = useState([]);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (friendS.length === 0){
             fetch(`/friendss`, {
                 method: 'GET',
                 headers: {
@@ -34,56 +29,12 @@ export function Friends (){
             })
             .then(response => response.json())
             .then(data => {
-                const trueFriends = data.myFriends.filter((el: any) => 
-                        el.accepted !== false);
-                setFriends(trueFriends)
-                
-                const notFriends = data.myFriends.filter((el: any) => 
-                        el.accepted !== true);
-                setWannabeees(notFriends);
                 dispatch(friendsUpdated(data.myFriends))
             })
             .catch(err => {
                     console.log('er in fetching friends: ', err);
                 });
-        } else {
-                setFriends(friendTrue);
-                setWannabeees(friendFalse);
-            }
-    }, [friendS])
-
-    //  useEffect(() => {
-    //     // if (friendS.length === 0){
-    //         fetch(`/friendss`, {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             }
-    //         })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             const trueFriends = data.myFriends.filter((el: any) => 
-    //                     el.accepted !== false);
-    //             setFriends(trueFriends)
-                
-    //             const notFriends = data.myFriends.filter((el: any) => 
-    //                     el.accepted !== true);
-    //             setWannabeees(notFriends);
-    //             dispatch(friendsUpdated(data.myFriends))
-    //         })
-    //         .catch(err => {
-    //                 console.log('er in fetching friends: ', err);
-    //             });
-    //     // } else {
-    //     //         setFriends(friendTrue);
-    //     //         setWannabeees(friendFalse);
-    //     //     }
-    // }, [friendS])
-
-    // useEffect(()=>{
-    //     setFriends(friendTrue);
-    //     setWannabeees(friendFalse);
-    // }, [friendTrue, friendFalse])
+    }, [])
 
     return <div>
                 <div id="allfriends-and-wannabees">
