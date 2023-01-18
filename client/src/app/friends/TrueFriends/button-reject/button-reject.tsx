@@ -25,7 +25,7 @@ export default function ButtonRejectFrienship(props: ButtonRejectFrienshipProps)
                 response.json())
             .then((data) => {
                 console.log('deleteFriendshipReq in Button Reject fetch post', data.deletedFriendReqs[0] );
-                dispatch(unfriend(data.deletedFriendReqs[0] ));
+                dispatch(unfriend(data.deletedFriendReqs[0]));
             })
             .catch((error) => {
                 console.error('Error caught in deleteFriendshipReq fetch:', error);

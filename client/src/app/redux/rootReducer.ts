@@ -1,20 +1,7 @@
+import { Friend } from "../interface";
+
 export interface FriendsState {
     friends: Friend[];
-}
-
-export interface Friend {
-    fid: Number;
-    sender_id: Number;
-    recipient_id: Number;
-    accepted: Boolean;
-    timestamp: Number;
-    first: String;
-    last: String;
-    email: String;
-    profile_pic_url: String;
-    bio: String;
-    password: String;
-    created_at: String;
 }
 
 type Action = {
@@ -53,11 +40,8 @@ export default function friendsReducer(state = initialState, action: Action) {
     if (action.type === "unfriend") {
         console.log('got heeerer');
         let filtered = state.friends.filter((el)=>{
-            if (el.fid === action.payload.id) {//6 === 6
             return el.fid !== action.payload.id;
-            };
         });
-
         return {
             ...state,
             friends: filtered,

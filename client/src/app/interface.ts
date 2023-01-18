@@ -6,9 +6,18 @@ export interface UserInfo {
     email: string
 }
 
-export interface Friend{
+export interface Friend {
     id: number,
-    profile_pic_url: string,
-    first: string,
-    last: string,
+    fid: number;
+    sender_id: number;
+    recipient_id: number;
+    accepted: boolean;
+    timestamp: number;
+    first: string;
+    last: string;
+    email: string;
+    profile_pic_url: string;
+    bio: string;
+    password: string;
+    created_at: string;
 }

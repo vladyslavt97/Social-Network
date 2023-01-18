@@ -3,7 +3,9 @@ import "./notifications.css"
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { FriendsState } from "../../redux/rootReducer";
-import { Friend } from "../../redux/rootReducer";
+import { Friend } from "../../interface";
+import { friendsUpdated } from "../../redux/actions";
+
 interface Notifications{
     id: number,
     first: string,
@@ -15,29 +17,47 @@ export function Notifications() {
     const [notifications, setNotifications] = useState<Notifications []>([]);
     const [notificationsCount, setNotificationsCount] = useState<any>('');
 
-    const friends = useSelector<FriendsState, Friend[]>((state) =>state.friends && state.friends);
-    console.log('state!: ', friends);
+    const state = useSelector<FriendsState, Friend[]>((state) =>state.friends);
+    console.log('state! in notifications: ', state);
+
     const dispatch = useDispatch();
-    //fetch the info of friend_requests
     useEffect(() => {
-        fetch(`/notifications`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            setNotificationsCount(data.notificationsCount)
-            setNotifications(data.notificationsForMe)
-            //bothe the count and notifications should be updated
-            // dispatch
-            
-        })
-        .catch(err => {
-                console.log('er in fetching notifications: ', err);
-            });
+            fetch(`/friendss`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                dispatch(friendsUpdated(data.myFriends))
+            })
+            .catch(err => {
+                    console.log('er in fetching friends: ', err);
+                });
     }, [])
+    // const dispatch = useDispatch();
+//     useEffect(() => {
+//         if(state.length === 0){
+//             fetch(`/notifications`, {
+//                 method: 'GET',
+//                 headers: {
+//                     'Content-Type': 'application/json'
+//                 }
+//             })
+//             .then(response => response.json())
+//             .then(data => {
+//                 setNotificationsCount(data.notificationsCount)
+//                 setNotifications(data.notificationsForMe)
+//                 //both the count and notifications should be updated
+//                 // dispatch(notificationsCount(data.notificationsCount))
+                
+//             })
+//             .catch(err => {
+//                     console.log('er in fetching notifications: ', err);
+//                 });
+//         }
+// }, [])
 
     const [visibleNotifications, setVisibleNotifications] = useState<any>(false)
     const toggleNotifications = () => {

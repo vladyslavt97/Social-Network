@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 
 import { useDispatch, useSelector } from "react-redux";
+import { makeFriend } from "../../../redux/actions";
 // import { makeFriend } from "../../../redux/old/friends/slice.js";
 
 export function FriendRequestsButton() {
@@ -96,7 +97,7 @@ export function FriendRequestsButton() {
     },[deleteButton])
 
 
-    //update
+    //accept
     const dispatch = useDispatch();
 
     const [updateButton, setUpdateButton] = useState(false);
@@ -118,7 +119,7 @@ export function FriendRequestsButton() {
                 console.log('updateFriendshipReq fetch post', data.updatedFriendReqs.rows[0] );
                 setFriendRequsts( data.updatedFriendReqs.rows[0] )
                 setUpdateButton(false);
-                // dispatch(makeFriend(data.updatedFriendReqs.rows[0]));
+                dispatch(makeFriend(data.updatedFriendReqs.rows[0]));
             })
             .catch((error) => {
                 console.error('Error caught in get deleteFriendshipReq fetch:', error);
