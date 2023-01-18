@@ -1,7 +1,5 @@
-import { useEffect} from "react"
 import "./friends.css"
-import { friendsUpdated} from "../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Friend } from "../interface"
 import TrueFriends from "./TrueFriends/TrueFriends";
 import NotFriends from "./NotFriends/NotFriends";

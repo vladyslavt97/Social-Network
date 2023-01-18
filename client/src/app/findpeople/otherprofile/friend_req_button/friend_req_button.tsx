@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { makeFriend } from "../../../redux/actions";
-// import { makeFriend } from "../../../redux/old/friends/slice.js";
 
 export function FriendRequestsButton() {
     let { id } = useParams();
@@ -130,15 +129,12 @@ export function FriendRequestsButton() {
     const state1 = useSelector((state) => state);
     console.log('state in btn123!: ', state1);
 
+    console.log('thisReqIsForMedfdfdfdf:', thisReqIsForMe);
+    
     return <div>
-        {/* if nothing in db */}
         {!friendRequsts && <button onClick={handleClick}>Send Friend Request 📨</button>}
-        {/* if there is sth in db for these users but its false */}
         {friendRequsts?.accepted === false && !thisReqIsForMe && <button onClick={handleDelete}>Cancel Friend Request ❌</button>}
-        {/* if my id is matching with the id of the recepinet, and the id of the sender is a match as well with params */}
         {friendRequsts?.accepted === false && thisReqIsForMe && <button onClick={handleUpdate}>Accept friendship ✅</button>}
-        {/* there is a true for these two users */}
         {friendRequsts?.accepted === true && <button onClick={handleDelete}>Unfriend 💔</button>}
-        {/* <Notifications friendRequsts={friendRequsts}/> */}
     </div>
 }

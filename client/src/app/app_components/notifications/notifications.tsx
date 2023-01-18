@@ -14,7 +14,7 @@ interface Notifications{
 }
 
 export function Notifications() {
-    const notifications = useSelector<FriendsState, Friend[]>((state) =>state.friends.filter((el)=>{
+    const notifications = useSelector<FriendsState, Friend[]>((state) =>state.friends.filter(el=>{
        return !el.accepted;
     }));
     console.log('state! in notifications: ', notifications);

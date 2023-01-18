@@ -5,7 +5,7 @@ const compression = require("compression");
 const path = require("path");
 // const helmet = require("helmet");
 // app.use(helmet());
-const { PORT = 3001, SESSION_SECRET, WEB_URL } = process.env;
+const { PORT, SESSION_SECRET, WEB_URL} = process.env;
 
 
 //SOCKET
@@ -54,6 +54,10 @@ const { notificationsRouter } = require('./routes/notifications/notifications');
 const { friendsRouter } = require('./routes/friends');
 const { deleteMyUserRouter } = require('./routes/deletion');
 
+//Socket
+// const {io} = require('./socketIO');
+
+
 app.use(loginRouter);
 app.use(registerRouter);
 app.use(resetRouter);
@@ -72,6 +76,9 @@ app.use(updateFriendReqRouter);
 app.use(notificationsRouter);
 app.use(friendsRouter);
 app.use(deleteMyUserRouter);
+
+//
+// app.use(io);
 
 
 

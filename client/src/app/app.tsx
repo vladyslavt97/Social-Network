@@ -12,6 +12,7 @@ import "./app.css"
 import { OtherProfile } from "./findpeople/otherprofile/otherprofile"
 import { UserInfo } from './interface';
 import { OnlineUsers } from './app_components/onlineusers/onlineusers';
+import Messages from './messages/messages';
 
 interface AppState {
     userInfo: UserInfo,
@@ -139,6 +140,9 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                                 }></Route>
                         <Route path="/friends" 
                                 element={<Friends />}
+                                ></Route>
+                        <Route path="/messages" 
+                                element={<Messages />}
                                 ></Route>
                     </Routes>
                     <Notifications />
