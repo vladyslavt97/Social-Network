@@ -15,33 +15,22 @@ export const friendsSlice = createSlice({
   name: 'friends',
   initialState,
   reducers: {
-    makeFriend: (state, friendsAction: PayloadAction<Friend>) => {
-      state.friends.map((friend) => {
-        console.log('some log');
-        if (friend.fid === friendsAction.payload.id) {
-          ...friend,
-          accepted: true,
-        }
-      })
+    friendsState: (state, friendsAction: PayloadAction<Friend>) => {
+      state.friends = friendsAction.payload;
     },
-    unfriend: (state, friendsAction: PayloadAction<Friend[]>) => {
-      let filtered = state.friends.filter((el)=>{
-            return el.fid !== action.payload.id;
-        }
-        return {
-            ...state,
-            friends: filtered,
-        };
+    acceptFriend: (state, friendsAction: PayloadAction<Friend>) => {
+      const foundFriend = state.friends.findIndex(friend => friend.fid === friendsAction.payload.id);
+          state.friends[foundFriend].accepted = true;
     },
-    friendsUpdated: (state, friendsAction: PayloadAction<Friend[]>) => {
-      ...state,
-      friends: payload,
-    }
+    unfriend: (state, friendsAction: PayloadAction<Friend>) => {
+      const unfriendedFriend = state.friends.findIndex(el=> el.fid !== friendsAction.payload.id);
+        state.friends.splice(unfriendedFriend, 1);
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { makeFriend, unfriend, friendsUpdated } = friendsSlice.actions
+export const { acceptFriend, unfriend, friendsState } = friendsSlice.actions
 export const friends = (state: RootState) => state.friends.value
 export default friendsSlice.reducer
 
@@ -49,7 +38,7 @@ export default friendsSlice.reducer
 // export default function friendsReducer(state = initialState, action: Action) {
 //     console.log("action payload in rootReducer: ", action.payload);
 
-//     if (action.type === "friendsUpdated") {
+//     if (action.type === "friendsState") {
 //         return {
 //             ...state,
 //             friends: action.payload,

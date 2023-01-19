@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { FriendsState } from "../../redux/friendsSlice";
 import { Friend } from "../../interface";
-import { friendsUpdated } from "../../redux/friendsSlice";
+import { friendsState } from "../../redux/friendsSlice";
 
 interface Notifications{
     id: number,
@@ -30,7 +30,7 @@ export function Notifications() {
             })
             .then(response => response.json())
             .then(data => {
-                dispatch(friendsUpdated(data.myFriends))
+                dispatch(friendsState(data.myFriends))
             })
             .catch(err => {
                     console.log('er in fetching friends: ', err);
