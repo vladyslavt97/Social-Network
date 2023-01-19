@@ -44,6 +44,10 @@ export function Bio(props: BioProps) {
         setBio(props.userInfo.bio);
     }, [props.userInfo.bio]);
     
+
+    console.log('showBET 1: ', showBET);
+    console.log('props.userInfo.bio 2: ', props.userInfo.bio);
+    
     return <div >
         <div id="thebio">
             {props.userInfo.bio && !showBET && <h1 id="bioresult">{props.userInfo.bio}</h1>}

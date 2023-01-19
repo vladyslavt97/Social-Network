@@ -7,8 +7,10 @@ import { makeFriend } from "../../../redux/actions";
 
 export function FriendRequestsButton() {
     let { id } = useParams();
-    const state = useSelector((state) => state);
-    console.log('state in btn!: ', state);
+    // const state = useSelector((state) => state);
+    // console.log('state in btn!: ', state);
+    console.log('id: ', id);
+    
 
     //getting the currect status of friendship
     const [friendRequsts, setFriendRequsts] = useState<any>({})
@@ -33,7 +35,8 @@ export function FriendRequestsButton() {
             .catch((error) => {
                 console.error('Error caught in get checkfriendreq fetch:', error);
             });
-    },[])
+    },[id])
+    //whenever id changes, it will trigger the use effect again
 
 
     //insert
@@ -129,8 +132,10 @@ export function FriendRequestsButton() {
     const state1 = useSelector((state) => state);
     console.log('state in btn123!: ', state1);
 
-    console.log('thisReqIsForMedfdfdfdf:', thisReqIsForMe);
+    console.log('thisReqIsForMe 123:', thisReqIsForMe);
+    console.log('friendRequsts 233:', friendRequsts);
     
+
     return <div>
         {!friendRequsts && <button onClick={handleClick}>Send Friend Request 📨</button>}
         {friendRequsts?.accepted === false && !thisReqIsForMe && <button onClick={handleDelete}>Cancel Friend Request ❌</button>}
