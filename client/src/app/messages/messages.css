@@ -1,18 +1,34 @@
 #other-messages-div {
-    background-color: rgb(193, 255, 255);
+    /* background-color: rgba(193, 255, 255, 0.169); */
     overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 #chat-div {
-    background-color: rgb(194, 255, 191);
+    background-image: url('chat-div-background.jpg');
+    width: 100%;
+    background-size: cover;
+    /* filter: brightness(40%); */
     border-top: 3px solid green;
     overflow-y: auto;
+    display: flex;
+    background-color: green;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
-#textarea-div{
+#chat{
+    color: white;
+    z-index: 2;
+}
+#messages-divs{
     display: grid;
         grid-template-rows: 1fr 1fr 52px;
         min-height: 87vh;
 }
-#textarea-messages-div{
+#textarea-messages-form{
     display: grid;
     grid-template-columns: 80% 20%;
 }

@@ -6,7 +6,7 @@ import './messages.css'
 
 
 export default function Messages() {
-  const messages = useSelector((state: RootState) => state.messages.messagesValue);
+  const messages = useSelector((state: RootState) => state.messages);
   console.log('messages componenet State: ', messages);
   
   const handleSubmitMessages = (event: React.FormEvent<HTMLFormElement>) => {
@@ -22,20 +22,26 @@ export default function Messages() {
   const handleMessageTextarea = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         event.target.value;
         // 1. get the text from e.currentTarget.value
-      // 2. update the message state (in this component only)
+        // 2. update the message state (in this component only)
   }
 
   return (
     <div>
-      <div id='textarea-div'>
+      <div id='messages-divs'>
         <div id='other-messages-div'>
             <h2>other messages</h2>
             <h1 id='no-messages'>there are no messages for you!</h1>
         </div>
 
         {/* CHAT */}
-        <div id='chat-div'>
-            Chat
+        <div id='chat-div'> 
+            <h1 id='chat'>CHAT</h1>
+            {/* the sate is undefined? */}
+            {/* {messages.map(message => { */}
+              <div>
+                {/* <h6>{message.recipient_id}</h6> */}
+              </div>
+            {/* })} */}
         </div>
 
         {/* textarea */}
