@@ -7,23 +7,23 @@ import './messages.css'
 
 export default function Messages() {
   const messages = useSelector((state: RootState) => state.messages.messagesValue);
-  console.log('messages componenet: ', messages);
+  console.log('messages componenet State: ', messages);
   
-  // const onChatKeyDown = (e) => {
-  //     if (e.code === "Enter") {
-  //         e.preventDefault();
-  //         // no need to `fetch`! Just emit via the socket.
-  //         socket.emit("chatMessage", { message: message.trim() });
-  //         // clear the input field!
-  //     }
-  // };
+  const handleSubmitMessages = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+      // if (e.code === "Enter") {
+        // no need to `fetch`! Just emit via the socket.
+        socket.emit("chatMessage", { message: messages });
+        // clear the input field!
+  }
 
-  // const onMessageChange = (e) => {
-  //     // 1. get the text from e.currentTarget.value
-  //     // 2. update the message state (in this component only)
-  // }
 
-  // ...
+      
+  const handleMessageTextarea = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        event.target.value;
+        // 1. get the text from e.currentTarget.value
+      // 2. update the message state (in this component only)
+  }
 
   return (
     <div>
@@ -39,17 +39,17 @@ export default function Messages() {
         </div>
 
         {/* textarea */}
-        <div id='textarea-messages-div'>
+        <form onSubmit={handleSubmitMessages} id='textarea-messages-form'>
             <textarea  
                 id="textarea-messages"
                 name="message"
                 placeholder="type your message here"
                 // onKeyDown={(e) => onChatKeyDown(e)}
-                // onChange={(e) => onMessageChange(e)}
-                // value={messages}
+                onChange={handleMessageTextarea}
+                // value={messages[0].}
             ></textarea>
             <button id='send-button'>SEND</button>
-        </div>
+        </form>
       </div>
     </div>
   )

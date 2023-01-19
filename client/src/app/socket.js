@@ -1,8 +1,5 @@
 import { io } from "socket.io-client";
-import {
-    messagesState,
-    receivedMessage,
-} from "./redux/messagesSlice";
+import { messagesState, receivedMessage} from "./redux/messagesSlice";
 
 
 export let socket;
