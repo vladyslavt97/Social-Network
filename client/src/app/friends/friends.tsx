@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Friend } from "../interface"
 import TrueFriends from "./TrueFriends/TrueFriends";
 import NotFriends from "./NotFriends/NotFriends";
-import { FriendsState } from "../redux/friendsReducer";
+import { FriendsState } from "../redux/friendsSlice";
 
 export function Friends (){
     const friends = useSelector<FriendsState, Friend[]>((state) => state.friends.filter((el)=>{

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 
 import { useDispatch, useSelector } from "react-redux";
-import { makeFriend } from "../../../redux/actions";
+import { makeFriend } from "../../../redux/friendsSlice";
 
 export function FriendRequestsButton() {
     let { id } = useParams();
