@@ -8,7 +8,6 @@ const deleteFriendReqRouter = express.Router();
 deleteFriendReqRouter.delete('/deletefriendshipreq/:id', (req, res) => {
     let me = req.session.userId;
     let anotherUser = req.params.id;
-    // console.log('me', me, 'anotherUser', req.params);
     deleteFromFriend_RequestsDB(me, anotherUser)
         .then((data) => {
             res.json({success: true, deletedFriendReqs: data.rows});

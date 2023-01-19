@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { FriendsState } from "../../redux/friendsSlice";
 import { RootState } from "../../redux/store";
-import { Friend } from "../../interface";
 import { friendsState } from "../../redux/friendsSlice";
 
 interface Notifications{
@@ -19,8 +18,6 @@ export function Notifications() {
     const notifications = useSelector((state: RootState) =>state.friends.value.filter(el=>{
         return !el.accepted;
     }));
-    console.log('sf', notifications);
-    console.log('state! in notifications: ', notifications);
     const notificationsCount = notifications.length;
 
     const dispatch = useDispatch();
@@ -43,7 +40,6 @@ export function Notifications() {
     const [visibleNotifications, setVisibleNotifications] = useState<any>(false)
     const toggleNotifications = () => {
         setVisibleNotifications(!visibleNotifications);
-        console.log('visibleNotifications', visibleNotifications);
     }
     
     return <div>

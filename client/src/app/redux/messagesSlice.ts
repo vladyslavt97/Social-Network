@@ -1,20 +1,33 @@
-// import { Message, Action } from "../interface";
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { Message } from "../interface";
 
-// interface MessagesState {
-//     messages: Message[];
-// }
+export interface FriendsState {
+    messagesValue: Message[];
+}
 
-// const initialState: MessagesState = {
-//     messages: [],
-// };
+const initialState: FriendsState = {
+    messagesValue: [],
+};
 
-// export default function messagesReducer(messages = initialState, action: Action) {
-//     switch (action.type) {
-//         case "/messages/recent-received":
-//             return action.payload.messages;
-//         case "/messages/single-received":
-//             // return [...messages, action.payload.message];
-//         default:
-//             return messages;
-//     }
-// }
+export const messagesSlice = createSlice({
+  name: 'messages',
+  initialState,
+  reducers: {
+    messagesState: (state, messagesAction: PayloadAction<Message[]>) => {
+      console.log('fp in messages', messagesAction.payload);
+      state.messagesValue = messagesAction.payload;
+    },
+    receivedMessage: (state, messagesAction: PayloadAction<number>) => {
+        console.log('messagesAction received: ', messagesAction);
+        console.log('state.messagesValue: ', state.messagesValue);
+        
+        // return [...messages, messagesAction.payload.message];
+    }
+  },
+});
+
+// Action creators are generated for each case reducer function
+export const { messagesState, receivedMessage,} = messagesSlice.actions
+// reducer
+export default messagesSlice.reducer

@@ -1,9 +1,7 @@
 import "./friends.css"
 import { useSelector } from "react-redux";
-import { Friend } from "../interface"
 import TrueFriends from "./TrueFriends/TrueFriends";
 import NotFriends from "./NotFriends/NotFriends";
-import { FriendsState } from "../redux/friendsSlice";
 import { RootState } from "../redux/store";
 
 

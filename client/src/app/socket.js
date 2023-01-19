@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 import {
-    recentMessagesReceived,
-    singleMessageReceived,
+    messagesState,
+    receivedMessage,
 } from "./redux/messagesSlice";
 
 
@@ -17,13 +17,13 @@ export const initSocket = (store) => {
 
     // I receive a list of messages (prob. at the beginning)
     socket.on("chatMessages", (data) => {
-        const action = recentMessagesReceived(data.messages);
+        const action = messagesState(data.messages);
         store.dispatch(action);
     });
 
     // I receive a single message when someone has sent it to the server
     socket.on("chatMessage", (data) => {
-        const action = singleMessageReceived(data.message);
+        const action = receivedMessage(data.message);
         store.dispatch(action);
     });
 };

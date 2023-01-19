@@ -15,15 +15,10 @@ export const friendsSlice = createSlice({
   initialState,
   reducers: {
     friendsState: (state, friendsAction: PayloadAction<Friend[]>) => {
-      console.log('fp', friendsAction.payload);
-      
       state.value = friendsAction.payload;
     },
     acceptFriend: (state, friendsAction: PayloadAction<number>) => {
       const foundFriend = state.value.findIndex(friend => friend.fid === friendsAction.payload);
-      console.log('foundFriend', foundFriend);
-      console.log('friendsAction.payload', friendsAction.payload);
-      
           state.value[foundFriend].accepted = true;
     },
     unfriend: (state, friendsAction: PayloadAction<number>) => {
