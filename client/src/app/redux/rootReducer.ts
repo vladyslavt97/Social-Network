@@ -14,7 +14,7 @@ const initialState: FriendsState = {
 };
 
 export default function friendsReducer(state = initialState, action: Action) {
-    console.log("ap: ", action.payload);
+    console.log("action payload in rootReducer: ", action.payload);
 
     if (action.type === "friendsUpdated") {
         return {

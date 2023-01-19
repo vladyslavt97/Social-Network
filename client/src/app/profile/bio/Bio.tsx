@@ -7,6 +7,7 @@ interface BioProps{
 }
 
 export function Bio(props: BioProps) {
+            console.log('props: ', props);
             
     const [showBET, setShowBioEditorText] = useState(false);
     const showBioEditorTextarea = () => {
@@ -24,9 +25,7 @@ export function Bio(props: BioProps) {
         })
         .then(response => response.json())
         .then(data => {
-            //look for issue!!! 
             console.log('bio data: ', data);
-            
             setShowBioEditorText(false);
             setBio(data.myBio[0].bio);
 
@@ -47,17 +46,18 @@ export function Bio(props: BioProps) {
 
     console.log('showBET 1: ', showBET);
     console.log('props.userInfo.bio 2: ', props.userInfo.bio);
+    console.log('bio 3: ', bio);
     
     return <div >
         <div id="thebio">
-            {props.userInfo.bio && !showBET && <h1 id="bioresult">{props.userInfo.bio}</h1>}
+            {props.userInfo.bio && !showBET && <h1 id="bioresult">{bio}</h1>}
             <br />
             {props.userInfo.bio && !showBET && <p onClick={showBioEditorTextarea} id="editbiobutton">| edit bio |</p>}
         </div>
 
         {!props.userInfo.bio && !showBET && <p onClick={showBioEditorTextarea} id="addyourbio">Add your bio</p>}
 
-        {showBET && <form onSubmit={handleBioSubmit} className="file-upload">
+        {showBET && <form onSubmit={handleBioSubmit} className="bio-upload">
                         <h1 id="bio">BIO</h1>
                         <textarea 
                         onChange={handleBio} 

@@ -174,3 +174,31 @@ module.exports.deleteUserAndFriendshipsDB = (myId) => {
             console.log('error:(((');
         });
 };
+
+
+
+// ------------------------------MESSAGES ! ! !---------------------------- //
+// insert a new message
+// - sender_id
+// - message (text)
+module.exports.insertMessage = (sender_id, message) => {
+    return db.query(`
+    INSERT INTO messages (sender_id, message) 
+    VALUES ($1, $2) 
+    RETURNING *;`, [sender_id, message]);
+};
+
+module.exports.getLatestMessages = (limit = 10) => {
+    const sql = `
+        SELECT * FROM (
+            SELECT m.id, m.message, m.created_at,
+                u.first_name, u.last_name, u.profile_pic_url
+            FROM messages m
+            JOIN users u ON m.sender_id = u.id
+            ORDER BY m.created_at DESC
+            limit $1
+        ) as results ORDER BY created_at ASC
+    `;
+
+    return db.query(sql, [limit]);
+};

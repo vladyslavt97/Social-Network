@@ -15,6 +15,10 @@ const io = require('socket.io')(server, {
         callback(null, req.headers.referer.startsWith(WEB_URL))
 });
 
+//Socket
+// const {io} = require('./socketIO');
+//
+// app.use(io);
 
 // end of socket setup
 
@@ -31,9 +35,8 @@ app.use(
 //Add the middleware that makes sure that our server parses incoming json/application requests. 
 //We need this so that we can access values in our req.body more easily
 app.use(express.json());
-
-
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
+
 
 const { loginRouter } = require('./routes/login');
 const { registerRouter } = require('./routes/registration');
@@ -53,9 +56,6 @@ const { updateFriendReqRouter } = require('./routes/friend_req_button/updatefrie
 const { notificationsRouter } = require('./routes/notifications/notifications');
 const { friendsRouter } = require('./routes/friends');
 const { deleteMyUserRouter } = require('./routes/deletion');
-
-//Socket
-// const {io} = require('./socketIO');
 
 
 app.use(loginRouter);
@@ -77,8 +77,7 @@ app.use(notificationsRouter);
 app.use(friendsRouter);
 app.use(deleteMyUserRouter);
 
-//
-// app.use(io);
+
 
 
 

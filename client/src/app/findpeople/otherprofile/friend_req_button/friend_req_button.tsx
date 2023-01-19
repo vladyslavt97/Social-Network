@@ -75,9 +75,9 @@ export function FriendRequestsButton() {
     }
     useEffect(()=>{
         if(deleteButton){
-            console.log('1st');
+            console.log('1st', id);
             
-        fetch (`/deletefriendshipreq/${id}`, {
+        fetch(`/deletefriendshipreq/${id}`, {
             method: 'DELETE', 
             headers: {
                 'Content-Type': 'application/json',
@@ -86,14 +86,14 @@ export function FriendRequestsButton() {
             .then((response) => 
                 response.json())
             .then((data) => {
-                console.log('deleteFriendshipReq fetch post', data.deletedFriendReqs.rows[0] );
-                setFriendRequsts( data.deletedFriendReqs.rows[0] )
-                setThisReqIsForMe( data.deletedFriendReqs.rows[0])
+                console.log('deleteFriendshipReq fetch post', data.deletedFriendReqs.rows );
+                setFriendRequsts( data.deletedFriendReqs.rows)
+                setThisReqIsForMe( data.deletedFriendReqs.rows)
                 setInsertButton(false);
                 
             })
             .catch((error) => {
-                console.error('Error caught in get deleteFriendshipReq fetch:', error);
+                console.error('Error caught in deleteFriendshipReq fetch:', error);
             });
         }
     },[deleteButton])
@@ -131,9 +131,6 @@ export function FriendRequestsButton() {
     
     const state1 = useSelector((state) => state);
     console.log('state in btn123!: ', state1);
-
-    console.log('thisReqIsForMe 123:', thisReqIsForMe);
-    console.log('friendRequsts 233:', friendRequsts);
     
 
     return <div>
