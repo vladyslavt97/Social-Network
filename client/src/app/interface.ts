@@ -21,3 +21,17 @@ export interface Friend {
     password: string;
     created_at: string;
 }
+
+
+export interface Message {
+    id: number,
+    sender_id: number;
+    recipient_id: number;
+    timestamp: number;
+    created_at: string;
+}
+
+export type Action = {
+    type: String;
+    payload: any;
+};

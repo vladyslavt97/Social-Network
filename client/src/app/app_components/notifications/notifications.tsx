@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import "./notifications.css"
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { FriendsState } from "../../redux/rootReducer";
+import { FriendsState } from "../../redux/friendsReducer";
 import { Friend } from "../../interface";
 import { friendsUpdated } from "../../redux/actions";
 

@@ -4,6 +4,8 @@ import { Welcome } from './welcome/welcome';
 import { Provider } from "react-redux";
 import store from "./app/redux/store.js";
 
+import { initSocket } from "./app/socket";
+
 const main = document.querySelector("main");
 if (main){
     const root = createRoot(main);
@@ -11,6 +13,7 @@ if (main){
         .then(res => res.json())
         .then(data => {
             if (data.userId) {
+                initSocket(store);
                 root.render(<Provider store={store}>
                     <App />
                 </Provider>

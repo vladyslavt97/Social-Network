@@ -3,8 +3,6 @@ const express = require("express");
 const app = express();
 const compression = require("compression");
 const path = require("path");
-// const helmet = require("helmet");
-// app.use(helmet());
 const { PORT, SESSION_SECRET, WEB_URL} = process.env;
 
 

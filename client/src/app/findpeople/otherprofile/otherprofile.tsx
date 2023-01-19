@@ -3,7 +3,7 @@ import { useParams} from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { Friend } from "../../interface";
 import { FriendRequestsButton } from './friend_req_button/friend_req_button';
-import { FriendsState } from "../../redux/rootReducer";
+import { FriendsState } from "../../redux/friendsReducer";
 import { useEffect, useState } from "react";
 
 export function OtherProfile(){

@@ -1,13 +1,8 @@
-import { Friend } from "../interface";
+import { Friend, Action } from "../interface";
 
 export interface FriendsState {
     friends: Friend[];
 }
-
-type Action = {
-    type: String;
-    payload: any;
-};
 
 const initialState: FriendsState = {
     friends: [],
