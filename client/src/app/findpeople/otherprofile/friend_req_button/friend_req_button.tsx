@@ -5,10 +5,6 @@ import { acceptFriend } from "../../../redux/friendsSlice";
 
 export function FriendRequestsButton() {
     let { id } = useParams();
-    // const state = useSelector((state) => state);
-    // console.log('state in btn!: ', state);
-    console.log('id: ', id);
-    
 
     //getting the currect status of friendship
     const [friendRequsts, setFriendRequsts] = useState<any>({})
@@ -119,17 +115,13 @@ export function FriendRequestsButton() {
                 console.log('updateFriendshipReq fetch post', data.updatedFriendReqs.rows[0] );
                 setFriendRequsts( data.updatedFriendReqs.rows[0] )
                 setUpdateButton(false);
-                dispatch(acceptFriend(data.updatedFriendReqs.rows[0]));
+                dispatch(acceptFriend(data.updatedFriendReqs.rows[0].id));
             })
             .catch((error) => {
                 console.error('Error caught in get deleteFriendshipReq fetch:', error);
             });
         }
     },[updateButton])
-    
-    const state1 = useSelector((state) => state);
-    console.log('state in btn123!: ', state1);
-    
 
     return <div>
         {!friendRequsts && <button onClick={handleClick}>Send Friend Request 📨</button>}

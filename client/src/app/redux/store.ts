@@ -11,7 +11,7 @@ import friendsSlice from './friendsSlice';
 
 export const store = configureStore({
     reducer: { 
-        friendsSlice,
+        friends: friendsSlice,
         // messagesSlice,
     }
 });

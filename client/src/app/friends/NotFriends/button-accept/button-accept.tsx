@@ -25,7 +25,7 @@ export default function ButtonAcceptFriendship(props: ButtonAcceptFriendshipProp
             .then((data) => {
                 console.log('updateFriendshipReq fetch post', data.updatedFriendReqs.rows[0] );
                 setUpdateButton(false);
-                dispatch(acceptFriend(data.updatedFriendReqs.rows[0]));
+                dispatch(acceptFriend(data.updatedFriendReqs.rows[0].id));
             })
             .catch((error) => {
                 console.error('Error caught in get deleteFriendshipReq fetch:', error);

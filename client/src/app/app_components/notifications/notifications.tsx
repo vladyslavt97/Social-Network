@@ -3,6 +3,7 @@ import "./notifications.css"
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { FriendsState } from "../../redux/friendsSlice";
+import { RootState } from "../../redux/store";
 import { Friend } from "../../interface";
 import { friendsState } from "../../redux/friendsSlice";
 
@@ -14,9 +15,11 @@ interface Notifications{
 }
 
 export function Notifications() {
-    const notifications = useSelector<FriendsState, Friend[]>((state) =>state.friends.filter(el=>{
-       return !el.accepted;
+    
+    const notifications = useSelector((state: RootState) =>state.friends.value.filter(el=>{
+        return !el.accepted;
     }));
+    console.log('sf', notifications);
     console.log('state! in notifications: ', notifications);
     const notificationsCount = notifications.length;
 
