@@ -2,7 +2,7 @@ import { io } from "socket.io-client";
 import {
     recentMessagesReceived,
     singleMessageReceived,
-} from "./redux/messagesReducer";
+} from "./redux/messagesSlice";
 
 
 export let socket;

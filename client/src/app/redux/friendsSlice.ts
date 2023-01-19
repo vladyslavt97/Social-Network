@@ -15,15 +15,16 @@ export const friendsSlice = createSlice({
   name: 'friends',
   initialState,
   reducers: {
-    makeFriend: (state, friends: Friend[]) => {
+    makeFriend: (state, friendsAction: PayloadAction<Friend>) => {
       state.friends.map((friend) => {
-        if (friend.fid === PayloadAction<T>.id) {
-                ...friend,
-                accepted: true,
+        console.log('some log');
+        if (friend.fid === friendsAction.payload.id) {
+          ...friend,
+          accepted: true,
         }
-      }
-    };
-    unfriend: (state) => {
+      })
+    },
+    unfriend: (state, friendsAction: PayloadAction<Friend[]>) => {
       let filtered = state.friends.filter((el)=>{
             return el.fid !== action.payload.id;
         }
@@ -31,15 +32,16 @@ export const friendsSlice = createSlice({
             ...state,
             friends: filtered,
         };
-    }
-    friendsUpdated: (state) => {
-      
+    },
+    friendsUpdated: (state, friendsAction: PayloadAction<Friend[]>) => {
+      ...state,
+      friends: payload,
     }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { makeFriend, unfriend, incrementByAmount } = friendsSlice.actions
+export const { makeFriend, unfriend, friendsUpdated } = friendsSlice.actions
 export const friends = (state: RootState) => state.friends.value
 export default friendsSlice.reducer
 

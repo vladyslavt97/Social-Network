@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { FriendsState } from "../../redux/friendsSlice";
 import { Friend } from "../../interface";
-import { friendsUpdated } from "../../redux/actions";
+import { friendsUpdated } from "../../redux/friendsSlice";
 
 interface Notifications{
     id: number,

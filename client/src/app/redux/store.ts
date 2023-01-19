@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import friendsReducer from './friendsSlice';
-import messagesReducer from './messagesReducer';
+import friendsSlice from './friendsSlice';
+// import messagesSlice from './messagesSlice';
 
 // export default configureStore({
 //     reducer: { 
@@ -11,8 +11,8 @@ import messagesReducer from './messagesReducer';
 
 export const store = configureStore({
     reducer: { 
-        friendsReducer,
-        messagesReducer,
+        friendsSlice,
+        // messagesSlice,
     }
 });
 

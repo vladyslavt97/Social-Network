@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { makeFriend } from '../../../redux/actions';
+import { makeFriend } from '../../../redux/friendsSlice';
 
 interface ButtonAcceptFriendshipProps{
     id: number,

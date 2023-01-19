@@ -2,7 +2,7 @@ import { createRoot } from "react-dom/client";
 import { App } from './app/app';
 import { Welcome } from './welcome/welcome';
 import { Provider } from "react-redux";
-import store from "./app/redux/store.js";
+import {store} from "./app/redux/store";
 
 import { initSocket } from "./app/socket";
 
