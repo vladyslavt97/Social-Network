@@ -6,6 +6,9 @@ const path = require("path");
 const { PORT, WEB_URL} = process.env;
 const {cookieSession } = require('./cookiesession');
 app.use(cookieSession);
+
+const { getLatestMessages, insertMessage } = require('./db');
+
 // ------------------------------------ SOCKET  ------------------------------------ //
 const server = require('http').Server(app);
 const io = require('socket.io')(server, {
@@ -18,32 +21,29 @@ io.use((socket, next) => {
 });
 io.on("connection", async (socket) => {
     console.log("[social:socket] incoming socket connection", socket.id);
-    // const { userId } = socket.request.session;
-    // if (!userId) {
-    //     return socket.disconnect(true);
-    // }
+    //check if the user is signed in.
+    const { userId } = socket.request.session;
+    if (!userId) { // I am not going to send data if a user is not signed in
+        return socket.disconnect(true);
+    }
 
-    // retrieve the latest 10 messages
-    // const latestMessages = ...
+    // retrieve the latest 10 messages from DB
+    const latestMessages = getLatestMessages();
     // and send them to the client who has just connected
-    socket.emit('chatMessages', [
-        {
-            text: 'A first message'
-        },
-        {
-            text: 'A second message'
-        }
-    ]);
+    socket.emit('chatMessages', latestMessages);
 
-    // listen for when the connected user sends a message
-    socket.on('chatMessage', (text) => {
+    // listen for when the connected user sends a message later
+    socket.on('chatMessage', async (text) => {
     // store the message in the db
-    //    const newMessage = ...
+        //1. create a new message in the db
+        const newMessage = await insertMessage(userId, text);
+        //2. tell all connected sockets
+        console.log(newMessage);
+        io.emit('chatMessage', newMessage);//??
 
-    // then broadcast the message to all connected users (included the sender!)
-    // hint: you need the sender info (name, picture...) as well
-    // how can you retrieve it?
-    //    io.emit('chatMessage', ...);
+        // then broadcast the message to all connected users (included the sender!)//??
+
+    // hint: you need the sender info (name, picture...) as well //??
     });
 });
 // ------------------------------------ end of socket setup  ------------------------------------ //
@@ -114,8 +114,7 @@ server.listen(PORT, function () {
     console.log(`Express server listening on port ${PORT}`);
 });
 
-// ----------
-//  ---- SOCKET --- //??????
+// ---------- //  ---- old SOCKET --- //??????
 // let userIdentification = 0;
 // let userOnline = [];
 // io.on('connection', function(socket) {
