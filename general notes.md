@@ -1,5 +1,7 @@
 ## error displays in different cases of the reset :(
 
+## add anymation to message popup
+
 ## typescript and await anync (change on the weekend)
 
 Remember to put your cookie-session logic into a separate file, so you can add it as middleware to both the app and the socket.io instance.

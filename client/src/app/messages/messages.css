@@ -24,6 +24,7 @@
     overflow-x: hidden;
     display: flex;
     flex-direction: column-reverse;
+    
 }
 /* #column-reverse-reverse {
     display: flex;
@@ -62,4 +63,7 @@
     color: white;
     width: 30vw;
     text-align: left;
+    background-color: #44a1ff;
+        border-radius: 50px;
+        padding: 10px;
 }
