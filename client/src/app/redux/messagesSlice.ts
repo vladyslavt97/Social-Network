@@ -21,7 +21,6 @@ export const messagesSlice = createSlice({
         console.log('messagesAction received: ', messagesAction.payload);
         console.log('state.messagesValue: ', state.messagesValue);
         state.messagesValue.unshift(messagesAction.payload);
-        // ...state.messagesValue, messagesAction.payload;
     }
   },
 });

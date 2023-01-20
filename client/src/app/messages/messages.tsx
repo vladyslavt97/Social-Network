@@ -9,24 +9,32 @@ import './messages.css'
 export default function Messages() {
   const messages = useSelector((state: RootState) => state.messages);
   console.log('messages componenet State: ', messages);
-  const dispatch = useDispatch();
-  // const handleSubmitMessages = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  // const handleSubmitMessages = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   let message = (document.getElementById('textarea-messages') as HTMLInputElement | null)?.value;
+  //   console.log('message', message);
+  //   socket.emit("chatMessage", message);
+  //       // (document.getElementById('textarea-messages') as HTMLInputElement | null)?.value;
+  //       // message = (document.getElementById('textarea-messages') as HTMLInputElement | null)?.value;
+  //       // message = '';
+  // }
+  const [messageState, setMessageState] = useState('');
+  const handleChangeOfMessage = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setMessageState(event.target.value);
+  }
+
   const handleSubmitMessages = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    let message = (document.getElementById('textarea-messages') as HTMLInputElement | null)?.value;
-    console.log('message', message);
-    
-      // if (e.code === "Enter") {
-        // no need to `fetch`! Just emit via the socket.
-        // socket.emit("chatMessage", { message: message });
-        
-        socket.emit("chatMessage", message);
-        // dispatch(receivedMessage({message}));
-        // (document.getElementById('textarea-messages') as HTMLInputElement | null)?.value;
-
-        // message = (document.getElementById('textarea-messages') as HTMLInputElement | null)?.value;
-        // message = '';
+    socket.emit("chatMessage", messageState);
+    setMessageState('');
   }
+  // const onChatKeyDown = (e: KeyboardEvent<HTMLImageElement>) => {
+  //   if (e.code === "Enter") {
+  //     e.preventDefault();
+  //       socket.emit("chatMessage", messageState);
+  //       setMessageState("");
+  //   }
+  // }
 
   console.log('??', messages.messagesValue);
   
@@ -58,9 +66,9 @@ export default function Messages() {
                 id="textarea-messages"
                 name="message"
                 placeholder="type your message here"
-                // onKeyDown={(e) => onChatKeyDown(e)}
-                // onChange={handleMessageTextarea}
-                // value={messages}
+                onChange={handleChangeOfMessage}
+                // onKeyDown={onChatKeyDown}
+                value={messageState}
             ></textarea>
             <button id='send-button'>SEND</button>
         </form>

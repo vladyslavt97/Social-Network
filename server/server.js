@@ -46,7 +46,6 @@ io.on("connection", async (socket) => {
 
         // then broadcast the message to all connected users (included the sender!)//??
 
-    // hint: you need the sender info (name, picture...) as well //??
     });
 });
 // ------------------------------------ end of socket setup  ------------------------------------ //
@@ -116,24 +115,3 @@ app.get("*", function (req, res) {
 server.listen(PORT, function () {
     console.log(`Express server listening on port ${PORT}`);
 });
-
-// ---------- //  ---- old SOCKET --- //??????
-// let userIdentification = 0;
-// let userOnline = [];
-// io.on('connection', function(socket) {
-//     console.log(`socket with the id ${socket.id} is now connected`);
-
-//     userOnline.push({socketId: socket.id, user: userIdentification++});
-
-//     socket.on('disconnect', function() {
-//         console.log(`socket with the id ${socket.id} is now disconnected`);
-//     });
-
-//     socket.on('thanks', function(data) {
-//         console.log(data);
-//     });
-
-//     socket.emit('welcome', {
-//         message: 'Welome. It is nice to see you'
-//     });
-// });

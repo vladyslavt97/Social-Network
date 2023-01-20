@@ -41,7 +41,6 @@ function fileUpload(req, res, next) {
         res.send();
     } else {
         const { mimetype, filename, path, size } = req.file;
-        console.log('filename: ', filename);
         const fileContent = fs.readFileSync(path);
 
         s3.putObject({
