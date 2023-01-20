@@ -197,7 +197,7 @@ module.exports.getLatestMessages = (limit = 10) => {
             JOIN users u ON m.sender_id = u.id
             ORDER BY m.created_at DESC
             limit $1
-        ) as results ORDER BY created_at ASC
+        ) as results ORDER BY created_at DESC
     `;
 
     return db.query(sql, [limit]);

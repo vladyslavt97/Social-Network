@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { receivedMessage } from '../redux/messagesSlice';
 import { RootState } from '../redux/store';
 import { socket } from '../socket';
 import './messages.css'
@@ -8,22 +9,25 @@ import './messages.css'
 export default function Messages() {
   const messages = useSelector((state: RootState) => state.messages);
   console.log('messages componenet State: ', messages);
-  
+  const dispatch = useDispatch();
+  // const handleSubmitMessages = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
   const handleSubmitMessages = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    let message = (document.getElementById('textarea-messages') as HTMLInputElement | null)?.value;
+    console.log('message', message);
+    
       // if (e.code === "Enter") {
         // no need to `fetch`! Just emit via the socket.
-        socket.emit("chatMessage", { message: messages });
-        // clear the input field!!!
+        // socket.emit("chatMessage", { message: message });
+        
+        socket.emit("chatMessage", message);
+        // dispatch(receivedMessage({message}));
+        // (document.getElementById('textarea-messages') as HTMLInputElement | null)?.value;
+
+        // message = (document.getElementById('textarea-messages') as HTMLInputElement | null)?.value;
+        message = '';
   }
 
-
-      
-  const handleMessageTextarea = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        event.target.value;
-        // 1. get the text from e.currentTarget.value
-        // 2. update the message state (in this component only)
-  }
   console.log('??', messages.messagesValue);
   
   return (
@@ -36,13 +40,16 @@ export default function Messages() {
 
         {/* CHAT */}
         <div id='chat-div'> 
-            <h1 id='chat'>CHAT</h1>
             {/* the sate is undefined? */}
-            {messages.messagesValue.map(m => 
-              <div key={m.id} >
-                <h4 id="actual-message">{m.message}</h4>
-              </div>
-            )}
+            <div id="the-messages-div">
+              {messages.messagesValue.map(m => 
+                <div key={m.id} id="column-reverse-reverse">
+                  <h4 id="actual-message">{m.message}</h4>
+                  <br />
+                  <br />
+                </div>
+              )}
+            </div>
         </div>
 
         {/* textarea */}
@@ -52,8 +59,8 @@ export default function Messages() {
                 name="message"
                 placeholder="type your message here"
                 // onKeyDown={(e) => onChatKeyDown(e)}
-                onChange={handleMessageTextarea}
-                // value={messages[0].}
+                // onChange={handleMessageTextarea}
+                // value={messages}
             ></textarea>
             <button id='send-button'>SEND</button>
         </form>

@@ -22,7 +22,8 @@ export const initSocket = (store) => {//needs to update teh store
 
     // I receive a single message when someone has sent it to the server
     socket.on("chatMessage", (data) => {
-        const action = receivedMessage(data.message);
+        console.log('data', data);
+        const action = receivedMessage(data);//message
         store.dispatch(action);
     });
 };

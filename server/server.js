@@ -40,8 +40,8 @@ io.on("connection", async (socket) => {
         console.log('text: ', text);
         const newMessage = await insertMessage(userId, text);
         //2. tell all connected sockets
-        console.log('nm in server.js', newMessage);
-        io.emit('chatMessage', newMessage);//??
+        console.log('nm in server.js', newMessage.rows);
+        io.emit('chatMessage', newMessage.rows[0]);//??
 
         // then broadcast the message to all connected users (included the sender!)//??
 

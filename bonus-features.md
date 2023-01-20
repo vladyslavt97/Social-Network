@@ -1,16 +1,18 @@
 ## Account Deletion
 
-...also:
-All rows that have the user's id in the chat_messages table
-Every profile picture they have ever uploaded. This will require a change to how you store the urls of profile pics so that you have a record of every single one for every single user.
+-   delete the image once a new is inserted
 
 ## List of Users Online
 
-To show a list of users who are online you will have to maintain the list on the server, adding users to it when their sockets connect and removing them when their sockets disconnect. Keep in mind that a user can have multiple tabs or browsers open, which means that they may appear in the list more than once.
+-   do not add multiple times!
+    To show a list of users who are online you will have to maintain the list on the server, adding users to it when their sockets connect and removing them when their sockets disconnect. Keep in mind that a user can have multiple tabs or browsers open, which means that they may appear in the list more than once.
 
 ## Private Messages
 
-Use socket.io to allow users to conduct private, one-on-one chats with other users who are their friends (but disallow private chats between two users who are not friends). To do this, you will have to maintain a list of socket ids and the user ids that the sockets belong to.
+-   changes to the messages table: sender and recipient id should match?
+-   socket io supports rooms
+-   only friends!
+    Use socket.io to allow users to conduct private, one-on-one chats with other users who are their friends (but disallow private chats between two users who are not friends). To do this, you will have to maintain a list of socket ids and the user ids that the sockets belong to.
 
 ## Wall Posts
 
@@ -34,3 +36,7 @@ When users view the profile page of a user with whom they are friends, show them
 
 -   We didn't start using Redux until Part 9 so local state is still used for a lot of components.
     You might prefer to use the global redux state throughout. If you do this, you'll have to create a whole bunch of new actions and reducers. You may want to create a new file for each feature (users/slice.js, bio/slice.js, other-users/slice.js, etc.), which will contain the associated sub-reducers and actions. Don’t forget to integrate the sub-reducers into your root reducer with combineReducer().
+
+# DEPLOY!!!
+
+huroko.
