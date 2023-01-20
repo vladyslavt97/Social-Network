@@ -1,6 +1,6 @@
 import { File } from "aws-sdk/lib/dynamodb/document_client";
 import React, { ChangeEventHandler, Component, FormEventHandler, MouseEventHandler } from "react";
-
+import "./uploader.css"
 interface UploaderProps {
     togglePopup: MouseEventHandler<HTMLDivElement>,
     handlePPUpload: FormEventHandler<HTMLFormElement>,
