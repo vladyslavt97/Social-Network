@@ -1,0 +1,44 @@
+#chat-div {
+    background-image: url('chat-div-background.jpg');
+    width: 100%;
+    background-size: cover;
+    /* filter: brightness(40%); */
+    border-top: 3px solid green;
+    display: flex;
+    background-color: green;
+    justify-content: center;
+    align-items: center;
+}
+
+#the-messages-div {
+    overflow-y: auto;
+    height: 280px;
+    width: 500px;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#actual-message-div {
+    background-color: #44a1ff;
+    border-radius: 30px;
+    padding: 10px;
+    margin: 30px;
+    width: 200px;
+}
+
+#actual-message {
+    color: white;
+    width: 30vw;
+    text-align: left;
+}
+
+#first_last_message {
+    font-size: 10px;
+    color: grey;
+}
+
+#date_message {
+    font-size: 10px;
+    color: rgb(0, 0, 0);
+}
