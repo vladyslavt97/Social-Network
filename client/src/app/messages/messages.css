@@ -13,6 +13,7 @@
     /* filter: brightness(40%); */
     border-top: 3px solid green;
     overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     background-color: green;
     justify-content: center;
@@ -47,3 +48,8 @@
     font-size: 15px;
 }
 
+#actual-message{
+    color: white;
+    width: 30vw;
+    text-align: left;
+}

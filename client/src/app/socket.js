@@ -15,7 +15,8 @@ export const initSocket = (store) => {//needs to update teh store
 
     // I receive a list of messages (probably at the beginning)
     socket.on("chatMessages", (data) => {
-        const action = messagesState(data.messages);
+        // console.log('here we get the messages from the server to socket.js', data.rows);
+        const action = messagesState(data.rows);//messages
         store.dispatch(action);
     });
 

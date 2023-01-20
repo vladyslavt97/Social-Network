@@ -24,7 +24,8 @@ export default function Messages() {
         // 1. get the text from e.currentTarget.value
         // 2. update the message state (in this component only)
   }
-
+  console.log('??', messages.messagesValue);
+  
   return (
     <div>
       <div id='messages-divs'>
@@ -37,11 +38,11 @@ export default function Messages() {
         <div id='chat-div'> 
             <h1 id='chat'>CHAT</h1>
             {/* the sate is undefined? */}
-            {/* {messages.map(message => { */}
-              <div>
-                {/* <h6>{message.recipient_id}</h6> */}
+            {messages.messagesValue.map(m => 
+              <div key={m.id} >
+                <h4 id="actual-message">{m.message}</h4>
               </div>
-            {/* })} */}
+            )}
         </div>
 
         {/* textarea */}

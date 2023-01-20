@@ -28,6 +28,7 @@ export interface Message {
     sender_id: number;
     recipient_id: number;
     timestamp: number;
+    message: string;
     created_at: string;
 }
 

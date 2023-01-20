@@ -28,7 +28,8 @@ io.on("connection", async (socket) => {
     }
 
     // retrieve the latest 10 messages from DB
-    const latestMessages = getLatestMessages();
+    const latestMessages = await getLatestMessages();
+    // console.log('should get new messages from DB', latestMessages);
     // and send them to the client who has just connected
     socket.emit('chatMessages', latestMessages);
 
@@ -36,9 +37,10 @@ io.on("connection", async (socket) => {
     socket.on('chatMessage', async (text) => {
     // store the message in the db
         //1. create a new message in the db
+        console.log('text: ', text);
         const newMessage = await insertMessage(userId, text);
         //2. tell all connected sockets
-        console.log(newMessage);
+        console.log('nm in server.js', newMessage);
         io.emit('chatMessage', newMessage);//??
 
         // then broadcast the message to all connected users (included the sender!)//??
