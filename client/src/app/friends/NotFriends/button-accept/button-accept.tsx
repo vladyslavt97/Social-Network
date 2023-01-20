@@ -23,7 +23,7 @@ export default function ButtonAcceptFriendship(props: ButtonAcceptFriendshipProp
             .then((response) => 
                 response.json())
             .then((data) => {
-                console.log('updateFriendshipReq fetch post', data.updatedFriendReqs.rows[0] );
+                console.log('updateFriendshipReq fetch post', data.updatedFriendReqs.rows[0].id );
                 setUpdateButton(false);
                 dispatch(acceptFriend(data.updatedFriendReqs.rows[0].id));
             })

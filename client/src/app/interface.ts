@@ -25,6 +25,9 @@ export interface Friend {
 
 export interface Message {
     id: number,
+    first: string,
+    last: string,
+    profile_pic_url: string,
     sender_id: number;
     recipient_id: number;
     timestamp: number;

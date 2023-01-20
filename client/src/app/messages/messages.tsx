@@ -25,7 +25,7 @@ export default function Messages() {
         // (document.getElementById('textarea-messages') as HTMLInputElement | null)?.value;
 
         // message = (document.getElementById('textarea-messages') as HTMLInputElement | null)?.value;
-        message = '';
+        // message = '';
   }
 
   console.log('??', messages.messagesValue);
@@ -43,10 +43,10 @@ export default function Messages() {
             {/* the sate is undefined? */}
             <div id="the-messages-div">
               {messages.messagesValue.map(m => 
-                <div key={m.id} id="column-reverse-reverse">
-                  <h4 id="actual-message">{m.message}</h4>
-                  <br />
-                  <br />
+                <div key={m.id} id="actual-message-div">
+                  <h4 id="actual-message"><i>{m.message}</i></h4>
+                  <h5 id='first_last_message'>{m.first} {m.last}</h5> 
+                  <h6 id='date_message'>{m.created_at}</h6>
                 </div>
               )}
             </div>

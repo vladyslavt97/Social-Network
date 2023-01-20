@@ -181,13 +181,20 @@ module.exports.deleteUserAndFriendshipsDB = (myId) => {
 // insert a new message
 // - sender_id
 // - message (text)
+// module.exports.insertMessage = (userId, text) => {
+//     return db.query(`
+//     INSERT INTO messages (sender_id, message) 
+//     VALUES ($1, $2) 
+//     RETURNING *;`, [userId, text]); //with outer join on Users? or Select * From USers
+// };
 module.exports.insertMessage = (userId, text) => {
     return db.query(`
-    INSERT INTO messages (sender_id, message) 
-    VALUES ($1, $2) 
-    RETURNING *;`, [userId, text]);
+    WITH "user" AS ( SELECT * FROM users WHERE id = $1),
+    new_message AS (INSERT INTO messages (sender_id, message) VALUES ($1, $2) RETURNING sender_id, message, created_at, id)
+    SELECT new_message.id, message, new_message.created_at, first, last, profile_pic_url, sender_id FROM "user", new_message;`, [userId, text]); 
 };
 
+//
 module.exports.getLatestMessages = (limit = 10) => {
     const sql = `
         SELECT * FROM (
