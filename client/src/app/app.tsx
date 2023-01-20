@@ -7,7 +7,7 @@ import { Friends } from './friends/friends';
 import { Signout } from './app_components/signout';
 import { Notifications } from './app_components/notifications/notifications';
 import Uploader from './app_components/uploader/uploader';
-import {ProfilePic} from './app_components/profilepic';
+import {ProfilePic} from './app_components/profilepic/profilepic';
 import "./app.css"
 import { OtherProfile } from "./findpeople/otherprofile/otherprofile"
 import { UserInfo } from './interface';

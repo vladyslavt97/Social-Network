@@ -12,17 +12,6 @@
     height: calc(100vh - 116px);
 }
 
-#no-profile-pic {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    object-fit: cover;
-    width: 52px;
-    height: 52px;
-    border-radius: 15px;
-    border: 1px solid orange;
-}
-
 #signout {
     position: absolute;
     left: 0px;
@@ -94,11 +83,3 @@
 
 
 /*  */
-/* #socket-on{
-    width: 10px;
-    height: 10px;
-    border-radius: 10px;
-    background-color: red;
-    position: absolute;
-    top: 0;
-} */
