@@ -9,17 +9,14 @@ export default function Chat() {
     console.log('messages componenet State: ', messages);
 
     const changeDate = (arg: string | number | Date) =>{
-        // let arg = new Date(Date.now()).getHours() +
-        //   ":" +
-        // new Date(Date.now()).getMinutes();
-        // return arg;
         let time = new Date(arg).toLocaleString();
         return time;
     }
+    
     return (
         <div id='chat-div'> 
             <div id="the-messages-div">
-                {messages.map(m => 
+                {messages.map((m) => 
                     <div key={m.id}>
                         {m.sender_id === clickedFriendId && 
                         <div id='message-totheleft'>
@@ -28,7 +25,7 @@ export default function Chat() {
                                 <h5 id='first_last_message'>{m.first} {m.last}</h5> 
                                 <h6 id='date_message'>{changeDate(m.created_at)}</h6>
                             </div>
-                            <div id="message-and-img-div-corner"></div>
+                            <div id="message-and-img-div-corner" ></div>
                         </div>}
                         {m.recipient_id === clickedFriendId && 
                         <div id='message-totheright'>
@@ -37,7 +34,7 @@ export default function Chat() {
                                 <h5 id='first_last_message'>{m.first} {m.last}</h5> 
                                 <h6 id='date_message'>{changeDate(m.created_at)}</h6>
                             </div>
-                            <div id="response-and-img-div-corner"></div>
+                            <div id="response-and-img-div-corner" ></div>
                         </div>}
                     </div>
                 )}
