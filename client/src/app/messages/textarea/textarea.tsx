@@ -15,13 +15,13 @@ export default function TextArea() {
   
   const handleSubmitMessages = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    socket.emit("chatMessage", {messageState, selectedFriendId: clickedFriendId});
+    socket.emit("private_message", {messageState, selectedFriendId: clickedFriendId});
     setMessageState('');
   }
   const onEnterKeyDownChat = (e: React.KeyboardEvent) => {
     if (e.code === "Enter") {
       e.preventDefault();
-      socket.emit("chatMessage", {messageState, selectedFriendId: clickedFriendId});
+      socket.emit("private_message", {messageState, selectedFriendId: clickedFriendId});
       // socket.emit("chatMessage", messageState);
       setMessageState('');
     }

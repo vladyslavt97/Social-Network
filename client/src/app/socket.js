@@ -12,18 +12,20 @@ export const initSocket = (store) => {//needs to update teh store
     }
 
     socket = io.connect();// using their library - connet to the server
-
+    console.log('just a lo');
     // I receive a list of messages (probably at the beginning)
     socket.on("chatMessages", (data) => {
+        console.log('data???????', data);
+
         // console.log('here we get the messages from the server to socket.js', data.rows);
         const action = messagesState(data.rows);//messages
         store.dispatch(action);
     });
 
     // I receive a single message when someone has sent it to the server
-    socket.on("chatMessage", (data) => {
-        console.log('data in the sokcet.js is from textarea.tsx', data);
-        const action = receivedMessage(data);//message
+    socket.on("private_message", (data) => {
+        console.log('data in the sokcet.js is from textarea.tsx with .to', data);
+        const action = receivedMessage(data.info);//message
         store.dispatch(action);
     });
 };

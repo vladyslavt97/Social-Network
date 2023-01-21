@@ -49,7 +49,8 @@ export function Notifications() {
 
         {notificationsCount >=1 && <div id="div-bell-on">
                                     <img src="/bell-on.png" alt="bell" id="notifications-on" onClick={toggleNotifications}/>
-                                    <h6 id="notificationsCount">{notificationsCount}</h6>
+                                    {notificationsCount <= 9 ? <h6 id="notificationsCount">{notificationsCount}</h6> :
+                                    notificationsCount > 9 && <h6 id="notificationsCountMax">9+</h6>}
                                 </div>}
         {visibleNotifications && <div id="triangle-div">
                                     <div id="triangle"></div>

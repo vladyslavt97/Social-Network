@@ -1,7 +1,3 @@
-## Account Deletion
-
--   delete the image once a new is inserted
-
 ## List of Users Online
 
 -   do not add multiple times!

@@ -33,6 +33,7 @@ export interface Message {
     timestamp: number;
     message: string;
     created_at: string;
+    info: object;
 }
 
 export type Action = {

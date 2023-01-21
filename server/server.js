@@ -34,10 +34,9 @@ io.on("connection", async (socket) => {
     socket.emit('chatMessages', latestMessages);
 
     // listen for when the connected user sends a message later
-    socket.on('chatMessage', async (text) => {
+    socket.on('private_message', async (text) => {
     // store the message in the db
         //1. create a new message in the db
-        console.log('text: ', text);
         console.log('text: ', text.messageState, 'id: ', text.selectedFriendId);
         let recipient_id = text.selectedFriendId;
         let oneMessage = text.messageState;
@@ -45,8 +44,13 @@ io.on("connection", async (socket) => {
         //2. tell all connected sockets
         console.log('nm in server.js', newMessage.rows[0]);
         // console.log('messageData server.js', messageData.rows[0]);
-        io.emit('chatMessage', newMessage.rows[0]);
-
+        console.log('userId: ', userId);
+        // socket.join(`${recipient_id}_${userId}`);
+        // .to(recipient_id)
+        io.emit('private_message', {
+            info: newMessage.rows[0], 
+            senderId: socket.id});
+        console.log('si: ', socket.id);
         // then broadcast the message to all connected users (included the sender!)//??
 
     });

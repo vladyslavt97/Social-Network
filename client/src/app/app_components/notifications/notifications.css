@@ -19,6 +19,13 @@
     right: 422px;
     font-size: 14px;
 }
+#notificationsCountMax {
+    color: white;
+    position: absolute;
+    top: 18px;
+    right: 418px;
+    font-size: 14px;
+}
 
 #actual-notifications-text{
     background: var(--main-background);
