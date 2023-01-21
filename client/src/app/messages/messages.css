@@ -1,26 +1,13 @@
-#other-messages-div {
-    /* background-color: rgba(193, 255, 255, 0.169); */
-    overflow-y: auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-#chat{
-    color: white;
-    z-index: 2;
-}
-#messages-divs{
+#messages-divs {
     display: grid;
-        grid-template-rows: 1fr 1fr 52px;
-        min-height: 87vh;
+    grid-template-rows: 1fr 35px;
+    min-height: 82vh;
+}
+
+#onlinefriends-and-chat {
+    display: grid;
+    grid-template-columns: 30% 1fr;
 }
 
 
-#no-messages{
-    color: rgb(0, 215, 75);
-    font-size: 15px;
-}
 
