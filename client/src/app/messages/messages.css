@@ -6,11 +6,11 @@
 #onlinefriends{
     height: 100%;
     background-color: rgb(193, 255, 255);
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 #chat-and-textarea{
-    /* display: grid;
-    grid-template-rows: 90% 1fr; */
     min-height: 79.5vh;
 }
 #chat-and-textarea-subdiv{
