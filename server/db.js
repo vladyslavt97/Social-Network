@@ -193,7 +193,7 @@ module.exports.insertMessage = (userId, recipient_id, oneMessage) => {
 module.exports.getLatestMessages = (limit = 10) => {
     const sql = `
         SELECT * FROM (
-            SELECT m.id, m.recipient_id, m.message, m.created_at,
+            SELECT m.id, m.sender_id, m.recipient_id, m.message, m.created_at,
                 u.first, u.last, u.profile_pic_url
             FROM messages m
             JOIN users u ON m.sender_id = u.id
