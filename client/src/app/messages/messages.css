@@ -18,6 +18,20 @@
     grid-template-rows: 90% 1fr;
     min-height: 79.5vh;
 }
-
+#choose-a-friend-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+#choose-a-friend{
+    background: var(--main-background);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 58px;
+    font-size: 18px;
+}
 
 

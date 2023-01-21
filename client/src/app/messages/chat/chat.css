@@ -13,7 +13,7 @@
 #the-messages-div {
     overflow-y: auto;
     height: 270px;
-    width: 60%;
+    width: 80%;
     overflow-x: hidden;
     display: flex;
     flex-direction: column-reverse;
@@ -46,7 +46,10 @@
     border: 1px solid orange;
     margin: 10px;
 }
-
+#message-totheleft{
+    display: flex;
+    justify-content: flex-end;
+}
 #message-and-img-div{
     display: flex;
     flex-direction: row;

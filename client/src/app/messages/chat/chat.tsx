@@ -15,10 +15,12 @@ export default function Chat() {
                 {messages.map(m => 
                     <div key={m.id}>
                         {m.sender_id === clickedFriendId && 
-                        <div id='message-and-img-div'>
-                            <h4 id="actual-message"><i>{m.message}</i></h4>
-                            <h5 id='first_last_message'>{m.first} {m.last}</h5> 
-                            <h6 id='date_message'>{m.created_at}</h6>
+                        <div id='message-totheleft'>
+                            <div id='message-and-img-div'>
+                                <h4 id="actual-message"><i>{m.message}</i></h4>
+                                <h5 id='first_last_message'>{m.first} {m.last}</h5> 
+                                <h6 id='date_message'>{m.created_at}</h6>
+                            </div>
                         </div>}
                         {m.recipient_id === clickedFriendId && <div id='response-and-img-div'>
                             <h4 id="actual-message"><i>{m.message}</i></h4>

@@ -20,6 +20,9 @@ export default function Messages() {
           <OnlineFriends toggleRelevantMessage={toggleRelevantMessage}/>
         </div>
         <div id='chat-and-textarea'>
+          {!counterpartChosen && <div id='choose-a-friend-div'>
+             <p>⬅️ &nbsp; </p> <h1 id='choose-a-friend'> Choose a friend to start the chat</h1>
+            </div>}
           {counterpartChosen && <div id='chat-and-textarea-subdiv'>
                   <Chat />
                   <TextArea /></div>}
