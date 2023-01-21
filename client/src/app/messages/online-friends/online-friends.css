@@ -1,5 +1,6 @@
 #other-messages-div {
     overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     justify-content: stretch;
     flex-direction: column;

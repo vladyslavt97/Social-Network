@@ -5,7 +5,8 @@ import './chat.css'
 
 export default function Chat() {
     const clickedFriendId = useSelector((state: RootState) => state.messages.id);
-    const messages = useSelector((state: RootState) => state.messages.messagesValue.filter(m=>m.recipient_id === clickedFriendId || m.sender_id === clickedFriendId));
+    const messages = useSelector((state: RootState) => state.messages.messagesValue.filter(m=>
+        m.recipient_id === clickedFriendId || m.sender_id === clickedFriendId));
     console.log('messages componenet State: ', messages);
 
     const changeDate = (arg: string | number | Date) =>{

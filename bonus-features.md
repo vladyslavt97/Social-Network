@@ -7,13 +7,6 @@
 -   do not add multiple times!
     To show a list of users who are online you will have to maintain the list on the server, adding users to it when their sockets connect and removing them when their sockets disconnect. Keep in mind that a user can have multiple tabs or browsers open, which means that they may appear in the list more than once.
 
-## Private Messages
-
--   changes to the messages table: sender and recipient id should match?
--   socket io supports rooms
--   only friends!
-    Use socket.io to allow users to conduct private, one-on-one chats with other users who are their friends (but disallow private chats between two users who are not friends). To do this, you will have to maintain a list of socket ids and the user ids that the sockets belong to.
-
 ## Wall Posts
 
 Allow users to add textual messages to their own and their friends' profile screens. These should be shown in reverse chronological order and should only be visible to friends of the user whose profile the post appears on.
