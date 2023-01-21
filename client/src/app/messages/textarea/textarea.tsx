@@ -16,8 +16,8 @@ export default function TextArea() {
   const onEnterKeyDownChat = (e: React.KeyboardEvent) => {
     if (e.code === "Enter") {
       e.preventDefault();
-        socket.emit("chatMessage", messageState);
-        setMessageState('');
+      socket.emit("chatMessage", messageState);
+      setMessageState('');
     }
   }
   return (

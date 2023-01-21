@@ -22,7 +22,7 @@ export const initSocket = (store) => {//needs to update teh store
 
     // I receive a single message when someone has sent it to the server
     socket.on("chatMessage", (data) => {
-        console.log('data', data);
+        console.log('data in the sokcet.js is from textarea.tsx', data);
         const action = receivedMessage(data);//message
         store.dispatch(action);
     });
