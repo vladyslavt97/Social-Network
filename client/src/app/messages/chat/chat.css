@@ -23,8 +23,22 @@
     background-color: #44a1ff;
     border-radius: 30px;
     padding: 10px;
-    margin: 30px;
+    margin: 10px;
     width: 200px;
+    animation: message 500ms ease-in-out;
+}
+@keyframes message {
+    0% {
+        opacity: 0;
+        scale: 0.1;
+        border-radius: 100px;
+    }
+
+    100% {
+        opacity: 1;
+        scale: 1;
+        border-radius: 30px;
+    }
 }
 
 #actual-message {
@@ -41,4 +55,19 @@
 #date_message {
     font-size: 10px;
     color: rgb(0, 0, 0);
+}
+
+#message-img-pic{
+    object-fit: cover;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid orange;
+    margin: 10px;
+}
+
+#message-and-img-div{
+    display: flex;
+    flex-direction: row;
+    align-items: center
 }

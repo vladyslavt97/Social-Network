@@ -11,7 +11,10 @@ export default function Chat() {
             <div id="the-messages-div">
                 {messages.messagesValue.map(m => 
                     <div key={m.id} id="actual-message-div">
-                        <h4 id="actual-message"><i>{m.message}</i></h4>
+                        <div id='message-and-img-div'>
+                            {/* <img src={m.profile_pic_url} alt={m.first} id="message-img-pic"/> */}
+                            <h4 id="actual-message"><i>{m.message}</i></h4>
+                        </div>
                         <h5 id='first_last_message'>{m.first} {m.last}</h5> 
                         <h6 id='date_message'>{m.created_at}</h6>
                     </div>
