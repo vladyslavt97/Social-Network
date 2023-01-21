@@ -38,11 +38,14 @@ io.on("connection", async (socket) => {
     // store the message in the db
         //1. create a new message in the db
         console.log('text: ', text);
-        const newMessage = await insertMessage(userId, text);
+        console.log('text: ', text.messageState, 'id: ', text.selectedFriendId);
+        let recipient_id = text.selectedFriendId;
+        let oneMessage = text.messageState;
+        const newMessage = await insertMessage(userId, recipient_id, oneMessage);
         //2. tell all connected sockets
         console.log('nm in server.js', newMessage.rows[0]);
         // console.log('messageData server.js', messageData.rows[0]);
-        io.emit('chatMessage', newMessage.rows[0]);//??
+        io.emit('chatMessage', newMessage.rows[0]);
 
         // then broadcast the message to all connected users (included the sender!)//??
 

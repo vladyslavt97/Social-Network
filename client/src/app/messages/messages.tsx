@@ -6,7 +6,7 @@ import TextArea from './textarea/textarea';
 
 
 export default function Messages() {
-  
+
   //message toggle
   const [counterpartChosen, setCounterpartChosen] = useState<boolean>(false)
     const toggleRelevantMessage = () => {
@@ -16,11 +16,14 @@ export default function Messages() {
   return (
     <div>
       <div id='messages-divs'>
-        <div id='onlinefriends-and-chat'>
+        <div id='onlinefriends'>
           <OnlineFriends toggleRelevantMessage={toggleRelevantMessage}/>
-          <Chat counterpartChosen={counterpartChosen} />
         </div>
-        <TextArea />
+        <div id='chat-and-textarea'>
+          {counterpartChosen && <div id='chat-and-textarea-subdiv'>
+                  <Chat />
+                  <TextArea /></div>}
+        </div>
       </div>
     </div>
   )

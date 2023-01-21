@@ -2,20 +2,17 @@ import { MouseEventHandler } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import './chat.css'
-interface ChatProps {
-    counterpartChosen: boolean,
-}
 
-export default function Chat(props: { counterpartChosen: any}) {
-    const messages = useSelector((state: RootState) => state.messages);
+export default function Chat() {
+    const clickedFriendId = useSelector((state: RootState) => state.messages.id);
+    const messages = useSelector((state: RootState) => state.messages.messagesValue.filter(m=>m.recipient_id === clickedFriendId));
     console.log('messages componenet State: ', messages);
 
     
     return (
         <div id='chat-div'> 
-        {props.counterpartChosen && 
             <div id="the-messages-div">
-                {messages.messagesValue.map(m => 
+                {messages.map(m => 
                     <div key={m.id} id="actual-message-div">
                         <div id='message-and-img-div'>
                             {/* <img src={m.profile_pic_url} alt={m.first} id="message-img-pic"/> */}
@@ -25,7 +22,7 @@ export default function Chat(props: { counterpartChosen: any}) {
                         <h6 id='date_message'>{m.created_at}</h6>
                     </div>
                 )}
-            </div>}
+            </div>
         </div>
     )
 }

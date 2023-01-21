@@ -4,9 +4,11 @@ import { Message } from "../interface";
 
 export interface FriendsState {
     messagesValue: Message[];
+    id: number
 }
 const initialState: FriendsState = {
     messagesValue: [],
+    id: 0,
 };
 
 export const messagesSlice = createSlice({
@@ -21,9 +23,13 @@ export const messagesSlice = createSlice({
         console.log('messagesAction received: ', messagesAction.payload);
         console.log('state.messagesValue: ', state.messagesValue);
         state.messagesValue.unshift(messagesAction.payload);
+    },
+    selectedFriendId: (state, messagesAction: PayloadAction<number>) => {
+      console.log('messagesAction.payload state,id', messagesAction.payload);
+      state.id = messagesAction.payload;
     }
   },
 });
 
-export const { messagesState, receivedMessage,} = messagesSlice.actions // Action
+export const { messagesState, receivedMessage, selectedFriendId} = messagesSlice.actions // Action
 export default messagesSlice.reducer //reducer

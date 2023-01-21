@@ -12,8 +12,8 @@
 
 #the-messages-div {
     overflow-y: auto;
-    height: 300px;
-    width: 80%;
+    height: 270px;
+    width: 60%;
     overflow-x: hidden;
     display: flex;
     flex-direction: column-reverse;
@@ -46,6 +46,7 @@
     color: white;
     width: 30vw;
     text-align: left;
+    font-size: 20px;
 }
 
 #first_last_message {

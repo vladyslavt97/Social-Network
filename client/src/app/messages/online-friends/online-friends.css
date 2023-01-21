@@ -1,5 +1,4 @@
 #other-messages-div {
-    background-color: rgb(193, 255, 255);
     overflow-y: auto;
     display: flex;
     justify-content: stretch;
@@ -45,5 +44,4 @@
 #friends-who-are-online{
     color: green;
     font-size: 15px;
-
 }

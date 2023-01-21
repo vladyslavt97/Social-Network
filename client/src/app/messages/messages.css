@@ -1,12 +1,22 @@
 #messages-divs {
     display: grid;
-    grid-template-rows: 1fr 35px;
-    min-height: 82vh;
+    grid-template-columns: 30% 1fr;
 }
 
-#onlinefriends-and-chat {
+#onlinefriends{
+    height: 100%;
+    background-color: rgb(193, 255, 255);
+}
+
+#chat-and-textarea{
+    /* display: grid;
+    grid-template-rows: 90% 1fr; */
+    min-height: 79.5vh;
+}
+#chat-and-textarea-subdiv{
     display: grid;
-    grid-template-columns: 30% 1fr;
+    grid-template-rows: 90% 1fr;
+    min-height: 79.5vh;
 }
 
 
