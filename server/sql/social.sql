@@ -32,6 +32,7 @@ CREATE TABLE friend_requests(
 CREATE TABLE messages (
     id SERIAL PRIMARY KEY,
     sender_id INTEGER NOT NULL REFERENCES users(id),
+    -- recipient_id INTEGER NOT NULL REFERENCES users(id),
     message TEXT NOT NULL CHECK (message <> ''),
     created_at TIMESTAMP DEFAULT current_timestamp
 );
