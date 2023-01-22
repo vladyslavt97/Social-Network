@@ -68,7 +68,6 @@ resetRouter.post('/emailcheck', (req, res) => {//check the email
 
 //route 2
 resetRouter.post('/verify', (req, res) => {//check for the match of email and pwd with the reset_codes
-    // let matchForEmails;
     let matchForCodes;
     const {password, code} = req.body;
     console.log('req@', req.body);
@@ -102,16 +101,16 @@ resetRouter.post('/verify', (req, res) => {//check for the match of email and pw
                         });
                 }else{
                     console.log('the code did not match...');
-                    res.json({ success: false });
+                    res.json({incorrectData: true});
                 }
             })
             .catch((err) => {
                 console.log('could not selectAllDataFromReset_CodesDB..', err);
-                res.json({ success: false });
+                res.json({incorrectData: true});
             });
     } else {
         console.log('Please, give something!');
-        res.json({validation: false});
+        res.json({validation: true});
     }
 });
 
