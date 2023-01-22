@@ -12,10 +12,10 @@ export const initSocket = (store) => {//needs to update teh store
     }
 
     socket = io.connect();// using their library - connet to the server
-    console.log('just a lo');
+    // console.log('just a lo');
     // I receive a list of messages (probably at the beginning)
     socket.on("chatMessages", (data) => {
-        console.log('data???????', data);
+        console.log('Messages data in socket.js', data);
 
         // console.log('here we get the messages from the server to socket.js', data.rows);
         const action = messagesState(data.rows);//messages

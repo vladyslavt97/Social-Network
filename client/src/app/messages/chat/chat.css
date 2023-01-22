@@ -11,7 +11,7 @@
 
 #the-messages-div {
     overflow-y: auto;
-    height: 270px;
+    height: 80%;
     width: 80%;
     overflow-x: hidden;
     display: flex;

@@ -16,7 +16,7 @@
 #chat-and-textarea-subdiv{
     display: grid;
     grid-template-rows: 90% 1fr;
-    min-height: 79.5vh;
+    min-height: 100%;
 }
 #choose-a-friend-div{
     display: flex;

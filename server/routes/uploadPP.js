@@ -1,3 +1,5 @@
+
+
 const express = require("express");
 const { uploader, fileUpload } = require('../file-upload');
 const { updateUsersPPUrl, selectAllDataFromUsersDBBasedOnId } = require('../db');
@@ -10,11 +12,14 @@ uploadPPRouter.post('/upload', uploader.single('uploadedfile'), fileUpload, (req
     let id = req.session.userId; //should be saved in the cookie?
     selectAllDataFromUsersDBBasedOnId(id)
         .then((data) => {
-            const params = {
-                Bucket: "spicedling",
-                Key: data.rows[0].profile_pic_url.split("spicedling/")[1],
-            };
-            deleteObject(params);
+            console.log('of user', data);
+            if(data.rows[0].profile_pic_url !== null){
+                const params = {
+                    Bucket: "spicedling",
+                    Key: data.rows[0].profile_pic_url.split("spicedling/")[1],
+                };
+                deleteObject(params);
+            }
             return updateUsersPPUrl(profile_pic_url, id);
         })
         .then((data) => {

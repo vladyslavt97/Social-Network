@@ -16,7 +16,6 @@ export const messagesSlice = createSlice({
   initialState,
   reducers: {
     messagesState: (state, messagesAction: PayloadAction<Message[]>) => {//action instructs how to change
-      console.log('fp in messages', messagesAction.payload);
       state.messagesValue = messagesAction.payload;
     },
     receivedMessage: (state, messagesAction: PayloadAction<Message>) => {
