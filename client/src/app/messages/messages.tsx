@@ -17,7 +17,7 @@ export default function Messages() {
     <div>
       <div id='messages-divs'>
         <div id='onlinefriends'>
-          <OnlineFriends toggleRelevantMessage={toggleRelevantMessage}/>
+          <OnlineFriends toggleRelevantMessage={toggleRelevantMessage} counterpartChosen={counterpartChosen}/>
         </div>
         <div id='chat-and-textarea'>
           {!counterpartChosen && <div id='choose-a-friend-div'>

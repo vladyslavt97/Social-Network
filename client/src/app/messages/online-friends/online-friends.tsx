@@ -6,20 +6,16 @@ import {selectedFriendId} from '../../redux/messagesSlice';
 
 interface OnlineFriendsProps{
     toggleRelevantMessage: React.MouseEventHandler<HTMLDivElement>
+    counterpartChosen: boolean
 }
 
 export default function OnlineFriends(props: OnlineFriendsProps) {
     const dispatch = useDispatch();
+    const clickedFriendId = useSelector((state: RootState) => state.messages.id);
+
   const friends = useSelector((state: RootState) => state.friends.value.filter((el)=>{
        return el.accepted;
     }));
-
-    const [counterpartChosen, setCounterpartChosen] = useState<boolean>(false)
-    const toggleRelevantMessage = () => {
-            setCounterpartChosen(!counterpartChosen);
-            
-        }
-
 
   return (
     <div id='other-messages-div'>
@@ -28,7 +24,11 @@ export default function OnlineFriends(props: OnlineFriendsProps) {
         {friends.length !== 0 && <div id='online-friends-list>'>
                                     {friends.map(friend => (
                                         <div key={friend.id} onClick={()=>dispatch(selectedFriendId(friend.id))}>
-                                            <div id="online-friends" onClick={props.toggleRelevantMessage}>
+                                            <div 
+                                            key={friend.id} 
+                                            onClick={props.toggleRelevantMessage} 
+                                            className={`${friend.id === clickedFriendId && 
+                                                props.counterpartChosen ? 'online-friends-selected' : 'online-friends'}`}>
                                                 <img src={friend.profile_pic_url} alt={friend.first} 
                                                 id='online-friends-img'/>
                                                 <h1 id='online-friends-name'>{friend.first} {friend.last}</h1>
@@ -37,8 +37,7 @@ export default function OnlineFriends(props: OnlineFriendsProps) {
                                         )
                                     )}
                                 </div>
-        }
-        
+        }        
   </div>
   )
 }

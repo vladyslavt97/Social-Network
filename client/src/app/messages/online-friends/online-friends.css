@@ -17,7 +17,7 @@
     flex-direction: column;
 }
 
-#online-friends{
+.online-friends{
     background-color: rgb(37, 0, 54);
     border-radius: 10px;
     height: 42px;
@@ -27,8 +27,8 @@
     flex-direction: row;
     align-items: center;
 }
-#online-friends:active {
-    background-color: rgb(148, 0, 217);
+.online-friends-selected {
+    background-color: rgb(202, 87, 255);
     border-radius: 10px;
     height: 42px;
     width: 150px;
