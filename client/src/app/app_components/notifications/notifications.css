@@ -114,3 +114,14 @@
     border-right: 10px solid transparent;
     border-bottom: 25px solid rgb(216, 255, 216);
 }
+
+#backdrop-in-notifications {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(34, 34, 34, 0.042);
+    position: fixed;
+    top: 0;
+    opacity: 0.6;
+    overflow: hidden;
+    z-index: 0;
+}

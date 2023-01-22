@@ -1,14 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { Message } from "../interface";
+import { Message, UserInfo } from "../interface";
 
 export interface FriendsState {
     messagesValue: Message[];
-    id: number
+    id: number;
+    onlineUser: UserInfo[],
 }
 const initialState: FriendsState = {
     messagesValue: [],
     id: 0,
+    onlineUser: [],
 };
 
 export const messagesSlice = createSlice({
@@ -26,9 +28,13 @@ export const messagesSlice = createSlice({
     selectedFriendId: (state, messagesAction: PayloadAction<number>) => {
       console.log('messagesAction.payload state,id', messagesAction.payload);
       state.id = messagesAction.payload;
+    },
+    onlineUserAppeared: (state, messagesAction: PayloadAction<UserInfo[]>) => {
+      console.log('online user obj in slice', messagesAction.payload);
+      state.onlineUser = messagesAction.payload;
     }
   },
 });
 
-export const { messagesState, receivedMessage, selectedFriendId} = messagesSlice.actions // Action
+export const { messagesState, receivedMessage, selectedFriendId, onlineUserAppeared} = messagesSlice.actions // Action
 export default messagesSlice.reducer //reducer

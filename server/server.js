@@ -7,7 +7,7 @@ const { PORT, WEB_URL} = process.env;
 const {cookieSession } = require('./cookiesession');
 app.use(cookieSession);
 
-const { getLatestMessages, insertMessage } = require('./db');
+const { getLatestMessages, insertMessage, selectAllDataFromUsersDBBasedOnId } = require('./db');
 
 // ------------------------------------ SOCKET  ------------------------------------ //
 const server = require('http').Server(app);
@@ -27,7 +27,16 @@ io.on("connection", async (socket) => {
     if (!userId) { // I am not going to send data if a user is not signed in
         return socket.disconnect(true);
     }
-    socket.emit('online', {user: userId});
+
+
+    // online users!
+    const id = userId;
+    const onlineUser = await selectAllDataFromUsersDBBasedOnId(id);
+    socket.emit('online', onlineUser.rows);
+    console.log(userId, 'should be emited to server.js');
+
+
+
     // retrieve the latest 10 messages from DB
     const latestMessages = await getLatestMessages();
     // console.log('should get new messages from DB', latestMessages);

@@ -42,6 +42,8 @@ export function Notifications() {
     }
     
     return <div>
+        {visibleNotifications && <div id="backdrop-in-notifications" onClick={toggleNotifications}></div>}
+
         <div id="div-bell-off">
             {!notificationsCount && <img src="/bell-off.png" alt="bell" id="notifications-off" />}
         </div>

@@ -30,6 +30,7 @@ export class App extends Component<AppProps, AppState, UserInfo> {
         this.state = {
             isPopupOpen: false,
             userInfo: {
+                id: 0,
                 first: "",
                 last: "",
                 bio: "",
@@ -116,7 +117,6 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                                 />
                         )}
                         <Signout />
-                        <OnlineUsers />
                 </div>
                 <div id='main-screen'>
                     <BrowserRouter>
@@ -145,6 +145,7 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                                 ></Route>
                     </Routes>
                     <Notifications />
+                    <OnlineUsers />
                 </BrowserRouter>
                 </div>
             </div>
