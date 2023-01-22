@@ -66,6 +66,24 @@ io.on("connection", async (socket) => {
     socket.on("disconnect", () => {
         console.log(socket.id, '= should disappear from the list on onlinne users');
     });
+
+
+
+
+    //call a user by id
+    socket.on("callUser", (data) => {
+        //data - should be passed from Client
+        io.to(data.userToCall).emit("callUser", {
+            signal: data.signalData, 
+            from: data.from, 
+            name: data.name 
+        });
+    });
+
+    //answer the call
+    socket.on("answerCall", (data) => {
+        io.to(data.to).emit("callAccepted", data.signal);
+    });
 });
 // ------------------------------------ end of socket setup  ------------------------------------ //
 

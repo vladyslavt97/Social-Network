@@ -27,6 +27,16 @@
     flex-direction: row;
     align-items: center;
 }
+#online-friends:active {
+    background-color: rgb(148, 0, 217);
+    border-radius: 10px;
+    height: 42px;
+    width: 150px;
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 
 #online-friends-img{
     object-fit: cover;

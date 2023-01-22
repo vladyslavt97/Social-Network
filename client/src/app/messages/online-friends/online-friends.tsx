@@ -17,13 +17,14 @@ export default function OnlineFriends(props: OnlineFriendsProps) {
     const [counterpartChosen, setCounterpartChosen] = useState<boolean>(false)
     const toggleRelevantMessage = () => {
             setCounterpartChosen(!counterpartChosen);
+            
         }
 
 
   return (
     <div id='other-messages-div'>
-        <h2 id='friends-who-are-online'>Friends who are online</h2>
-        {friends.length === 0 && <h1 id='no-messages'>there are no messages for you!</h1>}
+        <h2 id='friends-who-are-online'>Chat to your friends</h2>
+        {friends.length === 0 && <h1 id='no-messages'>You have not started a chat yet!</h1>}
         {friends.length !== 0 && <div id='online-friends-list>'>
                                     {friends.map(friend => (
                                         <div key={friend.id} onClick={()=>dispatch(selectedFriendId(friend.id))}>
