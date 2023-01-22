@@ -48,7 +48,7 @@ export function OtherProfile(){
         <h1 id="otherpeoplecomponent">User detailss</h1>
         <img id="otherprofilecompponentimg"
         src={otherUserProfile.profile_pic_url} alt={otherUserProfile.first} />
-        <h1>Mutual friends: {mutualFreinds.length}</h1>
+        <h1 id="mutual-friends">Mutual friends: {mutualFreinds.length}</h1>
         <h5 id="otherpeoplecomponentinfo">{otherUserProfile.first}{otherUserProfile.last}</h5>
         <h6 id="otherpeoplecomponentinfo">{otherUserProfile.email}</h6>
         <h6 id="otherpeoplecomponentinfobio">{otherUserProfile.bio}</h6>
