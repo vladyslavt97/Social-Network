@@ -8,18 +8,7 @@ import { useEffect, useState } from "react";
 
 export function OtherProfile(){
     const {id} = useParams();
-    // const users = useSelector<FriendsState, Friend[]>((state) => state.friends);
-    // console.log('users: ', users);
-    
 
-    // const otherUserProfile = users.find(el=> {
-        //     console.log('elll: ', el.id);
-        //     console.log('id: ', +id);
-        //    return el.id === +id;//explicitly cast to a number
-        // });
-    // console.log('otherUserProfile', otherUserProfile);
-
-    //user deos not exist in the list of users, because he/she might have never sent a friend request(accepted or not.)
     const [otherUserProfile, setOtherUserProfile] = useState<any>({});
     useEffect(() => {
         fetch(`/userprofile/${id}`, {
@@ -30,9 +19,25 @@ export function OtherProfile(){
         })
             .then((response) => response.json())
             .then(data=>{
-                console.log('datadatadatadata', data.otherProfile[0]);
-                
                 setOtherUserProfile(data.otherProfile[0]);
+            })
+            .catch(err=>{
+                console.log('if threre is no match for user:id = output a message "no page found"', err);
+            });
+    },[id]);
+
+    const [mutualFreinds, setMutualFriends] = useState<any>({});
+    useEffect(() => {
+        fetch(`/mutual/friends/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then((response) => response.json())
+            .then(data=>{
+                console.log('data in other profile. 2nd useEffect', data.result);
+                setMutualFriends(data.result);
             })
             .catch(err=>{
                 console.log('if threre is no match for user:id = output a message "no page found"', err);
@@ -43,6 +48,7 @@ export function OtherProfile(){
         <h1 id="otherpeoplecomponent">User detailss</h1>
         <img id="otherprofilecompponentimg"
         src={otherUserProfile.profile_pic_url} alt={otherUserProfile.first} />
+        <h1>Mutual friends: {mutualFreinds.length}</h1>
         <h5 id="otherpeoplecomponentinfo">{otherUserProfile.first}{otherUserProfile.last}</h5>
         <h6 id="otherpeoplecomponentinfo">{otherUserProfile.email}</h6>
         <h6 id="otherpeoplecomponentinfobio">{otherUserProfile.bio}</h6>

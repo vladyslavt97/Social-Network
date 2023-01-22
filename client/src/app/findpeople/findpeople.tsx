@@ -86,7 +86,7 @@ export function FindPeople() {
                                                 {myPeople.map(
                                                     myPerson => (
                                                         <div key={myPerson.id} >
-                                                            <Link to={`/user/${myPerson.id}`} id="link-decoration-none">
+                                                            <Link to={`/user/${myPerson.id}`} id="theArrayOfFoundPeople-img-name">
                                                             <h1 id='theArrayOfFoundPeopleNames'>{myPerson.first} {myPerson.last}</h1>
                                                                 <img src={myPerson.profile_pic_url = myPerson.profile_pic_url || "/noprofileg.gif"} alt={myPerson.first}
                                                                 id='theArrayOfFoundPeopleImgs'/>

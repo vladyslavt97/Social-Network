@@ -3,14 +3,14 @@
 //and receiver in the appropriate columns and the boolean set to false.
 
 const express = require("express");
-const { insertIntoReset_CodesDB } = require('../../db');
+const { insertFriendReqDB } = require('../../db');
 
 const insertFriendReqRouter = express.Router();
 insertFriendReqRouter.post('/insertfriendreq/:id', (req, res) => {
     // console.log('the insert should run');
     let sender_id = req.session.userId;
     let recipient_id = req.params.id;
-    insertIntoReset_CodesDB(sender_id, recipient_id)
+    insertFriendReqDB(sender_id, recipient_id)
         .then((data) => {
             res.json({success: true, insertedFriendReq: data});
         })

@@ -84,6 +84,7 @@ const { updateFriendReqRouter } = require('./routes/friend_req_button/updatefrie
 const { notificationsRouter } = require('./routes/notifications/notifications');
 const { friendsRouter } = require('./routes/friends');
 const { deleteMyUserRouter } = require('./routes/deletion');
+const { mutualFriendsRouter } = require('./routes/mutual-friends');
 
 
 app.use(loginRouter);
@@ -104,6 +105,7 @@ app.use(updateFriendReqRouter);
 app.use(notificationsRouter);
 app.use(friendsRouter);
 app.use(deleteMyUserRouter);
+app.use(mutualFriendsRouter);
 
 //given setup below
 app.get("/user/id.json", (req, res) => {

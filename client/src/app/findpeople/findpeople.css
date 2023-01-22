@@ -54,15 +54,21 @@
 
 
 /*  */
+#theArrayOfFoundPeople-img-name{
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    align-items: center
+}
 #theArrayOfFoundPeople {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    gap: 7px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 10px;
     align-items: center;
     padding: 20px;
-    background-attachment: fixed;
     overflow-y: auto;
-    height: 600px;
+    height: 400px;
     margin: 20px;
 }
 
@@ -83,7 +89,6 @@
     font-size: 15px;
     text-decoration: none;
 }
-
 
 /*  */
 #otherprofilecompponentimg{

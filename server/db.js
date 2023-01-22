@@ -104,7 +104,7 @@ module.exports.checkFriendReqInDB = (me, anotherUser) =>{//we acpect only one ro
 };
 
 //friend requests //INSERT
-module.exports.insertIntoReset_CodesDB = (sender_id, recipient_id) => {
+module.exports.insertFriendReqDB = (sender_id, recipient_id) => {
     return db.query(`
     INSERT INTO friend_requests (sender_id, recipient_id) 
     VALUES ($1, $2) 
@@ -203,4 +203,29 @@ module.exports.getLatestMessages = (limit = 10) => {
     `;
 
     return db.query(sql, [limit]);
+};
+
+
+
+
+//mutual friends
+module.exports.allMyFriendsInDB = (myId) =>{
+    return db.query(`
+    SELECT friend_requests.id AS myid, *
+    FROM friend_requests
+    JOIN users
+    ON (users.id = friend_requests.sender_id OR users.id = friend_requests.recipient_id)
+    WHERE friend_requests.sender_id = $1 OR friend_requests.recipient_id = $1
+    AND accepted = TRUE;`,[myId]);
+};
+
+
+module.exports.allHisFriendsInDB = (idParams) =>{
+    return db.query(`
+    SELECT friend_requests.id AS theirid, *
+    FROM friend_requests
+    JOIN users
+    ON (users.id = friend_requests.sender_id OR users.id = friend_requests.recipient_id)
+    WHERE friend_requests.sender_id = $1 OR friend_requests.recipient_id = $1
+    AND accepted = TRUE;`,[idParams,]);
 };

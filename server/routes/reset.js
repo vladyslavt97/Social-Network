@@ -39,11 +39,12 @@ resetRouter.post('/emailcheck', (req, res) => {//check the email
                 if (matchForUserEmails){
                     console.log(('email we get from the users: ', data.rows));
                     // res.json({ validation: false });
+                    console.log('e and: ', email, ' c: ', code);
                     insertIntoReset_CodesDB(email, code)//insert email, code
                         // .then(() => {
                         // console.log('email should be sent now..');
                         //     return sendingEmail();
-                        // }) //disabled die to AWS issue
+                        // }) //disabled due to AWS issue
                         .then(()=>{
                             console.log('email should be sent and code inserted. Check DB');
                             res.json({incorrectData: false});
