@@ -1,7 +1,6 @@
 ## List of Users Online
 
 -   do not add multiple times!
-    To show a list of users who are online you will have to maintain the list on the server, adding users to it when their sockets connect and removing them when their sockets disconnect. Keep in mind that a user can have multiple tabs or browsers open, which means that they may appear in the list more than once.
 
 ## Wall Posts
 
