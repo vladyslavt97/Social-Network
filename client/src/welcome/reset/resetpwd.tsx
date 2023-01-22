@@ -73,6 +73,8 @@ export class Reset extends Component <ResetProps, ResetState> {
                 break;
             case 2:
                 // Make a Post request to server and check if the user exists
+                this.setState({validation: false, incorrectData: false});
+
                 fetch('/verify', {
                     method: 'POST', 
                     headers: {
@@ -83,7 +85,7 @@ export class Reset extends Component <ResetProps, ResetState> {
                     .then((response) => 
                         response.json())
                     .then((data) => {
-                        // this.setState({validation: false, incorrectData: false});
+                        this.setState({validation: false, incorrectData: false});
                         if(data.validation === true){
                             console.log('generate the error');
                             this.setState({validation: true, incorrectData: false});

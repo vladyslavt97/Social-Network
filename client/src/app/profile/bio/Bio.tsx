@@ -1,14 +1,37 @@
 import "./Bio.css"
 import {useState, useEffect} from "react"
 import { UserInfo } from '../../interface';
+import { useDispatch, useSelector } from "react-redux";
+import { addBioUpdate, userInfoState } from "../../redux/bioSlice";
+import { RootState } from "../../redux/store";
 
-interface BioProps{
-    userInfo: UserInfo,
-}
+// interface BioProps{
+//     userInfo: UserInfo,
+// }
 
-export function Bio(props: BioProps) {
-            // console.log('props: ', props);
-            
+export function Bio() {
+    const userState = useSelector((state: RootState) => state.userinfo.userInfoValue);
+    console.log('userState in bio: ', userState);
+    
+    const dispatch = useDispatch();
+
+    useEffect(()=>{//otherwise redoing app to functional componenet
+        fetch('/user', {
+            method: 'GET', 
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response) => 
+                response.json())
+            .then((data) => {
+                dispatch(userInfoState(data.userData))
+            })
+            .catch((error) => {
+                console.error('Error caught in get user:', error);
+            });
+    }, [])
+
     const [showBET, setShowBioEditorText] = useState(false);
     const showBioEditorTextarea = () => {
         setShowBioEditorText( !showBET );
@@ -25,23 +48,23 @@ export function Bio(props: BioProps) {
         })
         .then(response => response.json())
         .then(data => {
-            // console.log('bio data: ', data);
+            console.log('bio data post: ', data);
             setShowBioEditorText(false);
             setBio(data.myBio[0].bio);
-
+            dispatch(addBioUpdate(data.myBio[0].bio))
         })
         .catch(err => {
                 console.log('er: ', err);
             });   
     }
     
-    const [bio, setBio] = useState(props.userInfo.bio);
+    const [bio, setBio] = useState(userState.bio);
     const handleBio = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setBio(event.target.value);
     }
     useEffect(()=> {
-        setBio(props.userInfo.bio);
-    }, [props.userInfo.bio]);
+        setBio(userInfo.bio);
+    }, [userInfo.bio]);
     
     // console.log('showBET 1: ', showBET);
     // console.log('props.userInfo.bio 2: ', props.userInfo.bio);
@@ -49,12 +72,12 @@ export function Bio(props: BioProps) {
     
     return <div >
         <div id="thebio">
-            {props.userInfo.bio && !showBET && <h1 id="bioresult">{bio}</h1>}
+            {userInfo.bio && !showBET && <h1 id="bioresult">{bio}</h1>}
             <br />
-            {props.userInfo.bio && !showBET && <p onClick={showBioEditorTextarea} id="editbiobutton">| edit bio |</p>}
+            {userInfo.bio && !showBET && <p onClick={showBioEditorTextarea} id="editbiobutton">| edit bio |</p>}
         </div>
 
-        {!props.userInfo.bio && !showBET && <p onClick={showBioEditorTextarea} id="addyourbio">Add your bio</p>}
+        {!userInfo.bio && !showBET && <p onClick={showBioEditorTextarea} id="addyourbio">Add your bio</p>}
 
         {showBET && <form onSubmit={handleBioSubmit} className="bio-upload">
                         <h1 id="bio">BIO</h1>
