@@ -21,12 +21,13 @@ io.use((socket, next) => {
 });
 io.on("connection", async (socket) => {
     console.log("[social:socket] incoming socket connection", socket.id);
+    
     //check if the user is signed in.
     const { userId } = socket.request.session;
     if (!userId) { // I am not going to send data if a user is not signed in
         return socket.disconnect(true);
     }
-
+    socket.emit('online', {user: userId});
     // retrieve the latest 10 messages from DB
     const latestMessages = await getLatestMessages();
     // console.log('should get new messages from DB', latestMessages);
@@ -50,9 +51,11 @@ io.on("connection", async (socket) => {
         io.emit('private_message', {
             info: newMessage.rows[0], 
             senderId: socket.id});
-        console.log('si: ', socket.id);
         // then broadcast the message to all connected users (included the sender!)//??
 
+    });
+    socket.on("disconnect", () => {
+        console.log(socket.id, '= should disappear from the list on onlinne users');
     });
 });
 // ------------------------------------ end of socket setup  ------------------------------------ //

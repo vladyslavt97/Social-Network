@@ -42,9 +42,9 @@ export function Bio(props: BioProps) {
     }, [props.userInfo.bio]);
     
 
-    console.log('showBET 1: ', showBET);
-    console.log('props.userInfo.bio 2: ', props.userInfo.bio);
-    console.log('bio 3: ', bio);
+    // console.log('showBET 1: ', showBET);
+    // console.log('props.userInfo.bio 2: ', props.userInfo.bio);
+    // console.log('bio 3: ', bio);
     
     return <div >
         <div id="thebio">

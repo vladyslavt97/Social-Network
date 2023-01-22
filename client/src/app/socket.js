@@ -11,6 +11,10 @@ export const initSocket = (store) => {//needs to update teh store
         return;
     }
 
+    socket.on('online', (data) => {
+        
+    })
+
     socket = io.connect();// using their library - connet to the server
     // console.log('just a lo');
     // I receive a list of messages (probably at the beginning)

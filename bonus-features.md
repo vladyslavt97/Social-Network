@@ -17,15 +17,6 @@ Allow users to add textual messages to their own and their friends' profile scre
 
 Use socket.io to alert users when they receive a friend request if the request occurs while they are using the site. To do this, you will have to maintain a list of socket ids and the user ids that the sockets belong to. You could modify the Friends link in your navigation to show in parentheses the number of open requests and increment this number every time a friend request happens. Alternatively, you could make some sort of pop up message appear.
 
-## Friends on Profile Pages
-
-When users view the profile page of a user with whom they are friends, show them a selection of other users that are also friends with the user whose profile is being viewed.
-
-## Reduxify Parts 3 through 6
-
--   We didn't start using Redux until Part 9 so local state is still used for a lot of components.
-    You might prefer to use the global redux state throughout. If you do this, you'll have to create a whole bunch of new actions and reducers. You may want to create a new file for each feature (users/slice.js, bio/slice.js, other-users/slice.js, etc.), which will contain the associated sub-reducers and actions. Don’t forget to integrate the sub-reducers into your root reducer with combineReducer().
-
 # DEPLOY!!!
 
 huroko.
