@@ -35,3 +35,10 @@
 }
 
 
+
+
+/*  */
+#chat-to-all-bottom{
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,12 @@
+#chat-to-all-button{
+    position: absolute;
+    bottom: 50px
+}
+
+#general-chat{
+    position: absolute;
+    top: 170px;
+    right: 0px;
+    width: 65%;
+    height: 80vh;
+}

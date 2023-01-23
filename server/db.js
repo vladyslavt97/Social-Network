@@ -189,6 +189,14 @@ module.exports.insertMessage = (userId, recipient_id, oneMessage) => {
     FROM "user", new_message;`, [userId, recipient_id, oneMessage]); 
 };
 
+//insertMessageToAll
+module.exports.insertMessageToAll = (userId, text) => {
+    return db.query(`
+    INSERT INTO messages (sender_id, message) 
+    VALUES ($1, $2) 
+    RETURNING *;`, [userId, text]); //with outer join on Users? or Select * From USers
+};
+
 //
 module.exports.getLatestMessages = (limit = 10) => {
     const sql = `

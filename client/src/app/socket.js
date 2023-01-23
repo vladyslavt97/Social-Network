@@ -21,6 +21,12 @@ export const initSocket = (store) => {//needs to update teh store
         store.dispatch(action);
     });
 
+    socket.on("chatMessage", (data) => {
+        console.log('data in chat message', data);
+        const action = receivedMessage(data);//message
+        store.dispatch(action);
+    });
+
     // I receive a single message when someone has sent it to the server
     socket.on("private_message", (data) => {
         console.log('data in the sokcet.js is from textarea.tsx with .to', data);

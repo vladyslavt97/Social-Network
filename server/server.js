@@ -8,7 +8,8 @@ const {cookieSession } = require('./cookiesession');
 app.use(cookieSession);
 
 const { getLatestMessages, insertMessage, 
-    getOnlineUsersByTheirIDs
+    getOnlineUsersByTheirIDs,
+    insertMessageToAll
 } = require('./db');
 
 // ------------------------------------ SOCKET  ------------------------------------ //
@@ -72,7 +73,16 @@ io.on("connection", async (socket) => {
 
 
 
-
+    socket.on('chatMessage', async (text) => {
+    // store the message in the db
+        //1. create a new message in the db
+        console.log('text of message to all: ', text);
+        const newMessage = await insertMessageToAll(userId, text);
+        //2. tell all connected sockets
+        console.log('nm in server.js', newMessage.rows[0]);
+        // console.log('messageData server.js', messageData.rows[0]);
+        io.emit('chatMessage', newMessage.rows[0]);
+    });
 
 
     // listen for when the connected user sends a message later
@@ -89,7 +99,7 @@ io.on("connection", async (socket) => {
         console.log('fs: ', foundSocket);
 
 
-        
+
         // we need to go throught the socketIds and send to each one
         foundSocket.socketId.forEach(each => {
             console.log('each: ', each);

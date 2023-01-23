@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { UserInfo } from '../interface';
+import ChatToAll from './chat-to-all/chat-to-all';
 import Chat from './chat/chat';
 import './messages.css'
 import OnlineFriends from './online-friends/online-friends';
@@ -30,6 +31,9 @@ export default function Messages(props: MessagesProps ) {
           {counterpartChosen && <div id='chat-and-textarea-subdiv'>
                   <Chat id={props.id}/>
                   <TextArea /></div>}
+        </div>
+        <div id='chat-to-all-bottom'>
+          <ChatToAll />
         </div>
       </div>
     </div>
