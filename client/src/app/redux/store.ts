@@ -6,6 +6,8 @@ export const store = configureStore({
     reducer: { 
         friends: friendsSlice,
         messages: messagesSlice,
+        // userOnline: userOnlineSlice,
+        //selectedUserId: selectedUserIdSlice
     }
 });
 

@@ -12,7 +12,7 @@ uploadPPRouter.post('/upload', uploader.single('uploadedfile'), fileUpload, (req
     let id = req.session.userId; //should be saved in the cookie?
     selectAllDataFromUsersDBBasedOnId(id)
         .then((data) => {
-            console.log('of user', data);
+            // console.log('of user', data);
             if(data.rows[0].profile_pic_url !== null){
                 const params = {
                     Bucket: "spicedling",

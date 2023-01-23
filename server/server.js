@@ -36,11 +36,23 @@ io.on("connection", async (socket) => {
     
 
     //tracking connected users
-    usersConnectedInfo.push({
-        usersId: userId, 
-        socketId: socket.id});
-    console.log('TRACKING usersConnectedInfo: ', usersConnectedInfo);
-            
+    let alreadyExist = usersConnectedInfo.find(el => el.usersId === userId);
+    console.log('alreadyExist: ', alreadyExist);
+
+    if(!alreadyExist){
+        usersConnectedInfo.push({
+            usersId: userId, 
+            socketId: [socket.id]});
+        console.log('TRACKING usersConnectedInfo: ', usersConnectedInfo);
+    } else {
+        alreadyExist.socketId.push(socket.id);
+        // usersConnectedInfo.push({
+        //     usersId: userId, 
+        //     socketId: [socket.id]});
+        console.log('TRACKING usersConnectedInfo: ', usersConnectedInfo);
+    }
+    // let onlineUsers = Object.keys(usersConnectedInfo.userId);
+    // console.log(onlineUsers);
             
     // // online users!
     // const id = userId;
@@ -65,18 +77,12 @@ io.on("connection", async (socket) => {
     // listen for when the connected user sends a message later
     socket.on('private_message', async (dataClient) => {
     // store the message in the db
-        //1. create a new message in the db
         console.log('dataClient: ', dataClient.messageState, 'id: ', dataClient.selectedFriendId);
         let recipient_id = dataClient.selectedFriendId;
         let oneMessage = dataClient.messageState;
         const newMessage = await insertMessage(userId, recipient_id, oneMessage);
-        //2. tell all connected sockets
         console.log('nm in server.js', newMessage.rows[0]);
-        // console.log('messageData server.js', messageData.rows[0]);
-        console.log('userId: ', userId);
-        console.log('socket.idx`x`: ', socket.id);
-        // socket.join(`${recipient_id}_${userId}`);
-        // .to(recipient_id)
+
         let foundSocket = usersConnectedInfo.find(el => el.usersId === dataClient.selectedFriendId);
         console.log('fs: ', foundSocket);
         io.to(foundSocket.socketId).emit('private_message', {

@@ -7,6 +7,7 @@ export interface UserInfo {
     email: string
 }
 
+// Se data types: what is id, fid. And form whom is first, last, email, pass, profile pic.
 export interface Friend {
     id: number,
     fid: number;
@@ -37,6 +38,7 @@ export interface Message {
     info: object;
 }
 
+// In typscrip we DONT use ANY!
 export type Action = {
     type: String;
     payload: any;

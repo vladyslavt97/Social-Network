@@ -54,11 +54,11 @@ function fileUpload(req, res, next) {
             .promise()
             .then(() => {
                 // We know upload was succesful we save url into `res.locals`
-                res.locals.fileUrl = `https://s3.amazonaws.com/${AWS_BUCKET}/${filename}`;
+                res.locals.fileUrl = `https://${AWS_BUCKET}.s3.amazonaws.com/${filename}`;
                 next();
             })
             .catch(err => {
-                console.log('[imageboard:s3] error uploading to s3', err);
+                console.log('[social network:s3] error uploading to s3', err);
                 res.sendStatus(500);
             });
     }

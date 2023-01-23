@@ -1,18 +1,19 @@
 import { useState } from 'react';
+import { UserInfo } from '../interface';
 import Chat from './chat/chat';
 import './messages.css'
 import OnlineFriends from './online-friends/online-friends';
 import TextArea from './textarea/textarea';
 
 
-export default function Messages() {
+export default function Messages(props: UserInfo) {
 
   //message toggle
   const [counterpartChosen, setCounterpartChosen] = useState<boolean>(false)
     const toggleRelevantMessage = () => {
             setCounterpartChosen(!counterpartChosen);
         }
-
+      
   return (
     <div>
       <div id='messages-divs'>
@@ -24,7 +25,7 @@ export default function Messages() {
              <p>⬅️ &nbsp; </p> <h1 id='choose-a-friend'> Choose a friend to start the chat</h1>
             </div>}
           {counterpartChosen && <div id='chat-and-textarea-subdiv'>
-                  <Chat />
+                  <Chat myid={props.id}/>
                   <TextArea /></div>}
         </div>
       </div>

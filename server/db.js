@@ -229,3 +229,11 @@ module.exports.allHisFriendsInDB = (idParams) =>{
     WHERE friend_requests.sender_id = $1 OR friend_requests.recipient_id = $1
     AND accepted = TRUE;`,[idParams,]);
 };
+
+
+//online users!!!!!!!!!
+module.exports.getOnlineUsersByTheirID = (onlineUsers) =>{
+    return db.query(`
+        SELECT * FROM users WHERE id=ANY($1)
+        `, [onlineUsers]);
+};
