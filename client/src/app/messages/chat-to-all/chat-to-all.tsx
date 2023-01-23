@@ -4,7 +4,7 @@ import { RootState } from '../../redux/store';
 import { socket } from '../../socket';
 import './chat-to-all.css'
 export default function ChatToAll() {
-    const messages = useSelector((state: RootState) => state.messages.messagesValue.filter(el => !el.recipient_id));
+    const messages = useSelector((state: RootState) => state.messages.messagesValue.filter(el => el.recipient_id === null));
     console.log('messages componenet State: ', messages);
     
         const [messageState, setMessageState] = useState('');
