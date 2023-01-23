@@ -85,7 +85,7 @@ io.on("connection", async (socket) => {
 
         let foundSocket = usersConnectedInfo.find(el => el.usersId === dataClient.selectedFriendId);
         console.log('fs: ', foundSocket);
-        io.to(foundSocket.socketId).emit('private_message', {
+        io.to(foundSocket.socketId[0]).emit('private_message', {
             info: newMessage.rows[0], 
             senderId: socket.id});
 

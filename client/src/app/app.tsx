@@ -142,7 +142,7 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                                 element={<Friends />}
                                 ></Route>
                         <Route path="/messages" 
-                                element={<Messages myuser={this.state.userInfo}/>}
+                                element={<Messages id={this.state.userInfo.id}/>}
                                 ></Route>
                         <Route path="/calls" 
                                 element={<Calls />}

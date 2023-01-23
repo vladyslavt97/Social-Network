@@ -5,8 +5,11 @@ import './messages.css'
 import OnlineFriends from './online-friends/online-friends';
 import TextArea from './textarea/textarea';
 
+interface MessagesProps{
+  id: number
+}
 
-export default function Messages(props: UserInfo) {
+export default function Messages(props: MessagesProps ) {
 
   //message toggle
   const [counterpartChosen, setCounterpartChosen] = useState<boolean>(false)
@@ -25,7 +28,7 @@ export default function Messages(props: UserInfo) {
              <p>⬅️ &nbsp; </p> <h1 id='choose-a-friend'> Choose a friend to start the chat</h1>
             </div>}
           {counterpartChosen && <div id='chat-and-textarea-subdiv'>
-                  <Chat myid={props.id}/>
+                  <Chat id={props.id}/>
                   <TextArea /></div>}
         </div>
       </div>

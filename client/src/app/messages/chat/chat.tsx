@@ -2,11 +2,16 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import './chat.css'
 
-export default function Chat(props: number) {
+interface ChatProps{
+  id: number
+}
+
+export default function Chat(props: ChatProps) {
     const clickedFriendId = useSelector((state: RootState) => state.messages.id);
-    const messages = useSelector((state: RootState) => state.messages.messagesValue);
-    // const messages = useSelector((state: RootState) => state.messages.messagesValue.filter(m=>
-    //     m.recipient_id === clickedFriendId && m.sender_id === clickedFriendId));
+    // const messages = useSelector((state: RootState) => state.messages.messagesValue);
+    const messages = useSelector((state: RootState) => state.messages.messagesValue.filter(m=>
+        m.recipient_id === clickedFriendId && m.sender_id === props.id ||
+        m.recipient_id === props.id && m.sender_id === clickedFriendId));
     console.log('messages componenet State: ', messages);
         //sender a and recipient b props.myid
         //clicked is either the sender or recipient and matches myid!
