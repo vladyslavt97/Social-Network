@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import bioSlice from './bioSlice';
 import friendsSlice from './friendsSlice';
 import messagesSlice from './messagesSlice';
 
@@ -6,6 +7,7 @@ export const store = configureStore({
     reducer: { 
         friends: friendsSlice,
         messages: messagesSlice,
+        bio: bioSlice,
         // userOnline: userOnlineSlice,
         //selectedUserId: selectedUserIdSlice
     }
