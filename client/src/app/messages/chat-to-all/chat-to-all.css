@@ -16,19 +16,24 @@
 }
 
 #general-chat-div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column-reverse;
+    background-image: url('chat-div-background.jpg');
+        width: 100%;
+        background-size: cover;
+        border-top: 3px solid green;
+        display: flex;
+        background-color: green;
+        justify-content: center;
+        align-items: center;
 }
 
 
 #general-the-messages-div{
-    width: 300px;
-    height: 50vh;
-    overflow-x: hidden;
     overflow-y: auto;
-        margin: 10px;
+        height: 80%;
+        width: 80%;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column-reverse; 
 }
 
 #actual-general-message-div {

@@ -95,11 +95,12 @@ io.on("connection", async (socket) => {
         console.log('nm in server.js', newMessage.rows[0]);
         console.log('dataClient: ', dataClient);
 
+
+
+
+        //to friend
         let foundSocket = usersConnectedInfo.find(el => el.usersId === dataClient.selectedFriendId);
         console.log('fs: ', foundSocket);
-
-
-
         // we need to go throught the socketIds and send to each one
         foundSocket.socketId.forEach(each => {
             console.log('each: ', each);
@@ -122,10 +123,6 @@ io.on("connection", async (socket) => {
                 info: newMessage.rows[0], 
                 senderId: socket.id});
         });
-        
-        // socket.emit('private_message', {
-        //     info: newMessage.rows[0], 
-        //     senderId: socket.id});
 
     });
     socket.on("disconnect", () => {
