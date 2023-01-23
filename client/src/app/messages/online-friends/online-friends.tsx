@@ -12,10 +12,15 @@ interface OnlineFriendsProps{
 export default function OnlineFriends(props: OnlineFriendsProps) {
     const dispatch = useDispatch();
     const clickedFriendId = useSelector((state: RootState) => state.messages.id);
-
-  const friends = useSelector((state: RootState) => state.friends.value.filter((el)=>{
+    
+    const friends = useSelector((state: RootState) => state.friends.value.filter((el)=>{
        return el.accepted;
     }));
+
+    // const friends = useSelector((state: RootState)=> state.messages.onlineUser);
+    console.log('onlineUSers 99', friends);
+    console.log('friends accepted + add the filter to the ones online: ', friends);
+
 
   return (
     <div id='other-messages-div'>

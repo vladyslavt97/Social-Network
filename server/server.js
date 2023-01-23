@@ -24,7 +24,7 @@ io.use((socket, next) => {
 });
 let usersConnectedInfo = [];
 io.on("connection", async (socket) => {
-    console.log("[social:socket] incoming socket connection", socket.id);
+    // console.log("[social:socket] incoming socket connection", socket.id);
     
     
 
@@ -47,15 +47,13 @@ io.on("connection", async (socket) => {
         console.log('TRACKING usersConnectedInfo: ', usersConnectedInfo);
     } else {
         alreadyExist.socketId.push(socket.id);
-        // usersConnectedInfo.push({
-        //     usersId: userId, 
-        //     socketId: [socket.id]});
         console.log('TRACKING usersConnectedInfo: ', usersConnectedInfo);
     }
     let onlineUsersAndSockets = usersConnectedInfo.map(el => {
         return Object.values(el);
     });
     let onlineUsers = onlineUsersAndSockets.map(el => el[0]);
+    console.log('onlineUsers after map: ', onlineUsers);
     const getOnlineUsers = async () => {
         let onlineUsersData = await getOnlineUsersByTheirIDs(onlineUsers);
         socket.emit('online', onlineUsersData.rows);

@@ -32,7 +32,7 @@ export default function ChatToAll() {
 
   return (
     <div>
-    <button id='chat-to-all-button' onClick={toggleGeneralChat}>Chat to all!</button>
+    <button id='chat-to-all-button' onClick={toggleGeneralChat}>Chat to all</button>
         {openChat && <div id='general-chat'>
                         <div id='general-chat-div'> 
                             <div id="general-the-messages-div">

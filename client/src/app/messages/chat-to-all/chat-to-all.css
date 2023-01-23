@@ -1,25 +1,34 @@
+
 #chat-to-all-button{
-    position: absolute;
-    bottom: 50px
+    position: relative;
+    bottom: 90px;
+    border-radius: 15px;
+    border: none;
+    background: var(--main-background);
+    height: 50px;
+    cursor: pointer;
 }
+#chat-to-all-button:hover {
+    background: -webkit-linear-gradient(-86deg, #ac00cf 1%, #fbff00 99%);;
+}
+
 
 #general-chat{
     position: absolute;
-    top: 80px;
+    top: 75px;
     right: 0px;
-    width: 66%;
+    width: 68%;
     height: 66%;
     background-color: rgb(69, 137, 73);
     display: grid;
-        grid-template-rows: 75vh 1fr;
-        min-height: 100%;
+    grid-template-rows: 75vh 1fr;
+    min-height: 100%;
 }
 
 #general-chat-div{
     background-image: url('chat-div-background.jpg');
         width: 100%;
         background-size: cover;
-        border-top: 3px solid green;
         display: flex;
         background-color: green;
         justify-content: center;
