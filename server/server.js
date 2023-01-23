@@ -51,7 +51,7 @@ io.on("connection", async (socket) => {
         //     socketId: [socket.id]});
         console.log('TRACKING usersConnectedInfo: ', usersConnectedInfo);
     }
-    // let onlineUsers = Object.keys(usersConnectedInfo.userId);
+    // let onlineUsers = Object.values(usersConnectedInfo.userId);
     // console.log(onlineUsers);
             
     // // online users!
@@ -82,7 +82,7 @@ io.on("connection", async (socket) => {
         let oneMessage = dataClient.messageState;
         const newMessage = await insertMessage(userId, recipient_id, oneMessage);
         console.log('nm in server.js', newMessage.rows[0]);
-
+        console.log('dataClient: ', dataClient);
         let foundSocket = usersConnectedInfo.find(el => el.usersId === dataClient.selectedFriendId);
         console.log('fs: ', foundSocket);
         io.to(foundSocket.socketId[0]).emit('private_message', {
