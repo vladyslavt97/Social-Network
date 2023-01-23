@@ -54,7 +54,7 @@ function fileUpload(req, res, next) {
             .promise()
             .then(() => {
                 // We know upload was succesful we save url into `res.locals`
-                res.locals.fileUrl = `https://${AWS_BUCKET}.s3.amazonaws.com/${filename}`;
+                res.locals.fileUrl = `https://s3.amazonaws.com/${AWS_BUCKET}/${filename}`;
                 next();
             })
             .catch(err => {

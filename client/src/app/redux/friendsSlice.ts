@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { Friend, Action } from "../interface";
+import { Friend, Action, Message } from "../interface";
 
 export interface FriendsState {
     value: Friend[];
@@ -22,8 +22,16 @@ export const friendsSlice = createSlice({
           state.value[foundFriend].accepted = true;
     },
     unfriend: (state, friendsAction: PayloadAction<number>) => {
-      const unfriendedFriend = state.value.findIndex(el=> el.fid !== friendsAction.payload);
-        state.value.splice(unfriendedFriend, 1);
+      console.log('friendsAction12: ', friendsAction.payload);
+      
+      const unfriendedFriend = state.value.findIndex(el=> {
+        console.log('el.id: ', el.id);
+        
+        el.fid !== friendsAction.payload;
+      });
+      state.value.splice(unfriendedFriend, 1);
+      console.log('unfriendedFriend', unfriendedFriend);
+        
     },
   },
 });

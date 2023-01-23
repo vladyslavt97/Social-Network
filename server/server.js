@@ -38,22 +38,22 @@ io.on("connection", async (socket) => {
 
     //tracking connected users
     let alreadyExist = usersConnectedInfo.find(el => el.usersId === userId);
-    console.log('alreadyExist: ', alreadyExist);
+    // console.log('alreadyExist: ', alreadyExist);
 
     if(!alreadyExist){
         usersConnectedInfo.push({
             usersId: userId, 
             socketId: [socket.id]});
-        console.log('TRACKING usersConnectedInfo: ', usersConnectedInfo);
+        // console.log('TRACKING usersConnectedInfo: ', usersConnectedInfo);
     } else {
         alreadyExist.socketId.push(socket.id);
-        console.log('TRACKING usersConnectedInfo: ', usersConnectedInfo);
+        // console.log('TRACKING usersConnectedInfo: ', usersConnectedInfo);
     }
     let onlineUsersAndSockets = usersConnectedInfo.map(el => {
         return Object.values(el);
     });
     let onlineUsers = onlineUsersAndSockets.map(el => el[0]);
-    console.log('onlineUsers after map: ', onlineUsers);
+    console.log('onlineUsers: ', onlineUsers);
     const getOnlineUsers = async () => {
         let onlineUsersData = await getOnlineUsersByTheirIDs(onlineUsers);
         socket.emit('online', onlineUsersData.rows);
@@ -77,7 +77,7 @@ io.on("connection", async (socket) => {
         console.log('text of message to all: ', text);
         const newMessage = await insertMessageToAll(userId, text);
         //2. tell all connected sockets
-        console.log('nm in server.js', newMessage.rows[0]);
+        // console.log('nm in server.js', newMessage.rows[0]);
         // console.log('messageData server.js', messageData.rows[0]);
         io.emit('chatMessage', newMessage.rows[0]);
     });
@@ -90,8 +90,8 @@ io.on("connection", async (socket) => {
         let recipient_id = dataClient.selectedFriendId;
         let oneMessage = dataClient.messageState;
         const newMessage = await insertMessage(userId, recipient_id, oneMessage);
-        console.log('nm in server.js', newMessage.rows[0]);
-        console.log('dataClient: ', dataClient);
+        // console.log('nm in server.js', newMessage.rows[0]);
+        // console.log('dataClient: ', dataClient);
 
 
 
@@ -101,7 +101,7 @@ io.on("connection", async (socket) => {
         console.log('fs: ', foundSocket);
         // we need to go throught the socketIds and send to each one
         foundSocket.socketId.forEach(each => {
-            console.log('each: ', each);
+            // console.log('each: ', each);
             io.to(each).emit('private_message', {
                 info: newMessage.rows[0], 
                 senderId: socket.id});
@@ -116,7 +116,7 @@ io.on("connection", async (socket) => {
 
         // we need to go throught the socketIds and send to each one
         mySocket.socketId.forEach(each => {
-            console.log('each: ', each);
+            // console.log('each: ', each);
             io.to(each).emit('private_message', {
                 info: newMessage.rows[0], 
                 senderId: socket.id});
@@ -125,10 +125,13 @@ io.on("connection", async (socket) => {
     });
     socket.on("disconnect", () => {
         console.log(socket.id, '= should disappear from the list on onlinne users');
-        const indexOf = usersConnectedInfo.findIndex(el => el.socketId === socket.id);
+        const indexOf = usersConnectedInfo.findIndex(el => {
+            console.log('el.sockedId: ', el.socketId);
+            return el.socketId !== socket.id;
+        });
         console.log('indexOf: ', indexOf);
         let spliced = usersConnectedInfo.splice(indexOf, 1);
-        console.log('1', usersConnectedInfo, '2@: ', spliced);
+        console.log('Updated usersConnectedInfo: ', usersConnectedInfo, 'Spliced: ', spliced);
     });
 
 
