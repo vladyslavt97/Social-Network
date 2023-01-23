@@ -232,7 +232,7 @@ module.exports.allHisFriendsInDB = (idParams) =>{
 
 
 //online users!!!!!!!!!
-module.exports.getOnlineUsersByTheirID = (onlineUsers) =>{
+module.exports.getOnlineUsersByTheirIDs = (onlineUsers) =>{
     return db.query(`
         SELECT * FROM users WHERE id=ANY($1)
         `, [onlineUsers]);

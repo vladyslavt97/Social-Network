@@ -8,7 +8,7 @@ const {cookieSession } = require('./cookiesession');
 app.use(cookieSession);
 
 const { getLatestMessages, insertMessage, 
-    // selectAllDataFromUsersDBBasedOnId 
+    getOnlineUsersByTheirIDs
 } = require('./db');
 
 // ------------------------------------ SOCKET  ------------------------------------ //
@@ -51,10 +51,21 @@ io.on("connection", async (socket) => {
         //     socketId: [socket.id]});
         console.log('TRACKING usersConnectedInfo: ', usersConnectedInfo);
     }
-    // let onlineUsers = Object.values(usersConnectedInfo.userId);
-    // console.log(onlineUsers);
-            
-    // // online users!
+    let onlineUsersAndSockets = usersConnectedInfo.map(el => {
+        return Object.values(el);
+    });
+    console.log('onlineUsersAndSockets: ', onlineUsersAndSockets);
+    let onlineUsers = onlineUsersAndSockets.map(el => el[0]);
+
+    console.log('onlineUsers: ', onlineUsers);
+    const getOnlineUsers = async () => {
+        let onlineUsersData = await getOnlineUsersByTheirIDs(onlineUsers);
+        console.log('onlineUsersData.rows: ', onlineUsersData.rows);
+        socket.emit('online', onlineUsersData.rows);
+    };
+    getOnlineUsers();
+
+    // online users!
     // const id = userId;
     // const onlineUser = await selectAllDataFromUsersDBBasedOnId(id);
     // socket.emit('online', onlineUser.rows);
