@@ -7,7 +7,9 @@ const { PORT, WEB_URL} = process.env;
 const {cookieSession } = require('./cookiesession');
 app.use(cookieSession);
 
-const { getLatestMessages, insertMessage, selectAllDataFromUsersDBBasedOnId } = require('./db');
+const { getLatestMessages, insertMessage, 
+    // selectAllDataFromUsersDBBasedOnId 
+} = require('./db');
 
 // ------------------------------------ SOCKET  ------------------------------------ //
 const server = require('http').Server(app);
@@ -23,25 +25,29 @@ let usersConnectedInfo = [];
 io.on("connection", async (socket) => {
     console.log("[social:socket] incoming socket connection", socket.id);
     
+    
+
     //check if the user is signed in.
     const { userId } = socket.request.session;
     if (!userId) { // I am not going to send data if a user is not signed in
         return socket.disconnect(true);
     }
-    console.log("UserId", userId);
 
+    
+
+    //tracking connected users
     usersConnectedInfo.push({
         usersId: userId, 
         socketId: socket.id});
+    console.log('TRACKING usersConnectedInfo: ', usersConnectedInfo);
             
             
-    // online users!
-    const id = userId;
-    const onlineUser = await selectAllDataFromUsersDBBasedOnId(id);
-    socket.emit('online', onlineUser.rows);
-    // console.log(userId, 'should be emited to server.js');
-    // usersConnectedInfo.forEach(each=>console.log("each",each));
-    console.log('usersConnectedInfo: ', usersConnectedInfo);
+    // // online users!
+    // const id = userId;
+    // const onlineUser = await selectAllDataFromUsersDBBasedOnId(id);
+    // socket.emit('online', onlineUser.rows);
+    // // console.log(userId, 'should be emited to server.js');
+    // // usersConnectedInfo.forEach(each=>console.log("each",each));
 
 
 
@@ -51,13 +57,18 @@ io.on("connection", async (socket) => {
     // and send them to the client who has just connected
     socket.emit('chatMessages', latestMessages);
 
+
+
+
+
+
     // listen for when the connected user sends a message later
-    socket.on('private_message', async (text) => {
+    socket.on('private_message', async (dataClient) => {
     // store the message in the db
         //1. create a new message in the db
-        console.log('text: ', text.messageState, 'id: ', text.selectedFriendId);
-        let recipient_id = text.selectedFriendId;
-        let oneMessage = text.messageState;
+        console.log('dataClient: ', dataClient.messageState, 'id: ', dataClient.selectedFriendId);
+        let recipient_id = dataClient.selectedFriendId;
+        let oneMessage = dataClient.messageState;
         const newMessage = await insertMessage(userId, recipient_id, oneMessage);
         //2. tell all connected sockets
         console.log('nm in server.js', newMessage.rows[0]);
@@ -66,13 +77,13 @@ io.on("connection", async (socket) => {
         console.log('socket.idx`x`: ', socket.id);
         // socket.join(`${recipient_id}_${userId}`);
         // .to(recipient_id)
-        let foundSocket = usersConnectedInfo.find(el => el.usersId === text.selectedFriendId);
+        let foundSocket = usersConnectedInfo.find(el => el.usersId === dataClient.selectedFriendId);
         console.log('fs: ', foundSocket);
-        io.to(foundSocket.socketId[0]).emit('private_message', {
+        io.to(foundSocket.socketId).emit('private_message', {
             info: newMessage.rows[0], 
             senderId: socket.id});
 
-        io.emit('private_message', {
+        socket.emit('private_message', {
             info: newMessage.rows[0], 
             senderId: socket.id});
 
