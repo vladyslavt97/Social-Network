@@ -54,23 +54,13 @@ io.on("connection", async (socket) => {
     let onlineUsersAndSockets = usersConnectedInfo.map(el => {
         return Object.values(el);
     });
-    console.log('onlineUsersAndSockets: ', onlineUsersAndSockets);
     let onlineUsers = onlineUsersAndSockets.map(el => el[0]);
-
-    console.log('onlineUsers: ', onlineUsers);
     const getOnlineUsers = async () => {
         let onlineUsersData = await getOnlineUsersByTheirIDs(onlineUsers);
-        console.log('onlineUsersData.rows: ', onlineUsersData.rows);
         socket.emit('online', onlineUsersData.rows);
     };
     getOnlineUsers();
 
-    // online users!
-    // const id = userId;
-    // const onlineUser = await selectAllDataFromUsersDBBasedOnId(id);
-    // socket.emit('online', onlineUser.rows);
-    // // console.log(userId, 'should be emited to server.js');
-    // // usersConnectedInfo.forEach(each=>console.log("each",each));
 
 
 
@@ -94,15 +84,38 @@ io.on("connection", async (socket) => {
         const newMessage = await insertMessage(userId, recipient_id, oneMessage);
         console.log('nm in server.js', newMessage.rows[0]);
         console.log('dataClient: ', dataClient);
+
         let foundSocket = usersConnectedInfo.find(el => el.usersId === dataClient.selectedFriendId);
         console.log('fs: ', foundSocket);
-        io.to(foundSocket.socketId[0]).emit('private_message', {
-            info: newMessage.rows[0], 
-            senderId: socket.id});
 
-        socket.emit('private_message', {
-            info: newMessage.rows[0], 
-            senderId: socket.id});
+
+        
+        // we need to go throught the socketIds and send to each one
+        foundSocket.socketId.forEach(each => {
+            console.log('each: ', each);
+            io.to(each).emit('private_message', {
+                info: newMessage.rows[0], 
+                senderId: socket.id});
+        });
+
+
+
+
+        //to myself
+        let mySocket = usersConnectedInfo.find(el => el.usersId === userId);
+        console.log('fs: ', mySocket);
+
+        // we need to go throught the socketIds and send to each one
+        mySocket.socketId.forEach(each => {
+            console.log('each: ', each);
+            io.to(each).emit('private_message', {
+                info: newMessage.rows[0], 
+                senderId: socket.id});
+        });
+        
+        // socket.emit('private_message', {
+        //     info: newMessage.rows[0], 
+        //     senderId: socket.id});
 
     });
     socket.on("disconnect", () => {
