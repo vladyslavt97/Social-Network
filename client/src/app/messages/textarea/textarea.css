@@ -1,6 +1,7 @@
 #textarea-messages-form {
     display: grid;
     grid-template-columns: 80% 20%;
+    height: 100px;
 }
 
 #send-button {

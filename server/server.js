@@ -19,6 +19,7 @@ const io = require('socket.io')(server, {
 io.use((socket, next) => {
     cookieSession(socket.request, socket.request.res, next);
 });
+let usersConnectedInfo = [];
 io.on("connection", async (socket) => {
     console.log("[social:socket] incoming socket connection", socket.id);
     
@@ -27,13 +28,20 @@ io.on("connection", async (socket) => {
     if (!userId) { // I am not going to send data if a user is not signed in
         return socket.disconnect(true);
     }
+    console.log("UserId", userId);
 
-
+    usersConnectedInfo.push({
+        usersId: userId, 
+        socketId: socket.id});
+            
+            
     // online users!
     const id = userId;
     const onlineUser = await selectAllDataFromUsersDBBasedOnId(id);
     socket.emit('online', onlineUser.rows);
-    console.log(userId, 'should be emited to server.js');
+    // console.log(userId, 'should be emited to server.js');
+    // usersConnectedInfo.forEach(each=>console.log("each",each));
+    console.log('usersConnectedInfo: ', usersConnectedInfo);
 
 
 
@@ -55,35 +63,45 @@ io.on("connection", async (socket) => {
         console.log('nm in server.js', newMessage.rows[0]);
         // console.log('messageData server.js', messageData.rows[0]);
         console.log('userId: ', userId);
+        console.log('socket.idx`x`: ', socket.id);
         // socket.join(`${recipient_id}_${userId}`);
         // .to(recipient_id)
+        let foundSocket = usersConnectedInfo.find(el => el.usersId === text.selectedFriendId);
+        console.log('fs: ', foundSocket);
+        io.to(foundSocket.socketId[0]).emit('private_message', {
+            info: newMessage.rows[0], 
+            senderId: socket.id});
+
         io.emit('private_message', {
             info: newMessage.rows[0], 
             senderId: socket.id});
-        // then broadcast the message to all connected users (included the sender!)//??
 
     });
     socket.on("disconnect", () => {
         console.log(socket.id, '= should disappear from the list on onlinne users');
+        const indexOf = usersConnectedInfo.findIndex(el => el.socketId === socket.id);
+        console.log('indexOf: ', indexOf);
+        let spliced = usersConnectedInfo.splice(indexOf, 1);
+        console.log('1', usersConnectedInfo, '2@: ', spliced);
     });
 
 
 
 
-    //call a user by id
-    socket.on("callUser", (data) => {
-        //data - should be passed from Client
-        io.to(data.userToCall).emit("callUser", {
-            signal: data.signalData, 
-            from: data.from, 
-            name: data.name 
-        });
-    });
+    // //call a user by id
+    // socket.on("callUser", (data) => {
+    //     //data - should be passed from Client
+    //     io.to(data.userToCall).emit("callUser", {
+    //         signal: data.signalData, 
+    //         from: data.from, 
+    //         name: data.name 
+    //     });
+    // });
 
-    //answer the call
-    socket.on("answerCall", (data) => {
-        io.to(data.to).emit("callAccepted", data.signal);
-    });
+    // //answer the call
+    // socket.on("answerCall", (data) => {
+    //     io.to(data.to).emit("callAccepted", data.signal);
+    // });
 });
 // ------------------------------------ end of socket setup  ------------------------------------ //
 

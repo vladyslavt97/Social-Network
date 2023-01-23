@@ -59,7 +59,7 @@ export class App extends Component<AppProps, AppState, UserInfo> {
                 response.json())
             .then((data) => {
                 this.setState({ userInfo:data.userData });
-                console.log('GET: ', data.userData);
+                // console.log('GET: ', data.userData);
             })
             .catch((error) => {
                 console.error('Error caught:', error);

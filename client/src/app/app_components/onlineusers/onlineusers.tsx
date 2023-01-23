@@ -6,7 +6,7 @@ import "./onlineusers.css"
 
 export function OnlineUsers (){
     const onlineUsers = useSelector((state: RootState)=> state.messages.onlineUser);
-    console.log('onlineUSers', onlineUsers);
+    // console.log('onlineUSers', onlineUsers);
     
     const [visibleListOfOnlineUsers, setVisibleListOfOnlineUsers] = useState<boolean>(false)
     const toggleOnlineUsers = () => {

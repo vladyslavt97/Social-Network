@@ -29,7 +29,7 @@ export const initSocket = (store) => {//needs to update teh store
     });
 
     socket.on('online', (data) => {
-        console.log('online: ', data);
+        // console.log('online: ', data);
         const action = onlineUserAppeared(data);
         store.dispatch(action);
     });
