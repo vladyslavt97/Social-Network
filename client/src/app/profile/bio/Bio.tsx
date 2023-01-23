@@ -53,10 +53,10 @@ export function Bio(props: BioProps) {
     }
     
 
-    console.log('showBET 1: ', showBET);
-    console.log('props.userInfo.bio 2: ', props.userInfo.bio);
-    console.log('bio 3: ', bio);
-    console.log('bioS 2: ', bioS);
+    // console.log('showBET 1: ', showBET);
+    // console.log('props.userInfo.bio 2: ', props.userInfo.bio);
+    // console.log('bio 3: ', bio);
+    // console.log('bioS 2: ', bioS);
     
     return <div >
         <div id="thebio">
@@ -72,7 +72,7 @@ export function Bio(props: BioProps) {
                         <textarea 
                         onChange={handleBio} 
                         id="textareabio" 
-                        value={bio || ''}
+                        value={bio || bioS}
                         ></textarea>
                         <button>Submit the biography</button>
                     </form>}
