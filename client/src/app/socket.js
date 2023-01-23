@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
-import { messagesState, receivedMessage, onlineUserAppeared} from "./redux/messagesSlice";
+import { messagesState, receivedMessage, onlineUserAppeared, receivedMessageForAll} from "./redux/messagesSlice";
 
 // as soon as redux is setup - it has to talk to REDUX ! ! ! and update its state!
 // new message comes in -> update redux -> my component is subscribing to this part of the redux
@@ -23,7 +23,7 @@ export const initSocket = (store) => {//needs to update teh store
 
     socket.on("chatMessage", (data) => {
         console.log('data in chat message', data);
-        const action = receivedMessage(data);//message
+        const action = receivedMessageForAll(data);//message
         store.dispatch(action);
     });
 

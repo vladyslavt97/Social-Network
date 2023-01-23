@@ -20,6 +20,11 @@ export const messagesSlice = createSlice({
     messagesState: (state, messagesAction: PayloadAction<Message[]>) => {//action instructs how to change
       state.messagesValue = messagesAction.payload;
     },
+    receivedMessageForAll: (state, messagesAction: PayloadAction<Message>) => {
+        console.log('messagesAction received: ', messagesAction.payload);
+        console.log('state.messagesValue: ', state.messagesValue);
+        state.messagesValue.unshift(messagesAction.payload);
+    },
     receivedMessage: (state, messagesAction: PayloadAction<Message>) => {
         console.log('messagesAction received: ', messagesAction.payload);
         console.log('state.messagesValue: ', state.messagesValue);
@@ -36,5 +41,5 @@ export const messagesSlice = createSlice({
   },
 });
 
-export const { messagesState, receivedMessage, selectedFriendId, onlineUserAppeared} = messagesSlice.actions // Action
+export const { messagesState, receivedMessage, selectedFriendId, onlineUserAppeared, receivedMessageForAll} = messagesSlice.actions // Action
 export default messagesSlice.reducer //reducer
