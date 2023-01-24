@@ -34,7 +34,6 @@ io.on("connection", async (socket) => {
         return socket.disconnect(true);
     }
 
-    
 
     //tracking connected users
     let alreadyExist = usersConnectedInfo.find(el => el.usersId === userId);
@@ -60,6 +59,7 @@ io.on("connection", async (socket) => {
     };
     getOnlineUsers();
 
+    console.log('lets see: ', usersConnectedInfo);
 
 
 
@@ -125,16 +125,44 @@ io.on("connection", async (socket) => {
     });
     socket.on("disconnect", () => {
         console.log(socket.id, '= should disappear from the list on onlinne users');
+        console.log('1: ', usersConnectedInfo);
+        //find -> matching object.sockedId.length === 1 -> remove the whole object, 
+        //otherwise if > 1 remove that element of the array
+        // let foundObj = usersConnectedInfo.find(el => el.socketId.includes(socket.id));
+        // console.log('foundObj: ', foundObj);
+        // if (foundObj.socketId.length===1){
+        //     usersConnectedInfo.filter(el => el.senderId !== socket.id);//should solve the reconnect
+        //     console.log('usersConnectedInfo last: ', usersConnectedInfo);
+        // } else if (foundObj.socketId.length > 1) {
+        //     let filteredArr = foundObj.socketId.filter(el=>el !== socket.id);
+        //     console.log('usersConnectedInfo very last: ', usersConnectedInfo);
+        //     console.log('filteredArr: ', filteredArr);
+        // }
+
+
+
+
+
+        // old solution without second tab possibility
         // usersConnectedInfo.filter(el => el.senderId !== socket.id);//should solve the reconnect
         const indexOf = usersConnectedInfo.findIndex(el => {
-            console.log('el.sockedId: ', el.socketId);
-            return el.socketId === socket.id;
+            // console.log('el.sockedId: ', el.socketId);
+            // return el.socketId === socket.id;
+            return el.socketId.find(el => {
+            
+                // console.log('just one el: ', el);
+                return el === socket.id;
+            });
         });
-        console.log('indexOf: ', indexOf);
+        //if sockedId.length === 1 -> splice the whole user!
+        //if length < 1 -> splice the correct index inside of the sockedId
+        // console.log('indexOf: ', indexOf);
         let spliced = usersConnectedInfo.splice(indexOf, 1);
         console.log('Updated usersConnectedInfo: ', usersConnectedInfo, 
             'Spliced: ', spliced
         );
+        //end of the old solution!
+
     });
 
 
