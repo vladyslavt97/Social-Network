@@ -125,13 +125,16 @@ io.on("connection", async (socket) => {
     });
     socket.on("disconnect", () => {
         console.log(socket.id, '= should disappear from the list on onlinne users');
+        // usersConnectedInfo.filter(el => el.senderId !== socket.id);//should solve the reconnect
         const indexOf = usersConnectedInfo.findIndex(el => {
             console.log('el.sockedId: ', el.socketId);
-            return el.socketId !== socket.id;
+            return el.socketId === socket.id;
         });
         console.log('indexOf: ', indexOf);
         let spliced = usersConnectedInfo.splice(indexOf, 1);
-        console.log('Updated usersConnectedInfo: ', usersConnectedInfo, 'Spliced: ', spliced);
+        console.log('Updated usersConnectedInfo: ', usersConnectedInfo, 
+            'Spliced: ', spliced
+        );
     });
 
 
