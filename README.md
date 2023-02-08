@@ -11,6 +11,8 @@ AND
 
 The folowing port should be available for you: http://localhost:3000/
 
+<hr>
+
 #### Login page:
 <img src="https://user-images.githubusercontent.com/85371429/217601888-b6f8425c-d6fc-4db1-9b95-7423526bf024.gif" width="500px" />
 
@@ -22,5 +24,4 @@ The folowing port should be available for you: http://localhost:3000/
 
 #### Private chat and general chat (with socket.io)
 <img src="https://user-images.githubusercontent.com/85371429/217605518-23917915-07e6-4131-9919-745384e948e5.gif" width="500px" />
-
 
