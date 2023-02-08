@@ -15,14 +15,14 @@
 
 #general-chat{
     position: absolute;
-    top: 75px;
-    right: 0px;
-    width: 68%;
-    height: 66%;
-    background-color: rgb(69, 137, 73);
-    display: grid;
-    grid-template-rows: 75vh 1fr;
-    min-height: 100%;
+        top: 77px;
+        right: -15px;
+        width: 68%;
+        height: 80%;
+        background-color: rgb(69, 137, 73);
+        display: grid;
+        grid-template-rows: 80vh 1fr;
+        min-height: 100%;
 }
 
 #general-chat-div{
