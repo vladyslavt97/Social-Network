@@ -23,6 +23,7 @@
         display: grid;
         grid-template-rows: 80vh 1fr;
         min-height: 100%;
+        
 }
 
 #general-chat-div{
