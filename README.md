@@ -12,15 +12,15 @@ AND
 The folowing port should be available for you: http://localhost:3000/
 
 #### Login page:
-
 <img src="https://user-images.githubusercontent.com/85371429/217601888-b6f8425c-d6fc-4db1-9b95-7423526bf024.gif" width="500px" />
 
-search and sent friend req
-![friendreq_sn](https://user-images.githubusercontent.com/85371429/217602856-57b85463-bada-4c2a-a9f4-8a7c403bc6d9.gif)
+#### Search and send friend requests:
+<img src="https://user-images.githubusercontent.com/85371429/217602856-57b85463-bada-4c2a-a9f4-8a7c403bc6d9.gif" width="500px" />
 
-Managing friends
-![friends_sn](https://user-images.githubusercontent.com/85371429/217602057-db35fad0-6005-4e87-b370-e541194d93a8.gif)
+#### Managing friends (with Redux):
+<img src="https://user-images.githubusercontent.com/85371429/217602057-db35fad0-6005-4e87-b370-e541194d93a8.gif" width="500px" />
 
-Chat
-![chat_sn](https://user-images.githubusercontent.com/85371429/217602186-23800cc4-4d85-4d8b-badf-d5b69dc194fb.gif)
+#### Private chat and general chat (with socket.io)
+<img src="https://user-images.githubusercontent.com/85371429/217605518-23917915-07e6-4131-9919-745384e948e5.gif" width="500px" />
+
 
