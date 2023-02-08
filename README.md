@@ -11,8 +11,9 @@ AND
 
 The folowing port should be available for you: http://localhost:3000/
 
-login
-<img src="https://user-images.githubusercontent.com/85371429/217601888-b6f8425c-d6fc-4db1-9b95-7423526bf024.gif" width="100px" />
+#### Login page:
+
+<img src="https://user-images.githubusercontent.com/85371429/217601888-b6f8425c-d6fc-4db1-9b95-7423526bf024.gif" width="500px" />
 
 search and sent friend req
 ![friendreq_sn](https://user-images.githubusercontent.com/85371429/217602856-57b85463-bada-4c2a-a9f4-8a7c403bc6d9.gif)
