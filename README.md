@@ -4,7 +4,7 @@ Social Network called "Bookface" provides a possibility to find a friend, send a
 search the DB for a friend. Chat to the friends via the socket.io connection. Update your personal account with help of AWS and SQL.
  
  
-### To start the project on you machine:
+#### To start the project on you machine:
 <b>npm run dev:server</b>
 AND
 <b>npm run dev:client</b>
