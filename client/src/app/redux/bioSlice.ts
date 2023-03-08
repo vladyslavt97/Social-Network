@@ -13,13 +13,9 @@ export const bioSlice = createSlice({
   initialState,
   reducers: {
     setBioRedux: (state, bioAction: PayloadAction<string>) => {//action instructs how to change
-        console.log('bioAction: ', bioAction.payload);
-        
       state.biovalue = bioAction.payload;
     },
     modifyBio: (state, bioAction: PayloadAction<string>) => {
-        console.log('messagesAction received: ', bioAction.payload);
-        console.log('state.messagesValue: ', state.biovalue);
         state.biovalue = bioAction.payload;
     },
   },

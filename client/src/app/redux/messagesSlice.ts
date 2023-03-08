@@ -21,21 +21,15 @@ export const messagesSlice = createSlice({
       state.messagesValue = messagesAction.payload;
     },
     receivedMessageForAll: (state, messagesAction: PayloadAction<Message>) => {
-        console.log('messagesAction received: ', messagesAction.payload);
-        console.log('state.messagesValue: ', state.messagesValue);
         state.messagesValue.unshift(messagesAction.payload);
     },
     receivedMessage: (state, messagesAction: PayloadAction<Message>) => {
-        console.log('messagesAction received: ', messagesAction.payload);
-        console.log('state.messagesValue: ', state.messagesValue);
         state.messagesValue.unshift(messagesAction.payload);
     },
     selectedFriendId: (state, messagesAction: PayloadAction<number>) => {
-      console.log('messagesAction.payload state,id', messagesAction.payload);
       state.id = messagesAction.payload;
     },
     onlineUserAppeared: (state, messagesAction: PayloadAction<UserInfo[]>) => {
-      // console.log('online user obj in slice', messagesAction.payload);
       state.onlineUser = messagesAction.payload;
     }
   },
